@@ -1,7 +1,8 @@
-package com.sousajrps.covid19pt
+package com.sousajrps.covid19pt.vaccination
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.sousajrps.covid19pt.AppModule
 import com.sousajrps.covid19pt.scheduler.SchedulerModule
 
 class VaccinationViewModelFactory : ViewModelProvider.Factory {

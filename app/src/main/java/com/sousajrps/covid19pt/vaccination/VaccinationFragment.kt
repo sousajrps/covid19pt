@@ -1,4 +1,4 @@
-package com.sousajrps.covid19pt
+package com.sousajrps.covid19pt.vaccination
 
 import android.os.Bundle
 import android.util.Log
@@ -13,15 +13,15 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.sousajrps.covid19pt.R
 import com.sousajrps.covid19pt.remote.models.Vaccination
 import java.util.*
 import kotlin.collections.ArrayList
 
-
 class VaccinationFragment : Fragment() {
     private lateinit var viewModel: VaccinationViewModel
-    private lateinit var textView:TextView
-    private lateinit var pieChart:PieChart
+    private lateinit var textView: TextView
+    private lateinit var pieChart: PieChart
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,7 +64,7 @@ class VaccinationFragment : Fragment() {
         val naVacinados1 = totalPopulacao - firstdose
         val naVacinados2 = totalPopulacao - secondDose
         cenas.add(PieEntry(secondDose, 1))
-        cenas.add(PieEntry(firstdose-secondDose, 2))
+        cenas.add(PieEntry(firstdose - secondDose, 2))
         cenas.add(PieEntry(naVacinados1, 3))
 
         val dataSet = PieDataSet(cenas, "Number Of Employees")
@@ -88,7 +88,7 @@ class VaccinationFragment : Fragment() {
         cenasLabel.add("Primeira Dose")
         cenasLabel.add("Não vacinados")
 
-        val data :PieData = PieData(dataSet)
+        val data: PieData = PieData(dataSet)
         pieChart.data = data
         pieChart.animateXY(2000, 2000)
     }

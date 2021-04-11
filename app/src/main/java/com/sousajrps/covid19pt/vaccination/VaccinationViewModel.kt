@@ -1,10 +1,10 @@
-package com.sousajrps.covid19pt
+package com.sousajrps.covid19pt.vaccination
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.sousajrps.covid19pt.SingleLiveEvent
 import com.sousajrps.covid19pt.remote.models.Vaccination
-import com.sousajrps.covid19pt.riskMatrix.MatrixRepository
 import com.sousajrps.covid19pt.riskMatrix.TIME_OFFSET
 import com.sousajrps.covid19pt.scheduler.SchedulerProvider
 import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferences
@@ -42,12 +42,13 @@ class VaccinationViewModel(
         }
     }
 
-    private fun shouldRefreshData() = time > (appSharedPreferences.covid19PtVaccinationTimeStamp + TIME_OFFSET)
+    private fun shouldRefreshData() =
+        time > (appSharedPreferences.covid19PtVaccinationTimeStamp + TIME_OFFSET)
 
     private fun refreshData() = vaccinationRepository.getRemoteVaccination()
         .observeOn(schedulerProvider.mainThread())
         .subscribeOn(schedulerProvider.backgroundThread())
-       // .map { dataToConfirmedCasesMapper.map(rawData = it) }
+        // .map { dataToConfirmedCasesMapper.map(rawData = it) }
         //  .map { it.takeLast(30) }
         .subscribe(
             { response ->
@@ -61,7 +62,7 @@ class VaccinationViewModel(
     private fun loadLocalData() = vaccinationRepository.getLocalVaccination()
         .observeOn(schedulerProvider.mainThread())
         .subscribeOn(schedulerProvider.backgroundThread())
-       // .map { dataToConfirmedCasesMapper.map(rawData = it) }
+        // .map { dataToConfirmedCasesMapper.map(rawData = it) }
         //  .map { it.takeLast(30) }
         .subscribe(
             { response ->

@@ -1,4 +1,4 @@
-package com.sousajrps.covid19pt
+package com.sousajrps.covid19pt.vaccination
 
 import com.sousajrps.covid19pt.remote.models.Vaccination
 import io.reactivex.Single

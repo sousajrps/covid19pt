@@ -1,6 +1,5 @@
-package com.sousajrps.covid19pt
+package com.sousajrps.covid19pt.vaccination
 
-import android.util.Log
 import com.sousajrps.covid19pt.remote.RemoteData
 import com.sousajrps.covid19pt.remote.mappers.VaccinationMapper
 import com.sousajrps.covid19pt.remote.models.Vaccination

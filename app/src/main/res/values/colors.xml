@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="grey">#FF222222</color>
+    <color name="light_grey">#FFAAAAAA</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="whiteTransparency">#50FFFFFF</color>
+    <color name="red">#D72638</color>
+  <!--  <color name="green">#18A999</color>-->
+    <color name="green">@color/seaGreen</color>
+    <!--<color name="yellow">#F9DF74</color>-->
+    <color name="yellow">@color/honeyYellow</color>
+    <!--<color name="orange">#ED9121</color>-->
+    <color name="orange">@color/blazeOrange</color>
+    <color name="primary">@color/queenBlue</color>
+    <color name="primaryDark">@color/charcoal</color>
+    <color name="primaryLight">@color/skyBlue</color>
+    <color name="secondary">#9c27b0</color>
+    <color name="secondaryDark">#6a0080</color>
+    <color name="secondaryLight">#d05ce3</color>
+    <color name="redTransparency">#33ff0000</color>
+    <color name="blue">#ff0000ff</color>
+    <color name="blueTransparency">#330000ff</color>
+
+    <color name="textColor">@color/black</color>
+    <color name="background">@color/white</color>
+
+
+    <color name="queenBlue">#33658A</color>
+    <color name="skyBlue">#86BBD8</color>
+    <color name="charcoal">#2F4858</color>
+    <color name="honeyYellow">#F6AE2D</color>
+    <color name="roseMadder">#DF2935</color>
+    <color name="seaGreen">#3E885B</color>
+    <color name="blazeOrange">#F26419</color>
+
+    <color name="charcoalTransparency">#502F4858</color>
+    <color name="skyBlueTransparency">#5086BBD8</color>
+    <color name="blackTransparency">#50000000</color>
+
+    <color name="toolTipBackground">@color/light_grey</color>
+    <color name="toolTipText">@color/queenBlue</color>
+    <color name="chartLines">@color/queenBlue</color>
+    <color name="chartCircles">@color/skyBlue</color>
+
+</resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.sousajrps.covid19pt.MainActivity">
+    <item
+        android:id="@+id/MatrixFragment"
+        android:title="@string/risk_matrix_fragment_title"
+        android:icon="@drawable/ic_matrix"/>
+    <item
+        android:id="@+id/ReportFragment"
+        android:title="@string/report_fragment_title"
+        android:icon="@drawable/ic_trending_down"/>
+    <item
+        android:id="@+id/VaccinationFragment"
+        android:title="@string/vaccination_fragment_title"
+        android:icon="@drawable/ic_syringe"/>
+    <item
+        android:id="@+id/SettingsFragment"
+        android:title="@string/settings_fragment_title"
+        android:icon="@drawable/ic_settings"/>
+</menu>
+

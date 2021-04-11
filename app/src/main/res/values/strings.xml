@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Covid 19 PT</string>
+    <string name="risk_matrix_fragment_title">Risk Matrix</string>
+    <string name="risk_matrix_fragment_date">Date</string>
+    <string name="risk_matrix_fragment_national">National</string>
+    <string name="risk_matrix_fragment_continent">Continent</string>
+    <string name="risk_matrix_fragment_transmission_rate">R(t)</string>
+    <string name="risk_matrix_fragment_cases_per_100k">Cases per 100k inhabitants</string>
+    <string name="report_fragment_title">Report</string>
+    <string name="vaccination_fragment_title">Vaccination</string>
+    <string name="settings_fragment_title">Settings</string>
+    <string name="daily_cases_title">Daily new cases</string>
+    <string name="daily_cases_chart">Daily new cases chart</string>
+    <string name="settings_language">Language:</string>
+    <string name="settings_portuguese">Português</string>
+    <string name="settings_english">English</string>
+    <string name="settings_night_mode">Night mode</string>
+    <string name="report_confirmed">Confirmed:</string>
+    <string name="report_active">Active:</string>
+    <string name="report_recovered">Recoverd:</string>
+    <string name="report_deaths">Deaths:</string>
+    <string name="report_surveillance">Surveillance:</string>
+    <string name="report_hospitalized">Hospitalized:</string>
+    <string name="report_hospitalized_icu">Hospitalized ICU:</string>
+    <string name="report_title_label">Daily report: %s</string>
+
+
+
+
+</resources>

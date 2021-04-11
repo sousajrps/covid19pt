@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/q1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/gradient_green"
+        app:layout_constraintBottom_toBottomOf="@id/risk_matrix_Line_chart"
+        app:layout_constraintEnd_toStartOf="@+id/q3"
+        app:layout_constraintStart_toStartOf="@id/risk_matrix_Line_chart"
+        app:layout_constraintTop_toBottomOf="@+id/q2" />
+
+    <View
+        android:id="@+id/q2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/gradient_yellow"
+        app:layout_constraintBottom_toTopOf="@id/q1"
+        app:layout_constraintEnd_toStartOf="@id/q4"
+        app:layout_constraintStart_toStartOf="@id/risk_matrix_Line_chart"
+        app:layout_constraintTop_toTopOf="@id/risk_matrix_Line_chart" />
+
+    <View
+        android:id="@+id/q3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/gradient_yellow"
+        app:layout_constraintBottom_toBottomOf="@id/risk_matrix_Line_chart"
+        app:layout_constraintEnd_toEndOf="@id/risk_matrix_Line_chart"
+        app:layout_constraintStart_toEndOf="@id/q1"
+        app:layout_constraintTop_toBottomOf="@id/q4" />
+
+    <View
+        android:id="@+id/q4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/gradient_red"
+        app:layout_constraintBottom_toTopOf="@id/q3"
+        app:layout_constraintEnd_toEndOf="@id/risk_matrix_Line_chart"
+        app:layout_constraintStart_toEndOf="@id/q2"
+        app:layout_constraintTop_toTopOf="@id/risk_matrix_Line_chart" />
+
+
+    <View
+        android:id="@+id/horizontal_line"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="@id/risk_matrix_Line_chart"
+        app:layout_constraintStart_toStartOf="@id/risk_matrix_Line_chart"
+        app:layout_constraintTop_toTopOf="@+id/q1" />
+
+    <View
+        android:id="@+id/vertical_line"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/risk_matrix_Line_chart"
+        app:layout_constraintStart_toStartOf="@id/q4"
+        app:layout_constraintTop_toTopOf="@+id/risk_matrix_Line_chart" />
+
+    <View
+        android:id="@+id/box"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/box"
+        app:layout_constraintBottom_toBottomOf="@id/risk_matrix_Line_chart"
+        app:layout_constraintEnd_toEndOf="@id/risk_matrix_Line_chart"
+        app:layout_constraintStart_toStartOf="@id/risk_matrix_Line_chart"
+        app:layout_constraintTop_toTopOf="@id/risk_matrix_Line_chart" />
+
+
+    <com.sousajrps.covid19pt.VerticalTextView
+        android:id="@+id/cases_label_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:gravity="bottom"
+        tools:text="@string/risk_matrix_fragment_cases_per_100k"
+        android:textColor="@color/textColor"
+        app:layout_constraintBottom_toBottomOf="@+id/risk_matrix_Line_chart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/risk_matrix_Line_chart" />
+
+    <TextView
+        android:id="@+id/cases_max_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:gravity="end"
+        tools:text="240"
+        android:textColor="@color/textColor"
+        app:layout_constraintEnd_toStartOf="@id/risk_matrix_Line_chart"
+        app:layout_constraintStart_toEndOf="@+id/cases_label_tv"
+        app:layout_constraintTop_toTopOf="@id/risk_matrix_Line_chart" />
+
+    <TextView
+        android:id="@+id/cases_middle_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:gravity="end"
+        tools:text="120"
+        android:textColor="@color/textColor"
+        app:layout_constraintBottom_toBottomOf="@id/risk_matrix_Line_chart"
+        app:layout_constraintEnd_toStartOf="@id/risk_matrix_Line_chart"
+        app:layout_constraintTop_toTopOf="@+id/risk_matrix_Line_chart" />
+
+    <TextView
+        android:id="@+id/cases_min_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:gravity="end"
+        tools:text="0"
+        android:textColor="@color/textColor"
+        app:layout_constraintBottom_toBottomOf="@id/risk_matrix_Line_chart"
+        app:layout_constraintEnd_toStartOf="@id/risk_matrix_Line_chart" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/risk_matrix_Line_chart"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toTopOf="@id/rt_middle_label"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/rt_min_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        tools:text="0"
+        android:textColor="@color/textColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/risk_matrix_Line_chart"
+        app:layout_constraintTop_toBottomOf="@id/risk_matrix_Line_chart" />
+
+    <TextView
+        android:id="@+id/rt_middle_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="1"
+        android:textColor="@color/textColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/risk_matrix_Line_chart"
+        app:layout_constraintStart_toStartOf="@id/risk_matrix_Line_chart" />
+
+    <TextView
+        android:id="@+id/rt_max_label"
+        android:layout_width="24dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        tools:text="2"
+        android:textColor="@color/textColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/risk_matrix_Line_chart"
+        app:layout_constraintTop_toBottomOf="@id/risk_matrix_Line_chart" />
+
+    <TextView
+        android:id="@+id/rt_label_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:gravity="end"
+        tools:text="R(t)"
+        android:textColor="@color/textColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/risk_matrix_Line_chart"
+        app:layout_constraintTop_toBottomOf="@id/risk_matrix_Line_chart" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

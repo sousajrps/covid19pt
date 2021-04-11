@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/MatrixFragment">
+
+    <fragment
+        android:id="@+id/MatrixFragment"
+        android:name="com.sousajrps.covid19pt.riskMatrix.RiskMatrixFragment"
+        android:label="@string/risk_matrix_fragment_title"
+        tools:layout="@layout/fragment_risk_matrix">
+    </fragment>
+    <fragment
+        android:id="@+id/ReportFragment"
+        android:name="com.sousajrps.covid19pt.dailyReport.DailyReportFragment"
+        android:label="@string/report_fragment_title"
+        tools:layout="@layout/fragment_daily_cases">
+    </fragment>
+
+    <fragment
+        android:id="@+id/VaccinationFragment"
+        android:name="com.sousajrps.covid19pt.VaccinationFragment"
+        android:label="@string/vaccination_fragment_title"
+        tools:layout="@layout/fragment_vaccination">
+    </fragment>
+
+    <fragment
+        android:id="@+id/SettingsFragment"
+        android:name="com.sousajrps.covid19pt.SettingsFragment"
+        android:label="@string/settings_fragment_title"
+        tools:layout="@layout/fragment_settings">
+    </fragment>
+</navigation>

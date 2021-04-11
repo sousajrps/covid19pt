@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Covid 19 PT</string>
+    <string name="risk_matrix_fragment_title">Matriz de risco</string>
+    <string name="risk_matrix_fragment_date">Data</string>
+    <string name="risk_matrix_fragment_national">Nacional</string>
+    <string name="risk_matrix_fragment_continent">Continente</string>
+    <string name="risk_matrix_fragment_transmission_rate">R(t)</string>
+    <string name="risk_matrix_fragment_cases_per_100k">Casos por 100k habitantes</string>
+    <string name="report_fragment_title">Relatório</string>
+    <string name="vaccination_fragment_title">Vacinação</string>
+    <string name="settings_fragment_title">Definições</string>
+    <string name="daily_cases_title">Novos casos diários</string>
+    <string name="daily_cases_chart">Gráfico de novos casos diários</string>
+    <string name="settings_language">Língua:</string>
+    <string name="settings_portuguese">Português</string>
+    <string name="settings_english">English</string>
+    <string name="settings_night_mode">Tema escuro</string>
+    <string name="report_confirmed">Confirmados:</string>
+    <string name="report_active">Activos:</string>
+    <string name="report_recovered">Recuperados:</string>
+    <string name="report_deaths">Óbitos:</string>
+    <string name="report_surveillance">Em vigilância:</string>
+    <string name="report_hospitalized">Internados:</string>
+    <string name="report_hospitalized_icu">Internados UCI:</string>
+    <string name="report_title_label">Relatório diário: %1$s</string>
+</resources>

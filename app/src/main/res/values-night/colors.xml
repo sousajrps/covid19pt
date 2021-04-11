@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">@color/skyBlue</color>
+    <color name="textColor">@color/white</color>
+    <color name="background">@color/black</color>
+    <color name="toolTipBackground">@color/grey</color>
+    <color name="toolTipText">@color/skyBlue</color>
+    <color name="chartLines">@color/skyBlue</color>
+    <color name="chartCircles">@color/queenBlue</color>
+
+</resources>

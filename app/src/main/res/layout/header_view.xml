@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/row"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/risk_matrix_fragment_date"
+        android:textColor="@color/textColor"
+        app:layout_constraintEnd_toStartOf="@id/vertical_line_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginEnd="2dp"
+        android:background="@drawable/circle_nacional"
+        app:layout_constraintBottom_toBottomOf="@id/rt_national"
+        app:layout_constraintEnd_toStartOf="@+id/rt_national"
+        app:layout_constraintTop_toTopOf="@id/rt_national" />
+
+    <TextView
+        android:id="@+id/rt_national"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/risk_matrix_fragment_national"
+        android:textColor="@color/textColor"
+        app:layout_constraintEnd_toStartOf="@id/vertical_line_2"
+        app:layout_constraintStart_toEndOf="@id/vertical_line_1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginEnd="2dp"
+        android:background="@drawable/circle_continente"
+        app:layout_constraintBottom_toBottomOf="@id/rt_continent"
+        app:layout_constraintEnd_toStartOf="@+id/rt_continent"
+        app:layout_constraintTop_toTopOf="@id/rt_continent" />
+
+    <TextView
+        android:id="@+id/rt_continent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/risk_matrix_fragment_continent"
+        android:textColor="@color/textColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/vertical_line_2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/vertical_line_1"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:background="@color/textColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/vertical_line_2"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:background="@color/textColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.62"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/margin_half"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="@dimen/margin_half"
+        android:background="@color/textColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rt_continent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

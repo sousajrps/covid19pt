@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import com.sousajrps.covid19pt.CustomNumberFormatter
 import com.sousajrps.covid19pt.R
 import com.sousajrps.covid19pt.riskMatrix.models.RiskMatrix
 
@@ -14,6 +15,8 @@ class RiskMatrixAdapter(
     private val riskMatrixData: List<RiskMatrix>,
 ) : androidx.recyclerview.widget.RecyclerView.Adapter<RiskMatrixAdapter.DataViewHolder>() {
 
+    private val customNumberFormatter: CustomNumberFormatter = CustomNumberFormatter
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.matrix_row, parent, false)
         return DataViewHolder(v)
@@ -21,12 +24,14 @@ class RiskMatrixAdapter(
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         holder.dateTv.text = riskMatrixData[holder.adapterPosition].date
-        holder.rtNationalTv.text = riskMatrixData[holder.adapterPosition].rt_national.toString()
+        holder.rtNationalTv.text =
+            customNumberFormatter.format(riskMatrixData[holder.adapterPosition].rt_national)
         holder.incidenceNationalTv.text =
-            riskMatrixData[holder.adapterPosition].incidence_national.toString()
-        holder.rtContinentTv.text = riskMatrixData[holder.adapterPosition].rt_continent.toString()
+            customNumberFormatter.format(riskMatrixData[holder.adapterPosition].incidence_national)
+        holder.rtContinentTv.text =
+            customNumberFormatter.format(riskMatrixData[holder.adapterPosition].rt_continent)
         holder.incidenceContinentTv.text =
-            riskMatrixData[holder.adapterPosition].incidence_continent.toString()
+            customNumberFormatter.format(riskMatrixData[holder.adapterPosition].incidence_continent)
         holder.incidenceNationalTv.setTextColor(ContextCompat.getColor(context, R.color.textColor))
         holder.rtNationalTv.setTextColor(ContextCompat.getColor(context, R.color.textColor))
         holder.incidenceContinentTv.setTextColor(ContextCompat.getColor(context, R.color.textColor))

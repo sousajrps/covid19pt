@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Covid 19 PT</string>
     <string name="risk_matrix_fragment_title">Matriz de risco</string>
     <string name="risk_matrix_fragment_date">Data</string>
     <string name="risk_matrix_fragment_national">Nacional</string>
@@ -16,6 +15,16 @@
     <string name="settings_portuguese">Português</string>
     <string name="settings_english">English</string>
     <string name="settings_night_mode">Tema escuro</string>
+    <string name="settings_about">Acerca</string>
+    <string name="settings_version">Versão: %s</string>
+    <string name="settings_dgs_status_reports_report"><p>DGS Relatório de situação: <a href="https://covid19.min-saude.pt/relatorio-de-situacao/">aqui</a>.</p></string>
+    <string name="settings_dgs_vaccination_report"><p>DGS Relatório de vacinção: <a href="https://covid19.min-saude.pt/relatorio-de-vacinacao/">aqui</a>.</p></string>
+    <string name="settings_covid19pt_data"><p>Github covid19pt-data: <a href="https://github.com/dssg-pt/covid19pt-data">aqui</a>.</p></string>
+    <string name="settings_disclaimer">
+        Esta aplicação pretende disponibilizar de uma forma fácil e intuitiva informação detalhada acerca dos estado da pandemia COVID-19 em Portugal.
+        Os dados apresentados são oficiais e provêm da Direção Geral da Saúde, usando como fonte repositório de Github dssg-pt/covid19pt-data.
+    </string>
+    <string name="settings_icons">Alguns dos icons usados nesta app são provenientes e de acordo com a licence de <a href="https://www.flaticon.com/">FlatIcon</a>.</string>
     <string name="report_confirmed">Confirmados:</string>
     <string name="report_active">Activos:</string>
     <string name="report_recovered">Recuperados:</string>
@@ -24,4 +33,12 @@
     <string name="report_hospitalized">Internados:</string>
     <string name="report_hospitalized_icu">Internados UCI:</string>
     <string name="report_title_label">Relatório diário: %1$s</string>
+    <string name="vaccination_chart_legend_two_doses">Imunizados</string>
+    <string name="vaccination_chart_legend_one_dose">Primeira dose</string>
+    <string name="vaccination_chart_legend_unvaccinated">Não vacinados</string>
+    <string name="vaccination_title_label">Relatório vacinação: %s</string>
+    <string name="vaccination_total_chart_title">Percentagem da população vacinada:</string>
+    <string name="vaccination_one_dose">Primeira dose:</string>
+    <string name="vaccination_second_dose">Segunda dose:</string>
+    <string name="vaccination_total_doses">Total doses:</string>
 </resources>

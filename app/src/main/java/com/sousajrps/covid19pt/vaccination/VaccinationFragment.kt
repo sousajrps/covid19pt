@@ -1,38 +1,49 @@
 package com.sousajrps.covid19pt.vaccination
 
+import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.utils.ColorTemplate
+import com.github.mikephil.charting.formatter.PercentFormatter
 import com.sousajrps.covid19pt.R
-import com.sousajrps.covid19pt.remote.models.Vaccination
 import java.util.*
 import kotlin.collections.ArrayList
 
 class VaccinationFragment : Fragment() {
     private lateinit var viewModel: VaccinationViewModel
-    private lateinit var textView: TextView
+    private lateinit var vaccinationTitleTv: TextView
+    private lateinit var loadingView: View
     private lateinit var pieChart: PieChart
+    private lateinit var dailyReportRv: RecyclerView
+    private lateinit var listGroupView: View
+    private lateinit var chartViewGroup: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_vaccination, container, false)
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        textView = view.findViewById(R.id.textview_second)
+        vaccinationTitleTv = view.findViewById(R.id.vaccination_title_tv)
+        loadingView = view.findViewById(R.id.loading_view_vaccination)
         pieChart = view.findViewById(R.id.piechart)
+        dailyReportRv = view.findViewById(R.id.report_rv)
+        listGroupView = view.findViewById(R.id.vaccination_list_container)
+        chartViewGroup = view.findViewById(R.id.chart_group)
+        dailyReportRv.layoutManager = LinearLayoutManager(requireContext())
+        dailyReportRv.isNestedScrollingEnabled = false
         initViewModelAndObserve()
     }
 
@@ -42,54 +53,77 @@ class VaccinationFragment : Fragment() {
         viewModel.getData(Date().time)
 
         viewModel.data.observe(viewLifecycleOwner, { data ->
-            Log.d("VaccinationFragment", "data: $data")
-            textView.text = data.toString()
+            vaccinationTitleTv.text = getString(R.string.vaccination_title_label, data.date)
             setChartData(data)
         })
 
+        viewModel.data2.observe(viewLifecycleOwner, { data ->
+            setRecyclerViewData(data)
+        })
+
         viewModel.showLoading.observe(viewLifecycleOwner, { loading ->
-            /*  if (loading) {
-                  loadingView.visibility = View.VISIBLE
-              } else {
-                  loadingView.visibility = View.GONE
-              }*/
+            if (loading) {
+                loadingView.visibility = View.VISIBLE
+            } else {
+                loadingView.visibility = View.GONE
+            }
         })
     }
 
-    private fun setChartData(data: Vaccination) {
-        val cenas: ArrayList<PieEntry> = ArrayList()
-        val totalPopulacao = 10280000
-        val firstdose = data.doses1
-        val secondDose = data.doses2
-        val naVacinados1 = totalPopulacao - firstdose
-        val naVacinados2 = totalPopulacao - secondDose
-        cenas.add(PieEntry(secondDose, 1))
-        cenas.add(PieEntry(firstdose - secondDose, 2))
-        cenas.add(PieEntry(naVacinados1, 3))
+    private fun setChartData(data: VaccinationTotals) {
+        val skyBlueTransparency =
+            ContextCompat.getColor(requireContext(), R.color.skyBlueTransparency)
+        val green = ContextCompat.getColor(requireContext(), R.color.green)
+        val yellow = ContextCompat.getColor(requireContext(), R.color.honeyYellow)
+        val textColor = ContextCompat.getColor(requireContext(), R.color.textColor)
 
-        val dataSet = PieDataSet(cenas, "Number Of Employees")
-        val colors: ArrayList<Int> = ArrayList()
+        pieChart.setHoleColor(Color.TRANSPARENT)
+        pieChart.description.isEnabled = false
+        pieChart.setNoDataText("")
+        pieChart.legend.isEnabled = true
+        pieChart.legend.textColor = textColor
+        pieChart.setUsePercentValues(true)
+        pieChart.setEntryLabelColor(textColor)
+        pieChart.setEntryLabelTextSize(14f)
+        pieChart.setDrawEntryLabels(false)
 
-        for (c in ColorTemplate.VORDIPLOM_COLORS) colors.add(c)
+        val pieEntryList: ArrayList<PieEntry> = ArrayList()
+        pieEntryList.add(
+            PieEntry(
+                data.secondDosePercentage,
+                getString(R.string.vaccination_chart_legend_two_doses)
+            )
+        )
+        pieEntryList.add(
+            PieEntry(
+                data.firstDosePercentage,
+                getString(R.string.vaccination_chart_legend_one_dose)
+            )
+        )
+        pieEntryList.add(
+            PieEntry(
+                data.withoutVaccinationPercentage,
+                getString(R.string.vaccination_chart_legend_unvaccinated)
+            )
+        )
 
-        for (c in ColorTemplate.JOYFUL_COLORS) colors.add(c)
+        val dataSet = PieDataSet(pieEntryList, "")
+        dataSet.valueFormatter = PercentFormatter(pieChart)
+        dataSet.valueTextSize = 12f
+        dataSet.valueTextColor = textColor
+        dataSet.setColors(green, yellow, skyBlueTransparency)
 
-        for (c in ColorTemplate.COLORFUL_COLORS) colors.add(c)
+        val data = PieData(dataSet)
 
-        for (c in ColorTemplate.LIBERTY_COLORS) colors.add(c)
-
-        for (c in ColorTemplate.PASTEL_COLORS) colors.add(c)
-
-        colors.add(ColorTemplate.getHoloBlue())
-
-        dataSet.colors = colors
-
-        val cenasLabel: ArrayList<String> = ArrayList()
-        cenasLabel.add("Primeira Dose")
-        cenasLabel.add("Não vacinados")
-
-        val data: PieData = PieData(dataSet)
         pieChart.data = data
+        chartViewGroup.visibility = View.VISIBLE
         pieChart.animateXY(2000, 2000)
+    }
+
+    private fun setRecyclerViewData(data: List<VaccinationReportItem>) {
+        val dailyReportAdapter = VaccinationReportAdapter(requireContext(), data)
+        dailyReportRv.adapter = dailyReportAdapter
+        dailyReportRv.invalidate()
+        listGroupView.visibility = View.VISIBLE
     }
 }

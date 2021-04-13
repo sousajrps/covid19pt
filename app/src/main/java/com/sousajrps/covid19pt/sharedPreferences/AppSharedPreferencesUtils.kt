@@ -10,6 +10,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import io.reactivex.Single
+import java.util.*
 
 class AppSharedPreferencesUtils : AppSharedPreferences {
     private lateinit var sharedPreferences: SharedPreferences
@@ -103,13 +104,40 @@ class AppSharedPreferencesUtils : AppSharedPreferences {
         get() = sharedPreferences.getString(NIGHT_MODE, "").orEmpty()
         set(nightMode) = sharedPreferences.edit().putString(NIGHT_MODE, nightMode).apply()
 
-    override var locale: String
-        get() = sharedPreferences.getString(LOCALE, "").orEmpty()
-        set(nightMode) = sharedPreferences.edit().putString(LOCALE, nightMode).apply()
+    override var locale: Locale?
+        get() = getLocaleFromString()
+        set(locale) = setLocaleFromString(locale)
+
+    private fun getLocaleFromString(): Locale? {
+        val savedLocaleString = sharedPreferences.getString(LOCALE, "").orEmpty()
+        return if (savedLocaleString.isNotEmpty()) {
+            var locale: Locale? = null
+            try {
+                val splittedLocale: List<String> = savedLocaleString.split('_')
+                val savedLanguage: String = splittedLocale.first()
+                val savedCountry: String = splittedLocale.last()
+                if (savedLanguage.isNotEmpty() && savedCountry.isNotEmpty()) {
+                    locale = Locale(savedLanguage, savedCountry)
+                }
+            } catch (e: Exception) {
+                // no-opt
+            }
+            return locale
+        } else {
+            return null
+        }
+
+    }
+
+    private fun setLocaleFromString(locale: Locale?) {
+        val localeString: String = locale?.toString() ?: ""
+        sharedPreferences.edit().putString(LOCALE, localeString).apply()
+    }
 
     override var covid19PtVaccinationTimeStamp: Long
         get() = sharedPreferences.getLong(COVID_19_PT_VACCINATION_TIME_STAMP, 0L)
-        set(timeStamp) = sharedPreferences.edit().putLong(COVID_19_PT_VACCINATION_TIME_STAMP, timeStamp)
+        set(timeStamp) = sharedPreferences.edit()
+            .putLong(COVID_19_PT_VACCINATION_TIME_STAMP, timeStamp)
             .apply()
 
     companion object {

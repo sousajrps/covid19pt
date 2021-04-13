@@ -1,4 +1,4 @@
-package com.sousajrps.covid19pt.dailyReport
+package com.sousajrps.covid19pt.dailyCases
 
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.formatter.ValueFormatter

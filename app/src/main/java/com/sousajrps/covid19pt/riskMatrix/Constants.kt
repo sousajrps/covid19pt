@@ -13,3 +13,5 @@ const val rt_min = 0F
 const val HOURS_2 = (2 * 60 * 60 * 1000)
 const val MINUTES_2 = (2 * 60 * 1000)
 val TIME_OFFSET = if (BuildConfig.DEBUG) MINUTES_2 else HOURS_2
+
+const val PORTUGUESE_POPULATION = 10286263

@@ -1,4 +1,4 @@
-package com.sousajrps.covid19pt.dailyReport
+package com.sousajrps.covid19pt.vaccination
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,10 +9,10 @@ import androidx.core.content.ContextCompat
 import com.sousajrps.covid19pt.CustomNumberFormatter
 import com.sousajrps.covid19pt.R
 
-class DailyReportAdapter(
+class VaccinationReportAdapter(
     private val context: Context,
-    private val riskMatrixData: List<DailyReportItem>,
-) : androidx.recyclerview.widget.RecyclerView.Adapter<DailyReportAdapter.DataViewHolder>() {
+    private val riskMatrixData: List<VaccinationReportItem>,
+) : androidx.recyclerview.widget.RecyclerView.Adapter<VaccinationReportAdapter.DataViewHolder>() {
 
     private val redColor = ContextCompat.getColor(context, R.color.red)
     private val greenColor = ContextCompat.getColor(context, R.color.green)
@@ -28,12 +28,12 @@ class DailyReportAdapter(
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         holder.labelTv.text = context.getString(riskMatrixData[holder.adapterPosition].labelRes)
         holder.totalTv.text =
-            customNumberFormatter.format(riskMatrixData[holder.adapterPosition].totalValue)
+            customNumberFormatter.format(riskMatrixData[holder.adapterPosition].vaccinationValue)
         holder.variationTv.text =
-            customNumberFormatter.format(riskMatrixData[holder.adapterPosition].variationValue)
-        holder.signalTv.text = riskMatrixData[holder.adapterPosition].variationSignal
+            customNumberFormatter.format(riskMatrixData[holder.adapterPosition].vaccinationVariation)
+        holder.signalTv.text = riskMatrixData[holder.adapterPosition].vaccinationVariationSignal
 
-        if (riskMatrixData[holder.adapterPosition].variationColor == DailyReportItemColor.GREEN) {
+        if (riskMatrixData[holder.adapterPosition].vaccinationItemColor == VaccinationItemColor.GREEN) {
             holder.signalTv.setTextColor(greenColor)
             holder.variationTv.setTextColor(greenColor)
         } else {

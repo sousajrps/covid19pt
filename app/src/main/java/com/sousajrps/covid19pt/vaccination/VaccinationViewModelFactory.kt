@@ -12,6 +12,8 @@ class VaccinationViewModelFactory : ViewModelProvider.Factory {
             return VaccinationViewModel(
                 vaccinationRepository = AppModule.getVaccinationRepository(),
                 appSharedPreferences = AppModule.getAppSharedPreferences(),
+                vaccinationTotalsMapper = AppModule.getVaccinationTotalsMapper(),
+                dataToVaccinationReportMapper = AppModule.getDataToVaccinationReportMapper(),
                 schedulerProvider = SchedulerModule.schedulerProvider()
             ) as T
         }

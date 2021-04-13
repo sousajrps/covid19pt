@@ -1,8 +1,6 @@
 package com.sousajrps.covid19pt
 
 import android.app.Application
-import androidx.appcompat.app.AppCompatDelegate
-import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferences
 import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferencesModule
 
 class MyApplication : Application() {

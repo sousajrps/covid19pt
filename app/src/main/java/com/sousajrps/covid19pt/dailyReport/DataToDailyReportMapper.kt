@@ -109,10 +109,6 @@ enum class DailyReportItemColor {
     RED, GREEN
 }
 
-enum class DailyReportItemSignal {
-    PLUS, MINUS
-}
-
 
 
 

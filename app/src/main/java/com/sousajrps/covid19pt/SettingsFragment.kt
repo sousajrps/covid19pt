@@ -2,21 +2,29 @@ package com.sousajrps.covid19pt
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferences
+import java.util.*
 
 class SettingsFragment : Fragment() {
     private lateinit var nightSwitch: SwitchCompat
     private lateinit var languageRadioGroup: RadioGroup
     private lateinit var portugueseRb: RadioButton
     private lateinit var englishRb: RadioButton
+    private lateinit var versionTv: TextView
+    private lateinit var statusDgsLink: TextView
+    private lateinit var vaccinationDgsLink: TextView
+    private lateinit var githubDataLink: TextView
+    private lateinit var flaticonLink: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,23 +40,56 @@ class SettingsFragment : Fragment() {
         portugueseRb = view.findViewById(R.id.portuguese_rb)
         englishRb = view.findViewById(R.id.english_rb)
         nightSwitch = view.findViewById(R.id.night_mode_switchButton)
+        versionTv = view.findViewById(R.id.version_tv)
+        statusDgsLink = view.findViewById(R.id.dgs_report_tv)
+        vaccinationDgsLink = view.findViewById(R.id.dgs_vaccination_tv)
+        githubDataLink = view.findViewById(R.id.covid19pt_data_tv)
+        flaticonLink = view.findViewById(R.id.flaticon_tv)
 
         handleNightSwitch()
         handleLanguage()
+        generateAbout()
+    }
+
+    private fun generateAbout() {
+        statusDgsLink.movementMethod = LinkMovementMethod.getInstance()
+        vaccinationDgsLink.movementMethod = LinkMovementMethod.getInstance()
+        githubDataLink.movementMethod = LinkMovementMethod.getInstance()
+        flaticonLink.movementMethod = LinkMovementMethod.getInstance()
+
+        versionTv.text = getString(
+            R.string.settings_version,
+            requireContext().packageManager.getPackageInfo(
+                requireContext().packageName,
+                0
+            ).versionName
+        )
     }
 
     private fun handleLanguage() {
-        val currentLocale = resources.configuration.locale.toString()
-        portugueseRb.isChecked = currentLocale.contains(AppSharedPreferences.LOCALE_PT)
-        englishRb.isChecked = !currentLocale.contains(AppSharedPreferences.LOCALE_PT)
-        languageRadioGroup.setOnCheckedChangeListener { radioGroup, i ->
-            if (i == R.id.portuguese_rb) {
-                AppModule.getAppSharedPreferences().locale = AppSharedPreferences.LOCALE_PT
-                requireActivity().recreate()
-            }
-            if (i == R.id.english_rb) {
-                AppModule.getAppSharedPreferences().locale = AppSharedPreferences.LOCATE_EN
-                requireActivity().recreate()
+        val currentLocale: String = requireActivity().resources.configuration.locale.toString()
+        portugueseRb.isChecked = currentLocale.contains(AppSharedPreferences.LANGUAGE_PT)
+        englishRb.isChecked = currentLocale.contains(AppSharedPreferences.LANGUAGE_EN)
+        languageRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            val currentLocaleString: String =
+                requireActivity().resources.configuration.locale.toString()
+            when {
+                checkedId == R.id.portuguese_rb && !currentLocaleString.contains(
+                    AppSharedPreferences.LANGUAGE_PT
+                ) -> {
+                    AppModule.getAppSharedPreferences().locale = Locale(
+                        AppSharedPreferences.LANGUAGE_PT,
+                        AppSharedPreferences.COUNTRY_PT
+                    )
+                    requireActivity().recreate()
+                }
+                checkedId == R.id.english_rb && !currentLocaleString.contains(AppSharedPreferences.LANGUAGE_EN) -> {
+                    AppModule.getAppSharedPreferences().locale = Locale(
+                        AppSharedPreferences.LANGUAGE_EN,
+                        AppSharedPreferences.COUNTRY_US
+                    )
+                    requireActivity().recreate()
+                }
             }
         }
     }

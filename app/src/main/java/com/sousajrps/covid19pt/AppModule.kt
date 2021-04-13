@@ -11,8 +11,10 @@ import com.sousajrps.covid19pt.riskMatrix.MatrixRepository
 import com.sousajrps.covid19pt.riskMatrix.MatrixRepositoryImpl
 import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferences
 import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferencesModule
+import com.sousajrps.covid19pt.vaccination.DataToVaccinationReportMapper
 import com.sousajrps.covid19pt.vaccination.VaccinationRepository
 import com.sousajrps.covid19pt.vaccination.VaccinationRepositoryImpl
+import com.sousajrps.covid19pt.vaccination.VaccinationTotalsMapper
 
 object AppModule {
     private val remoteData: RemoteData by lazy { RemoteDataImpl() }
@@ -21,6 +23,8 @@ object AppModule {
     private val dataToMatrixMapperImpl: DataToMatrixMapper by lazy { DataToMatrixMapper }
     private val dataToDailyReportMapperImpl: DataToDailyReportMapper by lazy { DataToDailyReportMapper }
     private val dataToConfirmedCasesMapperImpl: DataToDailyCasesMapper by lazy { DataToDailyCasesMapper }
+    private val vaccinationTotalsMapperImpl: VaccinationTotalsMapper by lazy { VaccinationTotalsMapper }
+    private val dataToVaccinationReportMapperImpl: DataToVaccinationReportMapper by lazy { DataToVaccinationReportMapper }
 
     fun getAppSharedPreferences(): AppSharedPreferences =
         AppSharedPreferencesModule.getAppSharedPreferences()
@@ -40,4 +44,6 @@ object AppModule {
     fun getDataToMatrixMapper() = dataToMatrixMapperImpl
     fun getDataToConfirmedCasesMapper() = dataToConfirmedCasesMapperImpl
     fun getDataToDailyReportMapper() = dataToDailyReportMapperImpl
+    fun getVaccinationTotalsMapper() = vaccinationTotalsMapperImpl
+    fun getDataToVaccinationReportMapper() = dataToVaccinationReportMapperImpl
 }

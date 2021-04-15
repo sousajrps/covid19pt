@@ -6,13 +6,17 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferences
-import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferencesModule
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initializeRemoteConfigs()
         setNightMode()
         goToMainActivity()
+    }
+
+    private fun initializeRemoteConfigs() {
+        AppModule.getRemoteConfigs().initialize()
     }
 
     private fun setNightMode() {

@@ -2,6 +2,8 @@ package com.sousajrps.covid19pt
 
 import com.sousajrps.covid19pt.dailyCases.DataToDailyCasesMapper
 import com.sousajrps.covid19pt.dailyReport.DataToDailyReportMapper
+import com.sousajrps.covid19pt.remote.RemoteConfigUtils
+import com.sousajrps.covid19pt.remote.RemoteConfigUtilsImpl
 import com.sousajrps.covid19pt.remote.RemoteData
 import com.sousajrps.covid19pt.remote.RemoteDataImpl
 import com.sousajrps.covid19pt.remote.mappers.DataMapper
@@ -25,6 +27,7 @@ object AppModule {
     private val dataToConfirmedCasesMapperImpl: DataToDailyCasesMapper by lazy { DataToDailyCasesMapper }
     private val vaccinationTotalsMapperImpl: VaccinationTotalsMapper by lazy { VaccinationTotalsMapper }
     private val dataToVaccinationReportMapperImpl: DataToVaccinationReportMapper by lazy { DataToVaccinationReportMapper }
+    private val RemoteConfigUtilsImpl: RemoteConfigUtils by lazy { RemoteConfigUtilsImpl() }
 
     fun getAppSharedPreferences(): AppSharedPreferences =
         AppSharedPreferencesModule.getAppSharedPreferences()
@@ -41,9 +44,11 @@ object AppModule {
         appSharedPreferences = getAppSharedPreferences()
     )
 
-    fun getDataToMatrixMapper() = dataToMatrixMapperImpl
-    fun getDataToConfirmedCasesMapper() = dataToConfirmedCasesMapperImpl
-    fun getDataToDailyReportMapper() = dataToDailyReportMapperImpl
-    fun getVaccinationTotalsMapper() = vaccinationTotalsMapperImpl
-    fun getDataToVaccinationReportMapper() = dataToVaccinationReportMapperImpl
+    fun getDataToMatrixMapper(): DataToMatrixMapper = dataToMatrixMapperImpl
+    fun getDataToConfirmedCasesMapper(): DataToDailyCasesMapper = dataToConfirmedCasesMapperImpl
+    fun getDataToDailyReportMapper(): DataToDailyReportMapper = dataToDailyReportMapperImpl
+    fun getVaccinationTotalsMapper(): VaccinationTotalsMapper = vaccinationTotalsMapperImpl
+    fun getDataToVaccinationReportMapper(): DataToVaccinationReportMapper =
+        dataToVaccinationReportMapperImpl
+    fun getRemoteConfigs(): RemoteConfigUtils = RemoteConfigUtilsImpl
 }

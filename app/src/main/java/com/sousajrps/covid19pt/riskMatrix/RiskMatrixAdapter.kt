@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.sousajrps.covid19pt.CustomNumberFormatter
+import com.sousajrps.covid19pt.remote.models.MatrixParameters
 import com.sousajrps.covid19pt.R
 import com.sousajrps.covid19pt.riskMatrix.models.RiskMatrix
 
 class RiskMatrixAdapter(
     private val context: Context,
+    private val matrixParameters: MatrixParameters,
     private val riskMatrixData: List<RiskMatrix>,
 ) : androidx.recyclerview.widget.RecyclerView.Adapter<RiskMatrixAdapter.DataViewHolder>() {
 
@@ -37,7 +39,7 @@ class RiskMatrixAdapter(
         holder.incidenceContinentTv.setTextColor(ContextCompat.getColor(context, R.color.textColor))
         holder.rtContinentTv.setTextColor(ContextCompat.getColor(context, R.color.textColor))
 
-        if (riskMatrixData[holder.adapterPosition].rt_national >= rt_middle || riskMatrixData[holder.adapterPosition].incidence_national >= cases_middle) {
+        if (riskMatrixData[holder.adapterPosition].rt_national >= matrixParameters.rtMiddle || riskMatrixData[holder.adapterPosition].incidence_national >= matrixParameters.casesMiddle) {
             holder.incidenceNationalTv.setTextColor(
                 ContextCompat.getColor(
                     context,
@@ -46,12 +48,12 @@ class RiskMatrixAdapter(
             )
             holder.rtNationalTv.setTextColor(ContextCompat.getColor(context, R.color.honeyYellow))
         }
-        if (riskMatrixData[holder.adapterPosition].rt_national >= rt_middle && riskMatrixData[holder.adapterPosition].incidence_national >= cases_middle) {
+        if (riskMatrixData[holder.adapterPosition].rt_national >= matrixParameters.rtMiddle && riskMatrixData[holder.adapterPosition].incidence_national >= matrixParameters.casesMiddle) {
             holder.incidenceNationalTv.setTextColor(ContextCompat.getColor(context, R.color.red))
             holder.rtNationalTv.setTextColor(ContextCompat.getColor(context, R.color.red))
         }
 
-        if (riskMatrixData[holder.adapterPosition].rt_continent >= rt_middle || riskMatrixData[holder.adapterPosition].incidence_continent >= cases_middle) {
+        if (riskMatrixData[holder.adapterPosition].rt_continent >= matrixParameters.rtMiddle || riskMatrixData[holder.adapterPosition].incidence_continent >= matrixParameters.casesMiddle) {
             holder.incidenceContinentTv.setTextColor(
                 ContextCompat.getColor(
                     context,
@@ -60,7 +62,7 @@ class RiskMatrixAdapter(
             )
             holder.rtContinentTv.setTextColor(ContextCompat.getColor(context, R.color.honeyYellow))
         }
-        if (riskMatrixData[holder.adapterPosition].rt_continent >= rt_middle && riskMatrixData[holder.adapterPosition].incidence_continent >= cases_middle) {
+        if (riskMatrixData[holder.adapterPosition].rt_continent >= matrixParameters.rtMiddle && riskMatrixData[holder.adapterPosition].incidence_continent >= matrixParameters.casesMiddle) {
             holder.incidenceContinentTv.setTextColor(ContextCompat.getColor(context, R.color.red))
             holder.rtContinentTv.setTextColor(ContextCompat.getColor(context, R.color.red))
         }

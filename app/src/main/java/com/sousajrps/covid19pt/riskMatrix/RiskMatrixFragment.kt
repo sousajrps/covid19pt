@@ -16,6 +16,7 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.sousajrps.covid19pt.remote.models.MatrixParameters
 import com.sousajrps.covid19pt.R
 import com.sousajrps.covid19pt.riskMatrix.models.RiskMatrix
 import java.util.*
@@ -34,6 +35,7 @@ class RiskMatrixFragment : Fragment() {
     private lateinit var casesMaxTv: TextView
     private lateinit var casesMiddleTv: TextView
     private lateinit var casesMinTv: TextView
+    private lateinit var matrixParameters: MatrixParameters
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,24 +57,25 @@ class RiskMatrixFragment : Fragment() {
         casesMaxTv = view.findViewById(R.id.cases_max_label)
         casesMiddleTv = view.findViewById(R.id.cases_middle_label)
         casesMinTv = view.findViewById(R.id.cases_min_label)
-        iniViews()
         initViewModelAndObserve()
 
         viewModel.getData(time = Date().time)
     }
 
-    private fun iniViews() {
+    private fun initViews(matrixParameters: MatrixParameters) {
+        this.matrixParameters = matrixParameters
+
         riskMatrixRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         rtLabelTv.text = getString(R.string.risk_matrix_fragment_transmission_rate)
-        rtMaxTv.text = rt_max.toInt().toString()
-        rtMiddleTv.text = rt_middle.toInt().toString()
-        rtMinTv.text = rt_min.toInt().toString()
+        rtMaxTv.text = matrixParameters.rtMax.toString()
+        rtMiddleTv.text = matrixParameters.rtMiddle.toString()
+        rtMinTv.text = matrixParameters.rtMin.toString()
 
         casesLabelTv.text = getString(R.string.risk_matrix_fragment_cases_per_100k)
-        casesMaxTv.text = cases_max.toInt().toString()
-        casesMiddleTv.text = cases_middle.toInt().toString()
-        casesMinTv.text = cases_min.toInt().toString()
+        casesMaxTv.text = matrixParameters.casesMax.toInt().toString()
+        casesMiddleTv.text = matrixParameters.casesMiddle.toInt().toString()
+        casesMinTv.text = matrixParameters.casesMin.toInt().toString()
 
         riskMatrixChart.legend.isEnabled = false
         riskMatrixChart.description.isEnabled = false
@@ -88,6 +91,12 @@ class RiskMatrixFragment : Fragment() {
     private fun initViewModelAndObserve() {
         viewModel = ViewModelProvider(this, MatrixViewModelFactory())
             .get(RiskMatrixViewModel::class.java)
+
+        viewModel.initViews()
+
+        viewModel.matrixParameters.observe(viewLifecycleOwner, Observer { matrixParameters ->
+            initViews(matrixParameters)
+        })
 
         viewModel.data.observe(viewLifecycleOwner, Observer { data ->
             drawChart(data)
@@ -109,15 +118,15 @@ class RiskMatrixFragment : Fragment() {
         val charcoal = ContextCompat.getColor(requireContext(), R.color.charcoal)
 
         val yAxis = riskMatrixChart.axisLeft
-        yAxis.axisMinimum = cases_min
-        yAxis.axisMaximum = cases_max
-        yAxis.granularity = cases_middle
+        yAxis.axisMinimum = matrixParameters.casesMin
+        yAxis.axisMaximum = matrixParameters.casesMax
+        yAxis.granularity = matrixParameters.casesMiddle
         yAxis.setDrawLabels(false)
 
         val xl = riskMatrixChart.xAxis
-        xl.axisMinimum = rt_min
-        xl.axisMaximum = rt_max
-        xl.granularity = rt_middle
+        xl.axisMinimum = matrixParameters.rtMin
+        xl.axisMaximum = matrixParameters.rtMax
+        xl.granularity = matrixParameters.rtMiddle
         xl.position = XAxis.XAxisPosition.BOTTOM
         xl.setDrawLabels(false)
 
@@ -196,7 +205,7 @@ class RiskMatrixFragment : Fragment() {
         riskMatrixChart.data = lineData
         riskMatrixChart.invalidate()
 
-        val riskMatrixAdapter = RiskMatrixAdapter(requireContext(), chartData)
+        val riskMatrixAdapter = RiskMatrixAdapter(requireContext(), matrixParameters, chartData)
         riskMatrixRecyclerView.adapter = riskMatrixAdapter
         riskMatrixRecyclerView.invalidate()
     }

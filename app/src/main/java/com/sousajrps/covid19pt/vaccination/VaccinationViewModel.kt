@@ -3,8 +3,8 @@ package com.sousajrps.covid19pt.vaccination
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.sousajrps.covid19pt.remote.RemoteConfigUtils
 import com.sousajrps.covid19pt.SingleLiveEvent
-import com.sousajrps.covid19pt.riskMatrix.TIME_OFFSET
 import com.sousajrps.covid19pt.scheduler.SchedulerProvider
 import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferences
 import io.reactivex.disposables.CompositeDisposable
@@ -14,6 +14,7 @@ class VaccinationViewModel(
     private val appSharedPreferences: AppSharedPreferences,
     private val vaccinationTotalsMapper: VaccinationTotalsMapper,
     private val dataToVaccinationReportMapper: DataToVaccinationReportMapper,
+    private val remoteConfigUtils: RemoteConfigUtils,
     private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
     private val TAG = "VaccinationViewModel"
@@ -44,14 +45,17 @@ class VaccinationViewModel(
     }
 
     private fun shouldRefreshData() =
-        time > (appSharedPreferences.covid19PtVaccinationTimeStamp + TIME_OFFSET)
+        time > (appSharedPreferences.covid19PtVaccinationTimeStamp + remoteConfigUtils.getAppConfigurations().timeOffset)
 
     private fun refreshData() = vaccinationRepository.getRemoteVaccination()
         .observeOn(schedulerProvider.mainThread())
         .subscribeOn(schedulerProvider.backgroundThread())
         .map {
             Pair(
-                vaccinationTotalsMapper.map(it.last()),
+                vaccinationTotalsMapper.map(
+                    it.last(),
+                    remoteConfigUtils.getAppConfigurations().portuguesePopulation
+                ),
                 dataToVaccinationReportMapper.getItems(it.last())
             )
         }
@@ -69,7 +73,10 @@ class VaccinationViewModel(
         .subscribeOn(schedulerProvider.backgroundThread())
         .map {
             Pair(
-                vaccinationTotalsMapper.map(it.last()),
+                vaccinationTotalsMapper.map(
+                    it.last(),
+                    remoteConfigUtils.getAppConfigurations().portuguesePopulation
+                ),
                 dataToVaccinationReportMapper.getItems(it.last())
             )
         }

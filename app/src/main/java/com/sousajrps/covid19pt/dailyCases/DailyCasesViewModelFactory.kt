@@ -13,6 +13,7 @@ class DailyCasesViewModelFactory : ViewModelProvider.Factory {
                 matrixRepository = AppModule.getMatrixRepository(),
                 appSharedPreferences = AppModule.getAppSharedPreferences(),
                 dataToConfirmedCasesMapper = AppModule.getDataToConfirmedCasesMapper(),
+                remoteConfigUtils = AppModule.getRemoteConfigs(),
                 schedulerProvider = SchedulerModule.schedulerProvider()
             ) as T
         }

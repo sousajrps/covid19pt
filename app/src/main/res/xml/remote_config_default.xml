@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+        <key>appConfigurations</key>
+        <value>
+            {
+            "matrixParameters": {
+            "casesMax": 240.0,
+            "casesMiddle": 120.0,
+            "casesMin": 0.0,
+            "rtMax": 1.5,
+            "rtMiddle": 1,
+            "rtMin": 0.5
+            },
+            "timeOffset": 7200000,
+            "portuguesePopulation": 10286263
+            }
+        </value>
+    </entry>
+</defaultsMap>

@@ -14,6 +14,7 @@ class ReportViewModelFactory : ViewModelProvider.Factory {
                 appSharedPreferences = AppModule.getAppSharedPreferences(),
                 dataToDailyReportMapper = AppModule.getDataToDailyReportMapper(),
                 dataToDailyCasesMapper = AppModule.getDataToConfirmedCasesMapper(),
+                remoteConfigUtils = AppModule.getRemoteConfigs(),
                 schedulerProvider = SchedulerModule.schedulerProvider()
             ) as T
         }

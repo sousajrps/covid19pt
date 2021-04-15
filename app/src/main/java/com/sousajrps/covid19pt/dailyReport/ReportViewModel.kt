@@ -3,11 +3,11 @@ package com.sousajrps.covid19pt.dailyReport
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.sousajrps.covid19pt.remote.RemoteConfigUtils
 import com.sousajrps.covid19pt.SingleLiveEvent
 import com.sousajrps.covid19pt.dailyCases.DailyCases
 import com.sousajrps.covid19pt.dailyCases.DataToDailyCasesMapper
 import com.sousajrps.covid19pt.riskMatrix.MatrixRepository
-import com.sousajrps.covid19pt.riskMatrix.TIME_OFFSET
 import com.sousajrps.covid19pt.scheduler.SchedulerProvider
 import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferences
 import io.reactivex.disposables.CompositeDisposable
@@ -17,6 +17,7 @@ class ReportViewModel(
     private val appSharedPreferences: AppSharedPreferences,
     private val dataToDailyReportMapper: DataToDailyReportMapper,
     private val dataToDailyCasesMapper: DataToDailyCasesMapper,
+    private val remoteConfigUtils: RemoteConfigUtils,
     private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
     private val TAG = "ReportViewModel"
@@ -47,7 +48,7 @@ class ReportViewModel(
     }
 
     private fun shouldRefreshData() = appSharedPreferences.covid19PtDataTimeStamp == 0L
-            || time > (appSharedPreferences.covid19PtDataTimeStamp + TIME_OFFSET)
+            || time > (appSharedPreferences.covid19PtDataTimeStamp + remoteConfigUtils.getAppConfigurations().timeOffset)
 
     private fun refreshData() = matrixRepository.getData()
         .observeOn(schedulerProvider.mainThread())

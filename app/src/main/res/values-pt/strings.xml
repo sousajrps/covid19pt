@@ -18,10 +18,10 @@
     <string name="settings_about">Acerca</string>
     <string name="settings_version">Versão: %s</string>
     <string name="settings_dgs_status_reports_report"><p>DGS Relatório de situação: <a href="https://covid19.min-saude.pt/relatorio-de-situacao/">aqui</a>.</p></string>
-    <string name="settings_dgs_vaccination_report"><p>DGS Relatório de vacinção: <a href="https://covid19.min-saude.pt/relatorio-de-vacinacao/">aqui</a>.</p></string>
+    <string name="settings_dgs_vaccination_report"><p>DGS Relatório de vacinação: <a href="https://covid19.min-saude.pt/relatorio-de-vacinacao/">aqui</a>.</p></string>
     <string name="settings_covid19pt_data"><p>Github covid19pt-data: <a href="https://github.com/dssg-pt/covid19pt-data">aqui</a>.</p></string>
     <string name="settings_disclaimer">
-        Esta aplicação pretende disponibilizar de uma forma fácil e intuitiva informação detalhada acerca dos estado da pandemia COVID-19 em Portugal.
+        Esta aplicação pretende disponibilizar de uma forma fácil e intuitiva informação detalhada acerca do estado da pandemia COVID-19 em Portugal.
         Os dados apresentados são oficiais e provêm da Direção Geral da Saúde, usando como fonte repositório de Github dssg-pt/covid19pt-data.
     </string>
     <string name="settings_icons">Alguns dos icons usados nesta app são provenientes e de acordo com a licence de <a href="https://www.flaticon.com/">FlatIcon</a>.</string>

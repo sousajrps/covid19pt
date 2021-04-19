@@ -5,4 +5,5 @@ import io.reactivex.Single
 interface RemoteData {
     fun getRemoteCovid19PtData(): Single<List<Map<String, String>>>
     fun getRemoteCovid19PtVaccination(): Single<List<Map<String, String>>>
+    fun getRemoteCovid19PtVaccinationWeekly(): Single<List<Map<String, String>>>
 }

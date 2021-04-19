@@ -1,6 +1,5 @@
 package com.sousajrps.covid19pt.remote
 
-import android.util.Log
 import com.github.doyaaaaaken.kotlincsv.client.CsvReader
 import io.reactivex.Single
 import java.io.BufferedReader
@@ -14,10 +13,14 @@ class RemoteDataImpl : RemoteData {
     private val VACCINATION_URL =
         "https://raw.githubusercontent.com/dssg-pt/covid19pt-data/master/vacinas.csv"
 
+    private val VACCINATION_WEEKLY_URL =
+        "https://raw.githubusercontent.com/dssg-pt/covid19pt-data/master/vacinas_detalhe.csv"
+
     override fun getRemoteCovid19PtData() = getRemote(DATA_URL)
 
     override fun getRemoteCovid19PtVaccination() = getRemote(VACCINATION_URL)
 
+    override fun getRemoteCovid19PtVaccinationWeekly() = getRemote(VACCINATION_WEEKLY_URL)
 
     private fun getRemote(url: String): Single<List<Map<String, String>>> {
         return Single.create { emitter ->

@@ -45,59 +45,36 @@ class AppSharedPreferencesUtils : AppSharedPreferences {
             .apply()
 
     override var covid19PtData: List<Map<String, String>>
-        get() = getCovid19PtDataList()
-        set(dataList) = setCovid19PtList(dataList)
-
-    private fun getCovid19PtDataList(): List<Map<String, String>> {
-        val map =
-            Types.newParameterizedType(Map::class.java, String::class.java, String::class.java)
-        val listMap = Types.newParameterizedType(List::class.java, map)
-        val adapter: JsonAdapter<List<Map<String, String>>> = moshi.adapter(listMap)
-        val json = sharedPreferences.getString(COVID_19_PT_DATA, "")
-
-        return json?.let { adapter.fromJson(it).orEmpty() } ?: emptyList()
-    }
-
-    private fun setCovid19PtList(matrixData: List<Map<String, String>>) {
-        val map =
-            Types.newParameterizedType(Map::class.java, String::class.java, String::class.java)
-        val listMap = Types.newParameterizedType(List::class.java, map)
-        val adapter: JsonAdapter<List<Map<String, String>>> = moshi.adapter(listMap)
-        val json: String = adapter.toJson(matrixData)
-        sharedPreferences.edit().putString(COVID_19_PT_DATA, json).apply()
-    }
+        get() = getRawData(COVID_19_PT_DATA)
+        set(dataList) = setRawData(COVID_19_PT_DATA, dataList)
 
     override fun getLocalCovid19PtDataSingle(): Single<List<Map<String, String>>> =
         Single.create { emitter ->
-            emitter.onSuccess(getCovid19PtDataList())
+            emitter.onSuccess(getRawData(COVID_19_PT_DATA))
         }
 
+    override var covid19PtVaccinationTimeStamp: Long
+        get() = sharedPreferences.getLong(COVID_19_PT_VACCINATION_TIME_STAMP, 0L)
+        set(timeStamp) = sharedPreferences.edit()
+            .putLong(COVID_19_PT_VACCINATION_TIME_STAMP, timeStamp)
+            .apply()
+
     override var covid19PtVaccination: List<Map<String, String>>
-        get() = getCovid19PtVaccinationList()
-        set(dataList) = setCovid19PtVaccinationList(dataList)
-
-    private fun getCovid19PtVaccinationList(): List<Map<String, String>> {
-        val map =
-            Types.newParameterizedType(Map::class.java, String::class.java, String::class.java)
-        val listMap = Types.newParameterizedType(List::class.java, map)
-        val adapter: JsonAdapter<List<Map<String, String>>> = moshi.adapter(listMap)
-        val json = sharedPreferences.getString(COVID_19_PT_VACCINATION, "")
-
-        return json?.let { adapter.fromJson(it).orEmpty() } ?: emptyList()
-    }
-
-    private fun setCovid19PtVaccinationList(matrixData: List<Map<String, String>>) {
-        val map =
-            Types.newParameterizedType(Map::class.java, String::class.java, String::class.java)
-        val listMap = Types.newParameterizedType(List::class.java, map)
-        val adapter: JsonAdapter<List<Map<String, String>>> = moshi.adapter(listMap)
-        val json: String = adapter.toJson(matrixData)
-        sharedPreferences.edit().putString(COVID_19_PT_VACCINATION, json).apply()
-    }
+        get() = getRawData(COVID_19_PT_VACCINATION)
+        set(dataList) = setRawData(COVID_19_PT_VACCINATION, dataList)
 
     override fun getLocalCovid19PtVaccinationSingle(): Single<List<Map<String, String>>> =
         Single.create { emitter ->
-            emitter.onSuccess(getCovid19PtVaccinationList())
+            emitter.onSuccess(getRawData(COVID_19_PT_VACCINATION))
+        }
+
+    override var covid19PtVaccinationWeekly: List<Map<String, String>>
+        get() = getRawData(COVID_19_PT_VACCINATION_WEEKLY)
+        set(dataList) = setRawData(COVID_19_PT_VACCINATION_WEEKLY, dataList)
+
+    override fun getLocalCovid19PtVaccinationWeeklySingle(): Single<List<Map<String, String>>> =
+        Single.create { emitter ->
+            emitter.onSuccess(getRawData(COVID_19_PT_VACCINATION_WEEKLY))
         }
 
     override var nightMode: String
@@ -108,9 +85,27 @@ class AppSharedPreferencesUtils : AppSharedPreferences {
         get() = getLocaleFromString()
         set(locale) = setLocaleFromString(locale)
 
+    private fun getRawData(key: String): List<Map<String, String>> {
+        val map =
+            Types.newParameterizedType(Map::class.java, String::class.java, String::class.java)
+        val listMap = Types.newParameterizedType(List::class.java, map)
+        val adapter: JsonAdapter<List<Map<String, String>>> = moshi.adapter(listMap)
+        val json = sharedPreferences.getString(key, "")
+        return json?.let { adapter.fromJson(it).orEmpty() } ?: emptyList()
+    }
+
+    private fun setRawData(key: String, matrixData: List<Map<String, String>>) {
+        val map =
+            Types.newParameterizedType(Map::class.java, String::class.java, String::class.java)
+        val listMap = Types.newParameterizedType(List::class.java, map)
+        val adapter: JsonAdapter<List<Map<String, String>>> = moshi.adapter(listMap)
+        val json: String = adapter.toJson(matrixData)
+        sharedPreferences.edit().putString(key, json).apply()
+    }
+
     private fun getLocaleFromString(): Locale? {
         val savedLocaleString = sharedPreferences.getString(LOCALE, "").orEmpty()
-        return if (savedLocaleString.isNotEmpty()) {
+        if (savedLocaleString.isNotEmpty()) {
             var locale: Locale? = null
             try {
                 val splittedLocale: List<String> = savedLocaleString.split('_')
@@ -134,16 +129,11 @@ class AppSharedPreferencesUtils : AppSharedPreferences {
         sharedPreferences.edit().putString(LOCALE, localeString).apply()
     }
 
-    override var covid19PtVaccinationTimeStamp: Long
-        get() = sharedPreferences.getLong(COVID_19_PT_VACCINATION_TIME_STAMP, 0L)
-        set(timeStamp) = sharedPreferences.edit()
-            .putLong(COVID_19_PT_VACCINATION_TIME_STAMP, timeStamp)
-            .apply()
-
     companion object {
         private const val SHARED_PREFERENCES_ENCRYPTED = "SharedPreferencesEncrypted"
         private const val COVID_19_PT_DATA = "covid19PtData"
         private const val COVID_19_PT_VACCINATION = "covid19PtVaccination"
+        private const val COVID_19_PT_VACCINATION_WEEKLY = "covid19PtVaccinationWeekly"
         private const val COVID_19_PT_DATA_TIME_STAMP = "covid19PtDataTimeStamp"
         private const val NIGHT_MODE = "nightMode"
         private const val LOCALE = "locale"

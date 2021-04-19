@@ -7,6 +7,7 @@ import java.util.*
 interface AppSharedPreferences {
     var covid19PtData: List<Map<String, String>>
     var covid19PtVaccination: List<Map<String, String>>
+    var covid19PtVaccinationWeekly: List<Map<String, String>>
     var covid19PtDataTimeStamp: Long
     var covid19PtVaccinationTimeStamp: Long
     var nightMode: String
@@ -16,6 +17,7 @@ interface AppSharedPreferences {
 
     fun getLocalCovid19PtDataSingle(): Single<List<Map<String, String>>>
     fun getLocalCovid19PtVaccinationSingle(): Single<List<Map<String, String>>>
+    fun getLocalCovid19PtVaccinationWeeklySingle(): Single<List<Map<String, String>>>
 
     companion object {
         const val MODE_NIGHT_YES = "mode_night_yes"

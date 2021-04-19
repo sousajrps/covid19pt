@@ -26,19 +26,25 @@ class DailyReportAdapter(
     }
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-        holder.labelTv.text = context.getString(riskMatrixData[holder.adapterPosition].labelRes)
-        holder.totalTv.text =
-            customNumberFormatter.format(riskMatrixData[holder.adapterPosition].totalValue)
-        holder.variationTv.text =
-            customNumberFormatter.format(riskMatrixData[holder.adapterPosition].variationValue)
-        holder.signalTv.text = riskMatrixData[holder.adapterPosition].variationSignal
-
-        if (riskMatrixData[holder.adapterPosition].variationColor == DailyReportItemColor.GREEN) {
-            holder.signalTv.setTextColor(greenColor)
-            holder.variationTv.setTextColor(greenColor)
+        if (riskMatrixData[holder.adapterPosition].dailyReportItemType == DailyReportItemType.HEADER) {
+            holder.labelTv.text = ""
+            holder.totalTv.text = context.getString(R.string.report_total)
+            holder.variationTv.text = context.getString(R.string.report_variation)
         } else {
-            holder.signalTv.setTextColor(redColor)
-            holder.variationTv.setTextColor(redColor)
+            holder.labelTv.text = context.getString(riskMatrixData[holder.adapterPosition].labelRes)
+            holder.totalTv.text =
+                customNumberFormatter.format(riskMatrixData[holder.adapterPosition].totalValue)
+            holder.variationTv.text =
+                customNumberFormatter.format(riskMatrixData[holder.adapterPosition].variationValue)
+            holder.signalTv.text = riskMatrixData[holder.adapterPosition].variationSignal
+
+            if (riskMatrixData[holder.adapterPosition].variationColor == DailyReportItemColor.GREEN) {
+                holder.signalTv.setTextColor(greenColor)
+                holder.variationTv.setTextColor(greenColor)
+            } else {
+                holder.signalTv.setTextColor(redColor)
+                holder.variationTv.setTextColor(redColor)
+            }
         }
     }
 

@@ -12,6 +12,7 @@ object DataToDailyReportMapper {
         val currentDay = rawData[rawData.size - 1]
         val previousDay = rawData[rawData.size - 2]
         val typeList = listOf(
+            DailyReportItemType.HEADER,
             DailyReportItemType.CONFIRMED,
             DailyReportItemType.ACTIVE,
             DailyReportItemType.RECOVERED,
@@ -35,6 +36,7 @@ object DataToDailyReportMapper {
 
     private fun getLabel(item: DailyReportItemType) =
         when (item) {
+            DailyReportItemType.HEADER -> 0
             DailyReportItemType.CONFIRMED -> R.string.report_confirmed
             DailyReportItemType.ACTIVE -> R.string.report_active
             DailyReportItemType.RECOVERED -> R.string.report_recovered
@@ -46,6 +48,7 @@ object DataToDailyReportMapper {
 
     private fun getVariation(item: DailyReportItemType, currentDay: Data, previousDay: Data): Int {
         return when (item) {
+            DailyReportItemType.HEADER -> 0
             DailyReportItemType.CONFIRMED -> (currentDay.confirmados_novos).toInt()
             DailyReportItemType.ACTIVE -> (currentDay.ativos - previousDay.ativos).toInt()
             DailyReportItemType.RECOVERED -> (currentDay.recuperados - previousDay.recuperados).toInt()
@@ -62,6 +65,7 @@ object DataToDailyReportMapper {
         previousDay: Data
     ): String {
         return when (item) {
+            DailyReportItemType.HEADER -> PLUS
             DailyReportItemType.CONFIRMED -> if ((currentDay.confirmados_novos).toInt() >= 0) PLUS else MINUS
             DailyReportItemType.ACTIVE -> if ((currentDay.ativos - previousDay.ativos).toInt() >= 0) PLUS else MINUS
             DailyReportItemType.RECOVERED -> if ((currentDay.recuperados - previousDay.recuperados).toInt() >= 0) PLUS else MINUS
@@ -78,6 +82,7 @@ object DataToDailyReportMapper {
         previousDay: Data
     ): DailyReportItemColor {
         return when (item) {
+            DailyReportItemType.HEADER -> DailyReportItemColor.GREEN
             DailyReportItemType.CONFIRMED -> if ((currentDay.confirmados_novos).toInt() > 0) DailyReportItemColor.RED else DailyReportItemColor.GREEN
             DailyReportItemType.ACTIVE -> if ((currentDay.ativos - previousDay.ativos).toInt() > 0) DailyReportItemColor.RED else DailyReportItemColor.GREEN
             DailyReportItemType.RECOVERED -> if ((currentDay.recuperados - previousDay.recuperados).toInt() > 0) DailyReportItemColor.GREEN else DailyReportItemColor.RED
@@ -90,6 +95,7 @@ object DataToDailyReportMapper {
 
     private fun getValue(item: DailyReportItemType, currentDay: Data): Int {
         return when (item) {
+            DailyReportItemType.HEADER -> 0
             DailyReportItemType.CONFIRMED -> currentDay.confirmados.toInt()
             DailyReportItemType.ACTIVE -> currentDay.ativos.toInt()
             DailyReportItemType.RECOVERED -> currentDay.recuperados.toInt()
@@ -102,7 +108,7 @@ object DataToDailyReportMapper {
 }
 
 enum class DailyReportItemType {
-    CONFIRMED, ACTIVE, RECOVERED, DEATHS, SURVEILLANCE, HOSPITALIZED, HOSPITALIZED_ICU
+    HEADER, CONFIRMED, ACTIVE, RECOVERED, DEATHS, SURVEILLANCE, HOSPITALIZED, HOSPITALIZED_ICU
 }
 
 enum class DailyReportItemColor {

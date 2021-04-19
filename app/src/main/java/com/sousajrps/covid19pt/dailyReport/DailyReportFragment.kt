@@ -2,7 +2,6 @@ package com.sousajrps.covid19pt.dailyReport
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +18,7 @@ import com.sousajrps.covid19pt.dailyCases.DailyCases
 import com.sousajrps.covid19pt.dailyCases.DailyCasesActivity
 import com.sousajrps.covid19pt.dailyCases.DailyCasesFragment
 import java.util.*
+import kotlin.collections.ArrayList
 
 class DailyReportFragment : Fragment() {
     private lateinit var viewModel: ReportViewModel
@@ -29,6 +29,7 @@ class DailyReportFragment : Fragment() {
     private lateinit var dateDivider: View
     private lateinit var totalCasesBox: View
     private lateinit var totalCasesTitle: View
+    private var dailyCases: List<DailyCases> = emptyList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,6 +52,7 @@ class DailyReportFragment : Fragment() {
         expandDailyCasesChartIv = view.findViewById(R.id.expand_daily_cases_iv)
         expandDailyCasesChartIv.setOnClickListener {
             val intent = Intent(requireContext(), DailyCasesActivity::class.java)
+            intent.putExtra("chartData", ArrayList(dailyCases))
             requireActivity().startActivity(intent)
         }
 
@@ -80,6 +82,7 @@ class DailyReportFragment : Fragment() {
         })
 
         viewModel.dailyCases.observe(viewLifecycleOwner, Observer { dailyCases ->
+            this.dailyCases = dailyCases
             setupDailyCasesFragment(dailyCases)
         })
     }

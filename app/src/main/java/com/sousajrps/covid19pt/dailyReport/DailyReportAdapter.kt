@@ -11,7 +11,7 @@ import com.sousajrps.covid19pt.R
 
 class DailyReportAdapter(
     private val context: Context,
-    private val riskMatrixData: List<DailyReportItem>,
+    private val dailyReport: List<DailyReportItem>,
 ) : androidx.recyclerview.widget.RecyclerView.Adapter<DailyReportAdapter.DataViewHolder>() {
 
     private val redColor = ContextCompat.getColor(context, R.color.red)
@@ -26,19 +26,19 @@ class DailyReportAdapter(
     }
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-        if (riskMatrixData[holder.adapterPosition].dailyReportItemType == DailyReportItemType.HEADER) {
+        if (dailyReport[holder.adapterPosition].dailyReportItemType == DailyReportItemType.HEADER) {
             holder.labelTv.text = ""
             holder.totalTv.text = context.getString(R.string.report_total)
             holder.variationTv.text = context.getString(R.string.report_variation)
         } else {
-            holder.labelTv.text = context.getString(riskMatrixData[holder.adapterPosition].labelRes)
+            holder.labelTv.text = context.getString(dailyReport[holder.adapterPosition].labelRes)
             holder.totalTv.text =
-                customNumberFormatter.format(riskMatrixData[holder.adapterPosition].totalValue)
+                customNumberFormatter.format(dailyReport[holder.adapterPosition].totalValue)
             holder.variationTv.text =
-                customNumberFormatter.format(riskMatrixData[holder.adapterPosition].variationValue)
-            holder.signalTv.text = riskMatrixData[holder.adapterPosition].variationSignal
+                customNumberFormatter.format(dailyReport[holder.adapterPosition].variationValue)
+            holder.signalTv.text = dailyReport[holder.adapterPosition].variationSignal
 
-            if (riskMatrixData[holder.adapterPosition].variationColor == DailyReportItemColor.GREEN) {
+            if (dailyReport[holder.adapterPosition].variationColor == DailyReportItemColor.GREEN) {
                 holder.signalTv.setTextColor(greenColor)
                 holder.variationTv.setTextColor(greenColor)
             } else {
@@ -49,7 +49,7 @@ class DailyReportAdapter(
     }
 
     override fun getItemCount(): Int {
-        return riskMatrixData.size
+        return dailyReport.size
     }
 
     class DataViewHolder(v: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(v) {

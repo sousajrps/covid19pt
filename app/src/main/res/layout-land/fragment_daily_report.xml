@@ -47,53 +47,29 @@
         android:id="@+id/total_cases_chart_title_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_half"
+        android:layout_marginEnd="@dimen/margin_half"
         android:gravity="center"
+        android:text="@string/daily_cases_title"
         android:textColor="@color/textColor"
         android:textSize="16sp"
         android:textStyle="bold"
         android:visibility="gone"
-        android:text="@string/daily_cases_title"
-        android:layout_marginEnd="@dimen/margin_half"
-        android:layout_marginTop="@dimen/margin_half"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/nested_scroll_view"/>
+        app:layout_constraintStart_toEndOf="@+id/nested_scroll_view"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_half"
+        android:layout_marginEnd="@dimen/margin_half"
+        android:layout_marginBottom="@dimen/margin_half"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/nested_scroll_view"
-        android:layout_marginEnd="@dimen/margin_half"
-        android:layout_marginTop="@dimen/margin_half"
-        android:layout_marginBottom="@dimen/margin_half"
-        app:layout_constraintTop_toBottomOf="@+id/total_cases_chart_title_tv"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <ImageView
-        android:id="@+id/expand_daily_cases_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_half"
-        android:background="@color/toolTipBackground"
-        android:padding="2dp"
-        android:src="@drawable/ic_baseline_zoom_out_map_24"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_container"
-        app:layout_constraintTop_toTopOf="@+id/fragment_container"
-        app:tint="@color/toolTipText" />
-
-    <View
-        android:id="@+id/total_cases_chart_box"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/box_text_color"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_container"
-        app:layout_constraintEnd_toEndOf="@id/fragment_container"
-        app:layout_constraintStart_toStartOf="@id/fragment_container"
-        app:layout_constraintTop_toTopOf="@id/fragment_container" />
+        app:layout_constraintTop_toBottomOf="@+id/total_cases_chart_title_tv" />
 
     <include
         android:id="@+id/loading_view_report"

@@ -1,6 +1,6 @@
 package com.sousajrps.covid19pt
 
-import com.sousajrps.covid19pt.dailyCases.DataToDailyCasesMapper
+import com.sousajrps.covid19pt.CustomChart.DataToCustomChartDataValues
 import com.sousajrps.covid19pt.dailyReport.DataToDailyReportMapper
 import com.sousajrps.covid19pt.remote.RemoteConfigUtils
 import com.sousajrps.covid19pt.remote.RemoteConfigUtilsImpl
@@ -23,7 +23,7 @@ object AppModule {
     private val vaccinationWeeklyMapper: VaccinationWeeklyMapper by lazy { VaccinationWeeklyMapper }
     private val dataToMatrixMapperImpl: DataToMatrixMapper by lazy { DataToMatrixMapper }
     private val dataToDailyReportMapperImpl: DataToDailyReportMapper by lazy { DataToDailyReportMapper }
-    private val dataToConfirmedCasesMapperImpl: DataToDailyCasesMapper by lazy { DataToDailyCasesMapper }
+    private val dataToCustomChartDataValuesImpl: DataToCustomChartDataValues by lazy { DataToCustomChartDataValues }
     private val vaccinationTotalsMapperImpl: VaccinationTotalsMapper by lazy { VaccinationTotalsMapper }
     private val dataToVaccinationReportMapperImpl: DataToVaccinationReportMapper by lazy { DataToVaccinationReportMapper }
     private val dataToVaccinationWeeklyMapperImpl: DataToVaccinationWeeklyMapper by lazy { DataToVaccinationWeeklyMapper }
@@ -46,7 +46,7 @@ object AppModule {
     )
 
     fun getDataToMatrixMapper(): DataToMatrixMapper = dataToMatrixMapperImpl
-    fun getDataToConfirmedCasesMapper(): DataToDailyCasesMapper = dataToConfirmedCasesMapperImpl
+    fun getDataToCustomChartValuesMapper(): DataToCustomChartDataValues = dataToCustomChartDataValuesImpl
     fun getDataToDailyReportMapper(): DataToDailyReportMapper = dataToDailyReportMapperImpl
     fun getVaccinationTotalsMapper(): VaccinationTotalsMapper = vaccinationTotalsMapperImpl
     fun getDataToVaccinationReportMapper(): DataToVaccinationReportMapper =

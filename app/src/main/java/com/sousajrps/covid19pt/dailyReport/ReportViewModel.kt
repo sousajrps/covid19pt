@@ -3,10 +3,13 @@ package com.sousajrps.covid19pt.dailyReport
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.sousajrps.covid19pt.remote.RemoteConfigUtils
+import com.sousajrps.covid19pt.R
 import com.sousajrps.covid19pt.SingleLiveEvent
-import com.sousajrps.covid19pt.dailyCases.DailyCases
-import com.sousajrps.covid19pt.dailyCases.DataToDailyCasesMapper
+import com.sousajrps.covid19pt.CustomChart.CustomChartData
+import com.sousajrps.covid19pt.CustomChart.CustomChartDataSet
+import com.sousajrps.covid19pt.CustomChart.CustomChartDataValue
+import com.sousajrps.covid19pt.CustomChart.DataToCustomChartDataValues
+import com.sousajrps.covid19pt.remote.RemoteConfigUtils
 import com.sousajrps.covid19pt.riskMatrix.MatrixRepository
 import com.sousajrps.covid19pt.scheduler.SchedulerProvider
 import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferences
@@ -16,7 +19,7 @@ class ReportViewModel(
     private val matrixRepository: MatrixRepository,
     private val appSharedPreferences: AppSharedPreferences,
     private val dataToDailyReportMapper: DataToDailyReportMapper,
-    private val dataToDailyCasesMapper: DataToDailyCasesMapper,
+    private val dataToCustomChartDataValues: DataToCustomChartDataValues,
     private val remoteConfigUtils: RemoteConfigUtils,
     private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
@@ -24,12 +27,12 @@ class ReportViewModel(
     private var time: Long = 0
     private val compositeDisposable = CompositeDisposable()
 
-    val data: LiveData<List<DailyReportItem>> get() = dataM
-    val dailyCases: LiveData<List<DailyCases>> get() = dailyCasesM
+    val dailyReport: LiveData<List<DailyReportItem>> get() = dailyReportM
+    val dailyCases: LiveData<CustomChartData> get() = dailyCasesM
     val showLoading: LiveData<Boolean> get() = showLoadingM
 
-    private val dataM = SingleLiveEvent<List<DailyReportItem>>()
-    private val dailyCasesM = SingleLiveEvent<List<DailyCases>>()
+    private val dailyReportM = SingleLiveEvent<List<DailyReportItem>>()
+    private val dailyCasesM = SingleLiveEvent<CustomChartData>()
     private val showLoadingM = SingleLiveEvent<Boolean>()
 
     override fun onCleared() {
@@ -53,8 +56,12 @@ class ReportViewModel(
     private fun refreshData() = matrixRepository.getData()
         .observeOn(schedulerProvider.mainThread())
         .subscribeOn(schedulerProvider.backgroundThread())
-        .map { Pair(dataToDailyReportMapper.getReportItems(rawData = it), dataToDailyCasesMapper.map(it)) }
-      //  .map { it.takeLast(30) }
+        .map {
+            Pair(
+                dataToDailyReportMapper.getReportItems(rawData = it),
+                dataToCustomChartDataValues.map(it)
+            )
+        }
         .subscribe(
             { response ->
                 appSharedPreferences.covid19PtDataTimeStamp = time
@@ -67,8 +74,12 @@ class ReportViewModel(
     private fun loadLocalData() = matrixRepository.getLocalData()
         .observeOn(schedulerProvider.mainThread())
         .subscribeOn(schedulerProvider.backgroundThread())
-        .map { Pair(dataToDailyReportMapper.getReportItems(rawData = it), dataToDailyCasesMapper.map(it)) }
-      //  .map { it.takeLast(30) }
+        .map {
+            Pair(
+                dataToDailyReportMapper.getReportItems(rawData = it),
+                dataToCustomChartDataValues.map(it)
+            )
+        }
         .subscribe(
             { response ->
                 processResponse(response)
@@ -77,9 +88,19 @@ class ReportViewModel(
         .also { compositeDisposable.add(it) }
 
 
-    private fun processResponse(chartData: Pair<List<DailyReportItem>, List<DailyCases>>) {
-        dataM.value = chartData.first
-        dailyCasesM.value = chartData.second
+    private fun processResponse(report: Pair<List<DailyReportItem>, List<CustomChartDataValue>>) {
+        dailyReportM.value = report.first
+        dailyCasesM.value = CustomChartData(
+            title = R.string.daily_cases_title,
+            sets = listOf(
+                CustomChartDataSet(
+                    label = R.string.daily_cases_title,
+                    colorLines = R.color.chartLines,
+                    colorCircles = R.color.chartCircles,
+                    dailyCases = report.second
+                )
+            )
+        )
         showLoadingM.value = false
     }
 

@@ -1,6 +1,5 @@
 package com.sousajrps.covid19pt.dailyReport
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,22 +13,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sousajrps.covid19pt.R
-import com.sousajrps.covid19pt.dailyCases.DailyCases
-import com.sousajrps.covid19pt.dailyCases.DailyCasesActivity
-import com.sousajrps.covid19pt.dailyCases.DailyCasesFragment
+import com.sousajrps.covid19pt.CustomChart.ChartFragment
+import com.sousajrps.covid19pt.CustomChart.CustomChartData
 import java.util.*
-import kotlin.collections.ArrayList
 
 class DailyReportFragment : Fragment() {
     private lateinit var viewModel: ReportViewModel
     private lateinit var loadingView: View
-    private lateinit var expandDailyCasesChartIv: View
     private lateinit var dailyReportRv: RecyclerView
     private lateinit var dateTv: TextView
     private lateinit var dateDivider: View
-    private lateinit var totalCasesBox: View
     private lateinit var totalCasesTitle: View
-    private var dailyCases: List<DailyCases> = emptyList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,18 +37,9 @@ class DailyReportFragment : Fragment() {
         dailyReportRv = view.findViewById(R.id.report_rv)
         dateTv = view.findViewById(R.id.date_label_tv)
         dateDivider = view.findViewById(R.id.date_divider)
-        totalCasesBox = view.findViewById(R.id.total_cases_chart_box)
         totalCasesTitle = view.findViewById(R.id.total_cases_chart_title_tv)
-
         dailyReportRv.layoutManager = LinearLayoutManager(requireContext())
         dailyReportRv.isNestedScrollingEnabled = false
-
-        expandDailyCasesChartIv = view.findViewById(R.id.expand_daily_cases_iv)
-        expandDailyCasesChartIv.setOnClickListener {
-            val intent = Intent(requireContext(), DailyCasesActivity::class.java)
-            intent.putExtra("chartData", ArrayList(dailyCases))
-            requireActivity().startActivity(intent)
-        }
 
         initAndObserveViewModel()
         viewModel.getData(Date().time)
@@ -64,11 +49,11 @@ class DailyReportFragment : Fragment() {
         viewModel = ViewModelProvider(this, ReportViewModelFactory())
             .get(ReportViewModel::class.java)
 
-        viewModel.data.observe(viewLifecycleOwner, Observer { data ->
-            dateTv.text = getString(R.string.report_title_label, data.first().date)
+        viewModel.dailyReport.observe(viewLifecycleOwner, Observer { dailyReport ->
+            dateTv.text = getString(R.string.report_title_label, dailyReport.first().date)
             dateDivider.visibility = View.VISIBLE
 
-            val dailyReportAdapter = DailyReportAdapter(requireContext(), data)
+            val dailyReportAdapter = DailyReportAdapter(requireContext(), dailyReport)
             dailyReportRv.adapter = dailyReportAdapter
             dailyReportRv.invalidate()
         })
@@ -82,19 +67,16 @@ class DailyReportFragment : Fragment() {
         })
 
         viewModel.dailyCases.observe(viewLifecycleOwner, Observer { dailyCases ->
-            this.dailyCases = dailyCases
             setupDailyCasesFragment(dailyCases)
         })
     }
 
-    private fun setupDailyCasesFragment(dailyCases: List<DailyCases>) {
-        expandDailyCasesChartIv.visibility = View.VISIBLE
-        totalCasesBox.visibility = View.VISIBLE
+    private fun setupDailyCasesFragment(dailyCases: CustomChartData) {
         totalCasesTitle.visibility = View.VISIBLE
         val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        val fragment: DailyCasesFragment = DailyCasesFragment.newInstance(
-            dailyCases = dailyCases,
+        val fragment: ChartFragment = ChartFragment.newInstance(
+            chartData = dailyCases,
             isFullScreen = false
         )
         fragmentTransaction.add(R.id.fragment_container, fragment, "DailyCasesFragment")

@@ -13,7 +13,7 @@ class ReportViewModelFactory : ViewModelProvider.Factory {
                 matrixRepository = AppModule.getMatrixRepository(),
                 appSharedPreferences = AppModule.getAppSharedPreferences(),
                 dataToDailyReportMapper = AppModule.getDataToDailyReportMapper(),
-                dataToDailyCasesMapper = AppModule.getDataToConfirmedCasesMapper(),
+                dataToCustomChartDataValues = AppModule.getDataToCustomChartValuesMapper(),
                 remoteConfigUtils = AppModule.getRemoteConfigs(),
                 schedulerProvider = SchedulerModule.schedulerProvider()
             ) as T

@@ -1,19 +1,16 @@
-package com.sousajrps.covid19pt.dailyCases
+package com.sousajrps.covid19pt.CustomChart
 
 import com.sousajrps.covid19pt.remote.models.Data
 
-object DataToDailyCasesMapper {
+object DataToCustomChartDataValues {
     fun map(
         rawData: List<Data>
-    ): List<DailyCases> =
+    ): List<CustomChartDataValue> =
         rawData
             .map { row ->
-                DailyCases(
+                CustomChartDataValue(
                     date = row.data,
-                    newCases = row.confirmados_novos,
+                    value = row.confirmados_novos,
                 )
             }
 }
-
-
-

@@ -1,11 +1,11 @@
-package com.sousajrps.covid19pt.dailyCases
+package com.sousajrps.covid19pt.CustomChart
 
 import android.os.Parcel
 import android.os.Parcelable
 
-data class DailyCases(
+data class CustomChartDataValue(
     val date: String = "",
-    val newCases: Float = 0F
+    val value: Float = 0F
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString().orEmpty(),
@@ -14,19 +14,19 @@ data class DailyCases(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(date)
-        parcel.writeFloat(newCases)
+        parcel.writeFloat(value)
     }
 
     override fun describeContents(): Int {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<DailyCases> {
-        override fun createFromParcel(parcel: Parcel): DailyCases {
-            return DailyCases(parcel)
+    companion object CREATOR : Parcelable.Creator<CustomChartDataValue> {
+        override fun createFromParcel(parcel: Parcel): CustomChartDataValue {
+            return CustomChartDataValue(parcel)
         }
 
-        override fun newArray(size: Int): Array<DailyCases?> {
+        override fun newArray(size: Int): Array<CustomChartDataValue?> {
             return arrayOfNulls(size)
         }
     }

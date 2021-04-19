@@ -1,4 +1,4 @@
-package com.sousajrps.covid19pt.dailyCases
+package com.sousajrps.covid19pt.CustomChart
 
 import android.content.Context
 import android.widget.TextView

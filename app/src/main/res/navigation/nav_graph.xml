@@ -9,22 +9,22 @@
         android:id="@+id/MatrixFragment"
         android:name="com.sousajrps.covid19pt.riskMatrix.RiskMatrixFragment"
         android:label="@string/risk_matrix_fragment_title"
-        tools:layout="@layout/fragment_risk_matrix"></fragment>
+        tools:layout="@layout/fragment_risk_matrix" />
     <fragment
         android:id="@+id/ReportFragment"
         android:name="com.sousajrps.covid19pt.dailyReport.DailyReportFragment"
         android:label="@string/report_fragment_title"
-        tools:layout="@layout/fragment_daily_cases"></fragment>
+        tools:layout="@layout/fragment_chart" />
 
     <fragment
         android:id="@+id/VaccinationFragment"
         android:name="com.sousajrps.covid19pt.vaccination.VaccinationFragment"
         android:label="@string/vaccination_fragment_title"
-        tools:layout="@layout/fragment_vaccination"></fragment>
+        tools:layout="@layout/fragment_vaccination" />
 
     <fragment
         android:id="@+id/SettingsFragment"
         android:name="com.sousajrps.covid19pt.SettingsFragment"
         android:label="@string/settings_fragment_title"
-        tools:layout="@layout/fragment_settings"></fragment>
+        tools:layout="@layout/fragment_settings" />
 </navigation>

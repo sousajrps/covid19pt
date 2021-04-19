@@ -23,9 +23,11 @@ import kotlin.collections.ArrayList
 class VaccinationFragment : Fragment() {
     private lateinit var viewModel: VaccinationViewModel
     private lateinit var vaccinationTitleTv: TextView
+    private lateinit var vaccinationWeeklyTitleTv: TextView
     private lateinit var loadingView: View
     private lateinit var pieChart: PieChart
     private lateinit var dailyReportRv: RecyclerView
+    private lateinit var weeklyReportRv: RecyclerView
     private lateinit var listGroupView: View
     private lateinit var chartViewGroup: View
 
@@ -37,13 +39,17 @@ class VaccinationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         vaccinationTitleTv = view.findViewById(R.id.vaccination_title_tv)
+        vaccinationWeeklyTitleTv = view.findViewById(R.id.vaccination_weekly_title_tv)
         loadingView = view.findViewById(R.id.loading_view_vaccination)
         pieChart = view.findViewById(R.id.piechart)
         dailyReportRv = view.findViewById(R.id.report_rv)
+        weeklyReportRv = view.findViewById(R.id.report_weekly_rv)
         listGroupView = view.findViewById(R.id.vaccination_list_container)
         chartViewGroup = view.findViewById(R.id.chart_group)
         dailyReportRv.layoutManager = LinearLayoutManager(requireContext())
         dailyReportRv.isNestedScrollingEnabled = false
+        weeklyReportRv.layoutManager = LinearLayoutManager(requireContext())
+        weeklyReportRv.isNestedScrollingEnabled = false
         initViewModelAndObserve()
     }
 
@@ -53,12 +59,11 @@ class VaccinationFragment : Fragment() {
         viewModel.getData(Date().time)
 
         viewModel.data.observe(viewLifecycleOwner, { data ->
-            vaccinationTitleTv.text = getString(R.string.vaccination_title_label, data.date)
-            setChartData(data)
-        })
+            vaccinationTitleTv.text = getString(R.string.vaccination_title_label, data.vaccinationTotals.date)
 
-        viewModel.data2.observe(viewLifecycleOwner, { data ->
-            setRecyclerViewData(data)
+            setChartData(data.vaccinationTotals)
+            setRecyclerViewData(data.vaccinationReportItem)
+            setRecyclerViewWeeklyData(data.vaccinationWeeklyUiModel)
         })
 
         viewModel.showLoading.observe(viewLifecycleOwner, { loading ->
@@ -125,5 +130,13 @@ class VaccinationFragment : Fragment() {
         dailyReportRv.adapter = dailyReportAdapter
         dailyReportRv.invalidate()
         listGroupView.visibility = View.VISIBLE
+    }
+
+    private fun setRecyclerViewWeeklyData(data: VaccinationWeeklyUiModel) {
+        vaccinationWeeklyTitleTv.text = getString(R.string.vaccination_title_weekly_label, data.date)
+
+        val dailyReportAdapter = VaccinationReportWeeklyAdapter(requireContext(), data.vaccinationByAgeGroup)
+        weeklyReportRv.adapter = dailyReportAdapter
+        weeklyReportRv.invalidate()
     }
 }

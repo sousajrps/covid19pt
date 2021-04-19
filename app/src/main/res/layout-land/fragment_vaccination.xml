@@ -48,6 +48,33 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/vaccination_title_divider" />
 
+            <TextView
+                android:id="@+id/vaccination_weekly_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_half"
+                android:gravity="center_vertical"
+                android:textColor="@color/textColor"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/report_rv" />
+
+            <View
+                android:id="@+id/vaccination_weekly_title_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_half"
+                android:background="@color/textColor"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@+id/vaccination_weekly_title_tv" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/report_weekly_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/vaccination_weekly_title_divider" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

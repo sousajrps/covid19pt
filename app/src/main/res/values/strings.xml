@@ -32,13 +32,25 @@
     <string name="report_surveillance">Surveillance:</string>
     <string name="report_hospitalized">Hospitalized:</string>
     <string name="report_hospitalized_icu">Hospitalized ICU:</string>
+    <string name="report_total">Total</string>
+    <string name="report_variation">Variation</string>
     <string name="report_title_label">Daily report: %s</string>
     <string name="vaccination_chart_legend_two_doses">Immunized</string>
     <string name="vaccination_chart_legend_one_dose">First dose</string>
     <string name="vaccination_chart_legend_unvaccinated">Unvaccinated</string>
-    <string name="vaccination_title_label">Vaccination report: %s</string>
+    <string name="vaccination_title_label">Daily Vaccination report: %s</string>
+    <string name="vaccination_title_weekly_label">Weekly Vaccination report: %s</string>
     <string name="vaccination_total_chart_title">Percentage of the vaccinated population:</string>
     <string name="vaccination_one_dose">First dose:</string>
     <string name="vaccination_second_dose">Second dose:</string>
     <string name="vaccination_total_doses">Total doses:</string>
+    <string name="vaccination_age_group0_17" translatable="false">0 - 17</string>
+    <string name="vaccination_age_group18_24" translatable="false">18 - 24</string>
+    <string name="vaccination_age_group25_49" translatable="false">25 - 49</string>
+    <string name="vaccination_age_group50_64" translatable="false">50 - 64</string>
+    <string name="vaccination_age_group65_79" translatable="false">65 - 79</string>
+    <string name="vaccination_age_group80_plus" translatable="false">>= 80</string>
+    <string name="vaccination_age">Age</string>
+    <string name="vaccination_1st_dose">1st dose</string>
+    <string name="vaccination_2nd_dose">2nd dose</string>
 </resources>

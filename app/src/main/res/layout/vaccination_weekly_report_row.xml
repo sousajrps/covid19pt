@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="6dp">
+
+    <TextView
+        android:id="@+id/label_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColor"
+        app:layout_constraintEnd_toStartOf="@+id/vertical_line_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Confirmed:" />
+
+    <TextView
+        android:id="@+id/first_dose_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_half"
+        android:gravity="end"
+        android:textColor="@color/textColor"
+        app:layout_constraintEnd_toStartOf="@+id/first_dose_percentage_tv"
+        app:layout_constraintStart_toEndOf="@+id/vertical_line_1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="60000" />
+
+    <TextView
+        android:id="@+id/first_dose_percentage_tv"
+        android:layout_width="36dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_half"
+        android:gravity="end"
+        android:textColor="@color/textColor"
+        app:layout_constraintEnd_toStartOf="@+id/vertical_line_2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="100%" />
+
+    <TextView
+        android:id="@+id/second_dose_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_half"
+        android:gravity="end"
+        android:textColor="@color/textColor"
+        app:layout_constraintEnd_toStartOf="@+id/second_dose_percentage_tv"
+        app:layout_constraintStart_toEndOf="@+id/vertical_line_2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="60000" />
+
+    <TextView
+        android:id="@+id/second_dose_percentage_tv"
+        android:layout_width="36dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_half"
+        android:gravity="end"
+        android:textColor="@color/textColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="100%" />
+
+    <View
+        android:id="@+id/bottom_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="6dp"
+        android:background="@color/textColor"
+        app:layout_constraintTop_toBottomOf="@+id/label_tv" />
+
+    <View
+        android:id="@+id/vertical_line_2"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/textColor"
+        app:layout_constraintBottom_toBottomOf="@id/bottom_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.59"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/vertical_line_1"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/textColor"
+        app:layout_constraintBottom_toBottomOf="@id/bottom_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,6 +14,7 @@ class VaccinationViewModelFactory : ViewModelProvider.Factory {
                 appSharedPreferences = AppModule.getAppSharedPreferences(),
                 vaccinationTotalsMapper = AppModule.getVaccinationTotalsMapper(),
                 dataToVaccinationReportMapper = AppModule.getDataToVaccinationReportMapper(),
+                dataToVaccinationWeeklyMapper = AppModule.getDataToVaccinationWeeklyMapper(),
                 remoteConfigUtils = AppModule.getRemoteConfigs(),
                 schedulerProvider = SchedulerModule.schedulerProvider()
             ) as T

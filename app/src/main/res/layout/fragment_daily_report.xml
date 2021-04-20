@@ -36,21 +36,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/date_label_tv" />
 
 
-            <TextView
-                android:id="@+id/total_cases_chart_title_tv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_half"
-                android:layout_marginEnd="@dimen/margin_half"
-                android:gravity="center"
-                android:text="@string/daily_cases_title"
-                android:textColor="@color/textColor"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/report_rv" />
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragment_container"
@@ -58,7 +43,24 @@
                 android:layout_height="280dp"
                 android:layout_marginTop="@dimen/margin_half"
                 android:layout_marginBottom="@dimen/margin_half"
-                app:layout_constraintTop_toBottomOf="@+id/total_cases_chart_title_tv" />
+                app:layout_constraintTop_toBottomOf="@+id/report_rv" />
+
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragment_container_hospitalized"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_marginTop="@dimen/margin_half"
+                android:layout_marginBottom="@dimen/margin_half"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_container" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragment_container_totals"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_marginTop="@dimen/margin_half"
+                android:layout_marginBottom="@dimen/margin_half"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_container_hospitalized" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

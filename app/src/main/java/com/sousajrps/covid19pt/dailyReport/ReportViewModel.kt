@@ -7,9 +7,8 @@ import com.sousajrps.covid19pt.R
 import com.sousajrps.covid19pt.SingleLiveEvent
 import com.sousajrps.covid19pt.CustomChart.CustomChartData
 import com.sousajrps.covid19pt.CustomChart.CustomChartDataSet
-import com.sousajrps.covid19pt.CustomChart.CustomChartDataValue
-import com.sousajrps.covid19pt.CustomChart.DataToCustomChartDataValues
 import com.sousajrps.covid19pt.remote.RemoteConfigUtils
+import com.sousajrps.covid19pt.remote.models.Data
 import com.sousajrps.covid19pt.riskMatrix.MatrixRepository
 import com.sousajrps.covid19pt.scheduler.SchedulerProvider
 import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferences
@@ -29,10 +28,14 @@ class ReportViewModel(
 
     val dailyReport: LiveData<List<DailyReportItem>> get() = dailyReportM
     val dailyCases: LiveData<CustomChartData> get() = dailyCasesM
+    val hospitalized: LiveData<CustomChartData> get() = hospitalizedM
+    val totals: LiveData<CustomChartData> get() = totalsM
     val showLoading: LiveData<Boolean> get() = showLoadingM
 
     private val dailyReportM = SingleLiveEvent<List<DailyReportItem>>()
     private val dailyCasesM = SingleLiveEvent<CustomChartData>()
+    private val hospitalizedM = SingleLiveEvent<CustomChartData>()
+    private val totalsM = SingleLiveEvent<CustomChartData>()
     private val showLoadingM = SingleLiveEvent<Boolean>()
 
     override fun onCleared() {
@@ -57,10 +60,7 @@ class ReportViewModel(
         .observeOn(schedulerProvider.mainThread())
         .subscribeOn(schedulerProvider.backgroundThread())
         .map {
-            Pair(
-                dataToDailyReportMapper.getReportItems(rawData = it),
-                dataToCustomChartDataValues.map(it)
-            )
+            mapResponse(it)
         }
         .subscribe(
             { response ->
@@ -74,11 +74,7 @@ class ReportViewModel(
     private fun loadLocalData() = matrixRepository.getLocalData()
         .observeOn(schedulerProvider.mainThread())
         .subscribeOn(schedulerProvider.backgroundThread())
-        .map {
-            Pair(
-                dataToDailyReportMapper.getReportItems(rawData = it),
-                dataToCustomChartDataValues.map(it)
-            )
+        .map { mapResponse(it)
         }
         .subscribe(
             { response ->
@@ -88,8 +84,8 @@ class ReportViewModel(
         .also { compositeDisposable.add(it) }
 
 
-    private fun processResponse(report: Pair<List<DailyReportItem>, List<CustomChartDataValue>>) {
-        dailyReportM.value = report.first
+    private fun processResponse(response: DailyReportUiModel) {
+        dailyReportM.value = response.report
         dailyCasesM.value = CustomChartData(
             title = R.string.daily_cases_title,
             sets = listOf(
@@ -97,11 +93,66 @@ class ReportViewModel(
                     label = R.string.daily_cases_title,
                     colorLines = R.color.chartLines,
                     colorCircles = R.color.chartCircles,
-                    dailyCases = report.second
+                    dailyCases = response.dailyCases
                 )
             )
         )
+        hospitalizedM.value = CustomChartData(
+            title = R.string.report_hospitalized,
+            sets = listOf(
+                CustomChartDataSet(
+                    label = R.string.report_hospitalized,
+                    colorLines = R.color.chartLines,
+                    colorCircles = R.color.chartCircles,
+                    dailyCases = response.hospitalized
+                ),CustomChartDataSet(
+                    label = R.string.report_hospitalized_icu,
+                    colorLines = R.color.red,
+                    colorCircles = R.color.red,
+                    dailyCases = response.hospitalizedIcu
+                )
+            )
+
+        )
+
+        totalsM.value = CustomChartData(
+            title = R.string.report_total,
+            sets = listOf(
+                CustomChartDataSet(
+                    label = R.string.report_recovered,
+                    colorLines = R.color.green,
+                    colorCircles = R.color.green,
+                    dailyCases = response.recovered
+                ),
+                CustomChartDataSet(
+                    label = R.string.report_active,
+                    colorLines = R.color.yellow,
+                    colorCircles = R.color.yellow,
+                    dailyCases = response.active
+                ),
+                CustomChartDataSet(
+                    label = R.string.report_deaths,
+                    colorLines = R.color.red,
+                    colorCircles = R.color.red,
+                    dailyCases = response.deaths
+                )
+            )
+
+        )
         showLoadingM.value = false
+    }
+
+    private fun mapResponse(list: List<Data>):DailyReportUiModel{
+        return DailyReportUiModel(
+            report = dataToDailyReportMapper.getReportItems(rawData = list),
+            dailyCases =  dataToCustomChartDataValues.mapDailyCases(list),
+            hospitalized = dataToCustomChartDataValues.mapHospitalized(list),
+            hospitalizedIcu = dataToCustomChartDataValues.mapHospitalizedIcu(list),
+            recovered = dataToCustomChartDataValues.mapRecovered(list),
+            active = dataToCustomChartDataValues.mapActive(list),
+            deaths = dataToCustomChartDataValues.mapDeath(list)
+        )
+
     }
 
 }

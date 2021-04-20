@@ -1,6 +1,6 @@
 package com.sousajrps.covid19pt
 
-import com.sousajrps.covid19pt.CustomChart.DataToCustomChartDataValues
+import com.sousajrps.covid19pt.dailyReport.DataToCustomChartDataValues
 import com.sousajrps.covid19pt.dailyReport.DataToDailyReportMapper
 import com.sousajrps.covid19pt.remote.RemoteConfigUtils
 import com.sousajrps.covid19pt.remote.RemoteConfigUtilsImpl

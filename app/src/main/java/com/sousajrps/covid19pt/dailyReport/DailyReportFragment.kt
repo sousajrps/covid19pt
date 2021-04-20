@@ -22,7 +22,6 @@ class DailyReportFragment : Fragment() {
     private lateinit var loadingView: View
     private lateinit var dailyReportRv: RecyclerView
     private lateinit var dateTv: TextView
-    private lateinit var totalCasesTitle: View
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +34,6 @@ class DailyReportFragment : Fragment() {
         loadingView = view.findViewById(R.id.loading_view_report)
         dailyReportRv = view.findViewById(R.id.report_rv)
         dateTv = view.findViewById(R.id.date_label_tv)
-        totalCasesTitle = view.findViewById(R.id.total_cases_chart_title_tv)
         dailyReportRv.layoutManager = LinearLayoutManager(requireContext())
         dailyReportRv.isNestedScrollingEnabled = false
 
@@ -64,19 +62,26 @@ class DailyReportFragment : Fragment() {
         })
 
         viewModel.dailyCases.observe(viewLifecycleOwner, Observer { dailyCases ->
-            setupDailyCasesFragment(dailyCases)
+            setupChartFragment(dailyCases, R.id.fragment_container)
+        })
+
+        viewModel.hospitalized.observe(viewLifecycleOwner, Observer { dailyCases ->
+            setupChartFragment(dailyCases, R.id.fragment_container_hospitalized)
+        })
+
+        viewModel.totals.observe(viewLifecycleOwner, Observer { dailyCases ->
+            setupChartFragment(dailyCases, R.id.fragment_container_totals)
         })
     }
 
-    private fun setupDailyCasesFragment(dailyCases: CustomChartData) {
-        totalCasesTitle.visibility = View.VISIBLE
+    private fun setupChartFragment(dailyCases: CustomChartData, chartId: Int){
         val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         val fragment: ChartFragment = ChartFragment.newInstance(
             chartData = dailyCases,
             isFullScreen = false
         )
-        fragmentTransaction.add(R.id.fragment_container, fragment, "DailyCasesFragment")
+        fragmentTransaction.add(chartId, fragment, chartId.toString())
         fragmentTransaction.commit()
     }
 }

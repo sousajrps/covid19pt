@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.components.YAxis.AxisDependency
@@ -88,7 +89,10 @@ class ChartFragment : Fragment() {
         lineChart.isHighlightPerTapEnabled = true
         lineChart.setNoDataText("")
         lineChart.setViewPortOffsets(4f, 4f, 4f, 4f)
-        lineChart.legend.isEnabled = false
+        lineChart.legend.isEnabled = true
+        lineChart.legend.textColor = textColor
+        lineChart.legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
+        lineChart.legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
         val mv = DailyCasesMarkerView(requireContext(), R.layout.marker_view)
         lineChart.marker = mv
 

@@ -28,17 +28,11 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <View
-                android:id="@+id/date_divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/margin_half"
-                android:background="@color/textColor"
-                android:visibility="gone" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/report_rv"
                 android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/margin_half"
+                android:paddingBottom="@dimen/margin_half"
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

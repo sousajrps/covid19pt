@@ -28,20 +28,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <View
-                android:id="@+id/date_divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/margin_half"
-                android:background="@color/textColor"
-                android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@+id/date_label_tv" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/report_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/date_divider" />
+                android:layout_marginTop="@dimen/margin_half"
+                app:layout_constraintTop_toBottomOf="@+id/date_label_tv" />
 
 
             <TextView

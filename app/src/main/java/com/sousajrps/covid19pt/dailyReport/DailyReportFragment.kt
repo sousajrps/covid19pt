@@ -22,7 +22,6 @@ class DailyReportFragment : Fragment() {
     private lateinit var loadingView: View
     private lateinit var dailyReportRv: RecyclerView
     private lateinit var dateTv: TextView
-    private lateinit var dateDivider: View
     private lateinit var totalCasesTitle: View
 
     override fun onCreateView(
@@ -36,7 +35,6 @@ class DailyReportFragment : Fragment() {
         loadingView = view.findViewById(R.id.loading_view_report)
         dailyReportRv = view.findViewById(R.id.report_rv)
         dateTv = view.findViewById(R.id.date_label_tv)
-        dateDivider = view.findViewById(R.id.date_divider)
         totalCasesTitle = view.findViewById(R.id.total_cases_chart_title_tv)
         dailyReportRv.layoutManager = LinearLayoutManager(requireContext())
         dailyReportRv.isNestedScrollingEnabled = false
@@ -51,7 +49,6 @@ class DailyReportFragment : Fragment() {
 
         viewModel.dailyReport.observe(viewLifecycleOwner, Observer { dailyReport ->
             dateTv.text = getString(R.string.report_title_label, dailyReport.first().date)
-            dateDivider.visibility = View.VISIBLE
 
             val dailyReportAdapter = DailyReportAdapter(requireContext(), dailyReport)
             dailyReportRv.adapter = dailyReportAdapter

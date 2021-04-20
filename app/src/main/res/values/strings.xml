@@ -25,13 +25,13 @@
                     This application aims to provide in an easy and intuitive way detailed information about the status of the COVID-19 pandemic in Portugal.
                     The data presented is official and comes from the Direção Geral da Saúde, using Github repository dssg-pt/covid19pt-data as source.
     </string>
-    <string name="report_confirmed">Confirmed:</string>
-    <string name="report_active">Active:</string>
-    <string name="report_recovered">Recoverd:</string>
-    <string name="report_deaths">Deaths:</string>
-    <string name="report_surveillance">Surveillance:</string>
-    <string name="report_hospitalized">Hospitalized:</string>
-    <string name="report_hospitalized_icu">Hospitalized ICU:</string>
+    <string name="report_confirmed">Confirmed</string>
+    <string name="report_active">Active</string>
+    <string name="report_recovered">Recovered</string>
+    <string name="report_deaths">Deaths</string>
+    <string name="report_surveillance">Surveillance</string>
+    <string name="report_hospitalized">Hospitalized</string>
+    <string name="report_hospitalized_icu">Hospitalized ICU</string>
     <string name="report_total">Total</string>
     <string name="report_variation">Variation</string>
     <string name="report_title_label">Daily report: %s</string>
@@ -40,10 +40,10 @@
     <string name="vaccination_chart_legend_unvaccinated">Unvaccinated</string>
     <string name="vaccination_title_label">Daily Vaccination report: %s</string>
     <string name="vaccination_title_weekly_label">Weekly Vaccination report: %s</string>
-    <string name="vaccination_total_chart_title">Percentage of the vaccinated population:</string>
-    <string name="vaccination_one_dose">First dose:</string>
-    <string name="vaccination_second_dose">Second dose:</string>
-    <string name="vaccination_total_doses">Total doses:</string>
+    <string name="vaccination_total_chart_title">Percentage of the vaccinated population</string>
+    <string name="vaccination_one_dose">First dose</string>
+    <string name="vaccination_second_dose">Second dose</string>
+    <string name="vaccination_total_doses">Total doses</string>
     <string name="vaccination_age_group0_17" translatable="false">0 - 17</string>
     <string name="vaccination_age_group18_24" translatable="false">18 - 24</string>
     <string name="vaccination_age_group25_49" translatable="false">25 - 49</string>
@@ -53,6 +53,6 @@
     <string name="vaccination_age">Age</string>
     <string name="vaccination_1st_dose">1st dose</string>
     <string name="vaccination_2nd_dose">2nd dose</string>
-    <string name="vaccination_received">Received:</string>
-    <string name="vaccination_distributed">Distributed:</string>
+    <string name="vaccination_received">Received</string>
+    <string name="vaccination_distributed">Distributed</string>
 </resources>

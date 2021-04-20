@@ -25,13 +25,13 @@
         Os dados apresentados são oficiais e provêm da Direção Geral da Saúde, usando como fonte repositório de Github dssg-pt/covid19pt-data.
     </string>
     <string name="settings_icons">Alguns dos icons usados nesta app são provenientes e de acordo com a licence de <a href="https://www.flaticon.com/">FlatIcon</a>.</string>
-    <string name="report_confirmed">Confirmados:</string>
-    <string name="report_active">Activos:</string>
-    <string name="report_recovered">Recuperados:</string>
-    <string name="report_deaths">Óbitos:</string>
-    <string name="report_surveillance">Em vigilância:</string>
-    <string name="report_hospitalized">Internados:</string>
-    <string name="report_hospitalized_icu">Internados UCI:</string>
+    <string name="report_confirmed">Confirmados</string>
+    <string name="report_active">Activos</string>
+    <string name="report_recovered">Recuperados</string>
+    <string name="report_deaths">Óbitos</string>
+    <string name="report_surveillance">Em vigilância</string>
+    <string name="report_hospitalized">Internados</string>
+    <string name="report_hospitalized_icu">Internados UCI</string>
     <string name="report_title_label">Relatório diário: %1$s</string>
     <string name="report_total">Total</string>
     <string name="report_variation">Variação</string>
@@ -40,13 +40,13 @@
     <string name="vaccination_chart_legend_unvaccinated">Não vacinados</string>
     <string name="vaccination_title_label">Relatório vacinação diário: %s</string>
     <string name="vaccination_title_weekly_label">Relatório vacinação semanal: %s</string>
-    <string name="vaccination_total_chart_title">Percentagem da população vacinada:</string>
-    <string name="vaccination_one_dose">Primeira dose:</string>
-    <string name="vaccination_second_dose">Segunda dose:</string>
-    <string name="vaccination_total_doses">Total doses:</string>
+    <string name="vaccination_total_chart_title">Percentagem da população vacinada</string>
+    <string name="vaccination_one_dose">Primeira dose</string>
+    <string name="vaccination_second_dose">Segunda dose</string>
+    <string name="vaccination_total_doses">Total doses</string>
     <string name="vaccination_age">Idade</string>
     <string name="vaccination_1st_dose">1ª dose</string>
     <string name="vaccination_2nd_dose">2ª dose</string>
-    <string name="vaccination_received">Recebidas:</string>
-    <string name="vaccination_distributed">Distribuídas:</string>
+    <string name="vaccination_received">Recebidas</string>
+    <string name="vaccination_distributed">Distribuídas</string>
 </resources>

@@ -53,4 +53,6 @@
     <string name="vaccination_age">Age</string>
     <string name="vaccination_1st_dose">1st dose</string>
     <string name="vaccination_2nd_dose">2nd dose</string>
+    <string name="vaccination_received">Received:</string>
+    <string name="vaccination_distributed">Distributed:</string>
 </resources>

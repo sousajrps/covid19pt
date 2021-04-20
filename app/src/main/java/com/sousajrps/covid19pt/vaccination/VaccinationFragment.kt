@@ -16,6 +16,7 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
+import com.sousajrps.covid19pt.CustomNumberFormatter
 import com.sousajrps.covid19pt.R
 import java.util.*
 import kotlin.collections.ArrayList
@@ -30,6 +31,8 @@ class VaccinationFragment : Fragment() {
     private lateinit var weeklyReportRv: RecyclerView
     private lateinit var listGroupView: View
     private lateinit var chartViewGroup: View
+    private lateinit var receivedTv: TextView
+    private lateinit var distributedTv: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +49,8 @@ class VaccinationFragment : Fragment() {
         weeklyReportRv = view.findViewById(R.id.report_weekly_rv)
         listGroupView = view.findViewById(R.id.vaccination_list_container)
         chartViewGroup = view.findViewById(R.id.chart_group)
+        receivedTv = view.findViewById(R.id.vaccination_weekly_received_tv)
+        distributedTv = view.findViewById(R.id.vaccination_weekly_distributed_tv)
         dailyReportRv.layoutManager = LinearLayoutManager(requireContext())
         dailyReportRv.isNestedScrollingEnabled = false
         weeklyReportRv.layoutManager = LinearLayoutManager(requireContext())
@@ -133,7 +138,10 @@ class VaccinationFragment : Fragment() {
     }
 
     private fun setRecyclerViewWeeklyData(data: VaccinationWeeklyUiModel) {
+        val customNumberFormatter = CustomNumberFormatter
         vaccinationWeeklyTitleTv.text = getString(R.string.vaccination_title_weekly_label, data.date)
+        receivedTv.text = customNumberFormatter.format(data.received)
+        distributedTv.text = customNumberFormatter.format(data.distributed)
 
         val dailyReportAdapter = VaccinationReportWeeklyAdapter(requireContext(), data.vaccinationByAgeGroup)
         weeklyReportRv.adapter = dailyReportAdapter

@@ -1,5 +1,8 @@
 package com.sousajrps.covid19pt.vaccination
 
+import com.sousajrps.covid19pt.CustomChart.CustomChartData
+import com.sousajrps.covid19pt.CustomChart.CustomChartDataSet
+import com.sousajrps.covid19pt.CustomChart.CustomChartDataValue
 import com.sousajrps.covid19pt.R
 import com.sousajrps.covid19pt.remote.models.Vaccination
 import kotlin.math.abs
@@ -70,5 +73,46 @@ object DataToVaccinationReportMapper {
             VaccinationReportItemType.SECOND_DOSE -> currentDay.doses2.toInt()
             VaccinationReportItemType.TOTAL -> currentDay.doses.toInt()
         }
+    }
+
+    fun getVaccinationTotalsChartData(vaccination: List<Vaccination>): CustomChartData {
+        return CustomChartData(
+            title = R.string.vaccination_one_dose,
+            sets = listOf(
+                CustomChartDataSet(
+                    label = R.string.vaccination_total_doses,
+                    colorLines = R.color.chartLines,
+                    colorCircles = R.color.chartCircles,
+                    dailyCases = vaccination.map {
+                        CustomChartDataValue(
+                            date = it.data,
+                            value = it.doses
+                        )
+                    }
+                ),
+                CustomChartDataSet(
+                    label = R.string.vaccination_one_dose,
+                    colorLines = R.color.yellow,
+                    colorCircles = R.color.yellow,
+                    dailyCases = vaccination.map {
+                        CustomChartDataValue(
+                            date = it.data,
+                            value = it.doses1
+                        )
+                    }
+                ),
+                CustomChartDataSet(
+                    label = R.string.vaccination_one_dose,
+                    colorLines = R.color.green,
+                    colorCircles = R.color.green,
+                    dailyCases = vaccination.map {
+                        CustomChartDataValue(
+                            date = it.data,
+                            value = it.doses2
+                        )
+                    }
+                )
+            )
+        )
     }
 }

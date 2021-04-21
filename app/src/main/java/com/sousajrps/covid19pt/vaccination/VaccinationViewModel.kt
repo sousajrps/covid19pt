@@ -93,7 +93,10 @@ class VaccinationViewModel(
                 vaccinationLastWeek.populacao1.toInt()
             ),
             vaccinationReportItem = dataToVaccinationReportMapper.getItems(vaccinationLastDay),
-            vaccinationWeeklyUiModel = dataToVaccinationWeeklyMapper.getItems(vaccinationLastWeek)
+            vaccinationWeeklyUiModel = dataToVaccinationWeeklyMapper.getItems(vaccinationLastWeek),
+            vaccinationChartUiModel = dataToVaccinationReportMapper.getVaccinationTotalsChartData(
+                pair.first
+            )
         )
     }
 }

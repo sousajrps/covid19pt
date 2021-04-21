@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +18,8 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
+import com.sousajrps.covid19pt.CustomChart.ChartFragment
+import com.sousajrps.covid19pt.CustomChart.CustomChartData
 import com.sousajrps.covid19pt.CustomNumberFormatter
 import com.sousajrps.covid19pt.R
 import java.util.*
@@ -69,6 +73,7 @@ class VaccinationFragment : Fragment() {
             setChartData(data.vaccinationTotals)
             setRecyclerViewData(data.vaccinationReportItem)
             setRecyclerViewWeeklyData(data.vaccinationWeeklyUiModel)
+            setChartFragment(data.vaccinationChartUiModel)
         })
 
         viewModel.showLoading.observe(viewLifecycleOwner, { loading ->
@@ -78,6 +83,17 @@ class VaccinationFragment : Fragment() {
                 loadingView.visibility = View.GONE
             }
         })
+    }
+
+    private fun setChartFragment(vaccinationChartUiModel: CustomChartData) {
+        val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+        val fragment: ChartFragment = ChartFragment.newInstance(
+            chartData = vaccinationChartUiModel,
+            isFullScreen = false
+        )
+        fragmentTransaction.add(R.id.vaccination_chart, fragment, "VaccinationChart")
+        fragmentTransaction.commit()
     }
 
     private fun setChartData(data: VaccinationTotals) {

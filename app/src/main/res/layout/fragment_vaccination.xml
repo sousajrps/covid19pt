@@ -29,7 +29,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/report_rv"
                 android:layout_width="match_parent"
@@ -56,17 +55,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
                 android:layout_marginTop="@dimen/margin_half"
+                android:background="@drawable/box_text_color"
                 app:layout_constraintTop_toBottomOf="@+id/vaccination_chart_title_tv" />
 
-            <View
-                android:id="@+id/piechart_box_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/box_text_color"
-                app:layout_constraintBottom_toBottomOf="@id/piechart"
-                app:layout_constraintEnd_toEndOf="@id/piechart"
-                app:layout_constraintStart_toStartOf="@id/piechart"
-                app:layout_constraintTop_toTopOf="@id/piechart" />
+            <TextView
+                android:id="@+id/vaccination_totals_chart_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_half"
+                android:gravity="center"
+                android:text="@string/vaccination_total_doses_chart_title"
+                android:textColor="@color/textColor"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/piechart"/>
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/vaccination_chart"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_marginTop="@dimen/margin_half"
+                app:layout_constraintTop_toBottomOf="@+id/vaccination_totals_chart_title_tv" />
 
             <TextView
                 android:id="@+id/vaccination_weekly_title_tv"
@@ -79,7 +91,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/piechart_box_view" />
+                app:layout_constraintTop_toBottomOf="@+id/vaccination_chart" />
 
             <View
                 android:id="@+id/vaccination_weekly_title_divider"
@@ -151,7 +163,7 @@
                 android:id="@+id/chart_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:constraint_referenced_ids="piechart,vaccination_chart_title_tv,piechart_box_view, report_weekly_rv" />
+                app:constraint_referenced_ids="piechart,vaccination_chart_title_tv,report_weekly_rv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

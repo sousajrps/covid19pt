@@ -23,9 +23,13 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private fun checkAppSharedPreferences() {
         val preferences = AppModule.getAppSharedPreferences()
+        val nightMode = preferences.nightMode
+        val locale = preferences.locale
         if (preferences.sharedPreferencesVersion < AppSharedPreferencesUtils.VERSION) {
             preferences.clearAll()
             preferences.sharedPreferencesVersion = AppSharedPreferencesUtils.VERSION
+            preferences.nightMode = nightMode
+            preferences.locale = locale
         }
     }
 

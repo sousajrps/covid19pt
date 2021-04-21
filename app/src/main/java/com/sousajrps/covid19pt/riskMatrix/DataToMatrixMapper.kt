@@ -1,7 +1,7 @@
 package com.sousajrps.covid19pt.riskMatrix
 
 import com.sousajrps.covid19pt.riskMatrix.models.RiskMatrix
-import com.sousajrps.covid19pt.remote.models.Data
+import com.sousajrps.covid19pt.local.Data
 
 object DataToMatrixMapper {
     private const val DEFAULT_NUMBER_OF_ITEMS = 15

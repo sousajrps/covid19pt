@@ -11,7 +11,6 @@ class MatrixViewModelFactory : ViewModelProvider.Factory {
         if (modelClass.isAssignableFrom(RiskMatrixViewModel::class.java)) {
             return RiskMatrixViewModel(
                 matrixRepository = AppModule.getMatrixRepository(),
-                appSharedPreferences = AppModule.getAppSharedPreferences(),
                 dataToMatrixMapper = AppModule.getDataToMatrixMapper(),
                 remoteConfigUtils = AppModule.getRemoteConfigs(),
                 schedulerProvider = SchedulerModule.schedulerProvider()

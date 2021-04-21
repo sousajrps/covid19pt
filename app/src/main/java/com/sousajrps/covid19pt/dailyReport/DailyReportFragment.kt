@@ -12,9 +12,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.sousajrps.covid19pt.R
 import com.sousajrps.covid19pt.CustomChart.ChartFragment
 import com.sousajrps.covid19pt.CustomChart.CustomChartData
+import com.sousajrps.covid19pt.R
 import java.util.*
 
 class DailyReportFragment : Fragment() {
@@ -74,7 +74,7 @@ class DailyReportFragment : Fragment() {
         })
     }
 
-    private fun setupChartFragment(dailyCases: CustomChartData, chartId: Int){
+    private fun setupChartFragment(dailyCases: CustomChartData, chartId: Int) {
         val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         val fragment: ChartFragment = ChartFragment.newInstance(

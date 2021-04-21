@@ -3,24 +3,21 @@ package com.sousajrps.covid19pt.riskMatrix
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.sousajrps.covid19pt.SingleLiveEvent
+import com.sousajrps.covid19pt.remote.RemoteConfigUtils
 import com.sousajrps.covid19pt.remote.models.AppConfigurations
 import com.sousajrps.covid19pt.remote.models.MatrixParameters
-import com.sousajrps.covid19pt.remote.RemoteConfigUtils
-import com.sousajrps.covid19pt.SingleLiveEvent
 import com.sousajrps.covid19pt.riskMatrix.models.RiskMatrix
 import com.sousajrps.covid19pt.scheduler.SchedulerProvider
-import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferences
 import io.reactivex.disposables.CompositeDisposable
 
 class RiskMatrixViewModel(
     private val matrixRepository: MatrixRepository,
-    private val appSharedPreferences: AppSharedPreferences,
     private val dataToMatrixMapper: DataToMatrixMapper,
     private val remoteConfigUtils: RemoteConfigUtils,
     private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
     private val TAG = "RiskMatrixViewModel"
-    private var time: Long = 0
     private val compositeDisposable = CompositeDisposable()
     private var appConfigurations = AppConfigurations()
 
@@ -42,35 +39,11 @@ class RiskMatrixViewModel(
         matrixParametersM.value = appConfigurations.matrixParameters
     }
 
-    fun getData(time: Long) {
-        showLoadingM.value = true
-        this.time = time
-        if (shouldRefreshData()) {
-            refreshData()
-        } else {
-            loadLocalData()
-        }
-    }
-
-    private fun shouldRefreshData() = appSharedPreferences.covid19PtDataTimeStamp == 0L
-            || time > (appSharedPreferences.covid19PtDataTimeStamp + appConfigurations.timeOffset)
-
-    private fun refreshData() = matrixRepository.getData()
+    fun getData(time: Long) = matrixRepository.getData(time)
         .observeOn(schedulerProvider.mainThread())
         .subscribeOn(schedulerProvider.backgroundThread())
-        .map { dataToMatrixMapper.map(rawData = it) }
-        .subscribe(
-            { response ->
-                appSharedPreferences.covid19PtDataTimeStamp = time
-                processResponse(response)
-            }, { error -> Log.d(TAG, error.localizedMessage.orEmpty()) }
-        )
-        .also { compositeDisposable.add(it) }
-
-
-    private fun loadLocalData() = matrixRepository.getLocalData()
-        .observeOn(schedulerProvider.mainThread())
-        .subscribeOn(schedulerProvider.backgroundThread())
+        .doOnSubscribe { showLoadingM.value = true }
+        .doOnTerminate { showLoadingM.value = false }
         .map { dataToMatrixMapper.map(rawData = it) }
         .subscribe(
             { response ->

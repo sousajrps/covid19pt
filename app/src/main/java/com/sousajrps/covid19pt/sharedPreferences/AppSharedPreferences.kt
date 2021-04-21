@@ -1,23 +1,19 @@
 package com.sousajrps.covid19pt.sharedPreferences
 
 import android.content.Context
-import io.reactivex.Single
 import java.util.*
 
 interface AppSharedPreferences {
-    var covid19PtData: List<Map<String, String>>
-    var covid19PtVaccination: List<Map<String, String>>
-    var covid19PtVaccinationWeekly: List<Map<String, String>>
-    var covid19PtDataTimeStamp: Long
-    var covid19PtVaccinationTimeStamp: Long
+    var sharedPreferencesVersion: Int
+    var dataTimeStamp: Long
+    var vaccinationTimeStamp: Long
+    var vaccinationWeeklyTimeStamp: Long
     var nightMode: String
     var locale: Locale?
 
     fun initialize(context: Context)
 
-    fun getLocalCovid19PtDataSingle(): Single<List<Map<String, String>>>
-    fun getLocalCovid19PtVaccinationSingle(): Single<List<Map<String, String>>>
-    fun getLocalCovid19PtVaccinationWeeklySingle(): Single<List<Map<String, String>>>
+    fun clearAll()
 
     companion object {
         const val MODE_NIGHT_YES = "mode_night_yes"

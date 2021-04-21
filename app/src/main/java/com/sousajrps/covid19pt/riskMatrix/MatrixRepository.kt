@@ -1,9 +1,8 @@
 package com.sousajrps.covid19pt.riskMatrix
 
-import com.sousajrps.covid19pt.remote.models.Data
+import com.sousajrps.covid19pt.local.Data
 import io.reactivex.Single
 
 interface MatrixRepository {
-    fun getData(): Single<List<Data>>
-    fun getLocalData(): Single<List<Data>>
+    fun getData(time: Long): Single<List<Data>>
 }

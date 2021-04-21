@@ -6,17 +6,27 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferences
+import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferencesUtils
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initializeRemoteConfigs()
+        checkAppSharedPreferences()
         setNightMode()
         goToMainActivity()
     }
 
     private fun initializeRemoteConfigs() {
         AppModule.getRemoteConfigs().initialize()
+    }
+
+    private fun checkAppSharedPreferences() {
+        val preferences = AppModule.getAppSharedPreferences()
+        if (preferences.sharedPreferencesVersion < AppSharedPreferencesUtils.VERSION) {
+            preferences.clearAll()
+            preferences.sharedPreferencesVersion = AppSharedPreferencesUtils.VERSION
+        }
     }
 
     private fun setNightMode() {

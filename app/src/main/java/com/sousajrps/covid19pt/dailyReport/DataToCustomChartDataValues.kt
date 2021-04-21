@@ -1,7 +1,7 @@
 package com.sousajrps.covid19pt.dailyReport
 
 import com.sousajrps.covid19pt.CustomChart.CustomChartDataValue
-import com.sousajrps.covid19pt.remote.models.Data
+import com.sousajrps.covid19pt.local.Data
 
 object DataToCustomChartDataValues {
     fun mapDailyCases(

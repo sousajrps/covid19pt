@@ -1,6 +1,7 @@
 package com.sousajrps.covid19pt
 
 import android.app.Application
+import com.sousajrps.covid19pt.local.LocalModule
 import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferencesModule
 
 class MyApplication : Application() {
@@ -8,5 +9,6 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         sharedPreferences.initialize(this)
+        LocalModule.initializeDatabase(this)
     }
 }

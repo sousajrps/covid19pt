@@ -11,10 +11,8 @@ class ReportViewModelFactory : ViewModelProvider.Factory {
         if (modelClass.isAssignableFrom(ReportViewModel::class.java)) {
             return ReportViewModel(
                 matrixRepository = AppModule.getMatrixRepository(),
-                appSharedPreferences = AppModule.getAppSharedPreferences(),
                 dataToDailyReportMapper = AppModule.getDataToDailyReportMapper(),
                 dataToCustomChartDataValues = AppModule.getDataToCustomChartValuesMapper(),
-                remoteConfigUtils = AppModule.getRemoteConfigs(),
                 schedulerProvider = SchedulerModule.schedulerProvider()
             ) as T
         }

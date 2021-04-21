@@ -1,6 +1,6 @@
 package com.sousajrps.covid19pt.remote.mappers
 
-import com.sousajrps.covid19pt.remote.models.Data
+import com.sousajrps.covid19pt.local.Data
 
 object DataMapper {
     private const val DATA = "data"

@@ -4,24 +4,19 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.sousajrps.covid19pt.SingleLiveEvent
-import com.sousajrps.covid19pt.remote.RemoteConfigUtils
-import com.sousajrps.covid19pt.remote.models.Vaccination
-import com.sousajrps.covid19pt.remote.models.VaccinationWeekly
+import com.sousajrps.covid19pt.local.Vaccination
+import com.sousajrps.covid19pt.local.VaccinationWeekly
 import com.sousajrps.covid19pt.scheduler.SchedulerProvider
-import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferences
 import io.reactivex.disposables.CompositeDisposable
 
 class VaccinationViewModel(
     private val vaccinationRepository: VaccinationRepository,
-    private val appSharedPreferences: AppSharedPreferences,
     private val vaccinationTotalsMapper: VaccinationTotalsMapper,
     private val dataToVaccinationReportMapper: DataToVaccinationReportMapper,
     private val dataToVaccinationWeeklyMapper: DataToVaccinationWeeklyMapper,
-    private val remoteConfigUtils: RemoteConfigUtils,
     private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
     private val TAG = "VaccinationViewModel"
-    private var time: Long = 0
     private val compositeDisposable = CompositeDisposable()
 
     val data: LiveData<VaccinationUiModel> get() = dataM
@@ -35,44 +30,16 @@ class VaccinationViewModel(
         compositeDisposable.clear()
     }
 
-    fun getData(time: Long) {
-        this.time = time
-        showLoadingM.value = true
-        if (shouldRefreshData()) {
-            getAllRemoteData()
-        } else {
-            getAllLocalData()
-        }
-    }
-
-    private fun shouldRefreshData() =
-        time > (appSharedPreferences.covid19PtVaccinationTimeStamp + remoteConfigUtils.getAppConfigurations().timeOffset)
-
     private fun processResponse(chartData: VaccinationUiModel) {
         dataM.value = chartData
-
         showLoadingM.value = false
     }
 
-    private fun getAllRemoteData() =
-        vaccinationRepository.getAllRemoteData().toObservable()
+    fun getData(time: Long) = vaccinationRepository.getVaccinationData(time)
             .observeOn(schedulerProvider.mainThread())
             .subscribeOn(schedulerProvider.backgroundThread())
-            .map { mapToUiModel(it) }
-            .subscribe(
-                { response ->
-                    appSharedPreferences.covid19PtVaccinationTimeStamp = time
-                    processResponse(response)
-                }, { error ->
-                    Log.d(TAG, error.localizedMessage.orEmpty())
-                }
-            )
-            .also { compositeDisposable.add(it) }
-
-    private fun getAllLocalData() =
-        vaccinationRepository.getAllRemoteData().toObservable()
-            .observeOn(schedulerProvider.mainThread())
-            .subscribeOn(schedulerProvider.backgroundThread())
+            .doOnSubscribe { showLoadingM.value = true }
+            .doOnTerminate { showLoadingM.value = false }
             .map { mapToUiModel(it) }
             .subscribe(
                 { response ->

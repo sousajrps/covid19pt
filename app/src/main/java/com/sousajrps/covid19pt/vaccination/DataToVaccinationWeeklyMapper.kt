@@ -1,7 +1,7 @@
 package com.sousajrps.covid19pt.vaccination
 
 import com.sousajrps.covid19pt.R
-import com.sousajrps.covid19pt.remote.models.VaccinationWeekly
+import com.sousajrps.covid19pt.local.VaccinationWeekly
 
 object DataToVaccinationWeeklyMapper {
     fun getItems(vaccinationWeekly: VaccinationWeekly) =

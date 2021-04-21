@@ -1,7 +1,7 @@
 package com.sousajrps.covid19pt.dailyReport
 
 import com.sousajrps.covid19pt.R
-import com.sousajrps.covid19pt.remote.models.Data
+import com.sousajrps.covid19pt.local.Data
 import kotlin.math.abs
 
 object DataToDailyReportMapper {

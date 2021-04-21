@@ -11,11 +11,9 @@ class VaccinationViewModelFactory : ViewModelProvider.Factory {
         if (modelClass.isAssignableFrom(VaccinationViewModel::class.java)) {
             return VaccinationViewModel(
                 vaccinationRepository = AppModule.getVaccinationRepository(),
-                appSharedPreferences = AppModule.getAppSharedPreferences(),
                 vaccinationTotalsMapper = AppModule.getVaccinationTotalsMapper(),
                 dataToVaccinationReportMapper = AppModule.getDataToVaccinationReportMapper(),
                 dataToVaccinationWeeklyMapper = AppModule.getDataToVaccinationWeeklyMapper(),
-                remoteConfigUtils = AppModule.getRemoteConfigs(),
                 schedulerProvider = SchedulerModule.schedulerProvider()
             ) as T
         }

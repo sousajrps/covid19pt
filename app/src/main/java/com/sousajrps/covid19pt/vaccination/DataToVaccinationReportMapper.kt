@@ -4,7 +4,7 @@ import com.sousajrps.covid19pt.CustomChart.CustomChartData
 import com.sousajrps.covid19pt.CustomChart.CustomChartDataSet
 import com.sousajrps.covid19pt.CustomChart.CustomChartDataValue
 import com.sousajrps.covid19pt.R
-import com.sousajrps.covid19pt.remote.models.Vaccination
+import com.sousajrps.covid19pt.local.Vaccination
 import kotlin.math.abs
 
 object DataToVaccinationReportMapper {

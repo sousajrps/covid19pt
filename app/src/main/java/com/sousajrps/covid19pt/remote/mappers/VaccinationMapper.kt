@@ -1,6 +1,6 @@
 package com.sousajrps.covid19pt.remote.mappers
 
-import com.sousajrps.covid19pt.remote.models.Vaccination
+import com.sousajrps.covid19pt.local.Vaccination
 
 object VaccinationMapper {
     private const val DATA = "data"

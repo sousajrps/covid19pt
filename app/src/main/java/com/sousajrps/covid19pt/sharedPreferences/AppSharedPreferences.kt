@@ -13,8 +13,6 @@ interface AppSharedPreferences {
 
     fun initialize(context: Context)
 
-    fun clearAll()
-
     companion object {
         const val MODE_NIGHT_YES = "mode_night_yes"
         const val MODE_NIGHT_NO = "mode_night_no"

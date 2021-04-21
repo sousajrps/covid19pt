@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.os.Build
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
+import com.sousajrps.covid19pt.AppModule
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import java.util.*
@@ -34,10 +35,19 @@ class AppSharedPreferencesUtils : AppSharedPreferences {
                 EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
             )
         }
+
+        validateIntegrity()
     }
 
-    override fun clearAll() {
-        sharedPreferences.edit().clear().apply()
+    private fun validateIntegrity() {
+        val nightModeTemp = nightMode
+        val localeTemp = locale
+        if (sharedPreferencesVersion < VERSION) {
+            sharedPreferences.edit().clear().apply()
+            sharedPreferencesVersion = VERSION
+            nightMode = nightModeTemp
+            locale = localeTemp
+        }
     }
 
     override var sharedPreferencesVersion: Int

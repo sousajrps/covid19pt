@@ -12,25 +12,12 @@ class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initializeRemoteConfigs()
-        checkAppSharedPreferences()
         setNightMode()
         goToMainActivity()
     }
 
     private fun initializeRemoteConfigs() {
         AppModule.getRemoteConfigs().initialize()
-    }
-
-    private fun checkAppSharedPreferences() {
-        val preferences = AppModule.getAppSharedPreferences()
-        val nightMode = preferences.nightMode
-        val locale = preferences.locale
-        if (preferences.sharedPreferencesVersion < AppSharedPreferencesUtils.VERSION) {
-            preferences.clearAll()
-            preferences.sharedPreferencesVersion = AppSharedPreferencesUtils.VERSION
-            preferences.nightMode = nightMode
-            preferences.locale = locale
-        }
     }
 
     private fun setNightMode() {

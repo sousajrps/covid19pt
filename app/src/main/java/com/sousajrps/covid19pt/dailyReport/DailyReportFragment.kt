@@ -11,11 +11,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.sousajrps.covid19pt.lineChartView.LineChartActivity
+import com.sousajrps.covid19pt.R
 import com.sousajrps.covid19pt.lineChartView.CustomChartData
+import com.sousajrps.covid19pt.lineChartView.LineChartActivity
 import com.sousajrps.covid19pt.lineChartView.LineChartView
 import com.sousajrps.covid19pt.lineChartView.LineChartViewActions
-import com.sousajrps.covid19pt.R
 import java.util.*
 
 class DailyReportFragment : Fragment() {
@@ -53,11 +53,11 @@ class DailyReportFragment : Fragment() {
             .get(ReportViewModel::class.java)
 
         viewModel.dailyReport.observe(viewLifecycleOwner, Observer { dailyReport ->
-            dateTv.text = getString(R.string.report_title_label, dailyReport.first().date)
-
-            val dailyReportAdapter = DailyReportAdapter(requireContext(), dailyReport)
-            dailyReportRv.adapter = dailyReportAdapter
-            dailyReportRv.invalidate()
+            dateTv.text = getString(R.string.report_title_label, dailyReport.report.first().date)
+            showDailyReport(dailyReport.report)
+            showDailyCases(dailyReport.dailyCases)
+            showHospitalized(dailyReport.hospitalized)
+            showTotalCases(dailyReport.totalCases)
         })
 
         viewModel.showLoading.observe(viewLifecycleOwner, Observer { loading ->
@@ -68,42 +68,57 @@ class DailyReportFragment : Fragment() {
             }
         })
 
-        viewModel.dailyCases.observe(viewLifecycleOwner, Observer { dailyCases ->
-            dailyCasesChart.setData(dailyCases, viewActions = object :
-                LineChartViewActions {
+    }
+
+    private fun showTotalCases(totalCases: CustomChartData) {
+        totalCasesChart.setData(
+            totalCases,
+            viewActions = object : LineChartViewActions {
                 override fun expand() {
-                    expandChart(dailyCases)
+                    expandChart(totalCases)
                 }
 
                 override fun finish() {
                     //n-op
                 }
-            }, false)
-        })
+            },
+            false
+        )
+    }
 
-        viewModel.hospitalized.observe(viewLifecycleOwner, Observer { dailyCases ->
-            hospitalizedChart.setData(dailyCases, viewActions = object : LineChartViewActions {
+    private fun showHospitalized(hospitalized: CustomChartData) {
+        hospitalizedChart.setData(
+            hospitalized,
+            viewActions = object : LineChartViewActions {
                 override fun expand() {
-                    expandChart(dailyCases)
+                    expandChart(hospitalized)
                 }
 
                 override fun finish() {
                     //n-op
                 }
-            }, false)
-        })
+            },
+            false
+        )
+    }
 
-        viewModel.totals.observe(viewLifecycleOwner, Observer { dailyCases ->
-            totalCasesChart.setData(dailyCases, viewActions = object : LineChartViewActions {
-                override fun expand() {
-                    expandChart(dailyCases)
-                }
+    private fun showDailyCases(dailyCases: CustomChartData) {
+        dailyCasesChart.setData(dailyCases, viewActions = object :
+            LineChartViewActions {
+            override fun expand() {
+                expandChart(dailyCases)
+            }
 
-                override fun finish() {
-                    //n-op
-                }
-            }, false)
-        })
+            override fun finish() {
+                //n-op
+            }
+        }, false)
+    }
+
+    private fun showDailyReport(dailyReport: List<DailyReportItem>) {
+        val dailyReportAdapter = DailyReportAdapter(requireContext(), dailyReport)
+        dailyReportRv.adapter = dailyReportAdapter
+        dailyReportRv.invalidate()
     }
 
     private fun expandChart(dailyCases: CustomChartData) {

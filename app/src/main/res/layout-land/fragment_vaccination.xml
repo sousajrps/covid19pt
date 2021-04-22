@@ -156,7 +156,7 @@
                 android:background="@drawable/box_text_color"
                 android:visibility="visible" />
 
-            <com.sousajrps.covid19pt.CustomChart.LineChartView
+            <com.sousajrps.covid19pt.lineChartView.LineChartView
                 android:id="@+id/vaccination_chart"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"

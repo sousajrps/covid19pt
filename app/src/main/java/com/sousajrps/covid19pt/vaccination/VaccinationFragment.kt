@@ -17,10 +17,10 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
-import com.sousajrps.covid19pt.CustomChart.ChartActivity
-import com.sousajrps.covid19pt.CustomChart.CustomChartData
-import com.sousajrps.covid19pt.CustomChart.LineChartView
-import com.sousajrps.covid19pt.CustomChart.LineChartViewActions
+import com.sousajrps.covid19pt.lineChartView.LineChartActivity
+import com.sousajrps.covid19pt.lineChartView.CustomChartData
+import com.sousajrps.covid19pt.lineChartView.LineChartView
+import com.sousajrps.covid19pt.lineChartView.LineChartViewActions
 import com.sousajrps.covid19pt.CustomNumberFormatter
 import com.sousajrps.covid19pt.R
 import java.util.*
@@ -92,8 +92,8 @@ class VaccinationFragment : Fragment() {
     private fun setChartFragment(vaccinationChartUiModel: CustomChartData) {
         lineChartView.setData(vaccinationChartUiModel, viewActions = object : LineChartViewActions {
             override fun expand() {
-                val intent = Intent(requireContext(), ChartActivity::class.java)
-                intent.putExtra(ChartActivity.CHART_DATA, vaccinationChartUiModel)
+                val intent = Intent(requireContext(), LineChartActivity::class.java)
+                intent.putExtra(LineChartActivity.CHART_DATA, vaccinationChartUiModel)
                 requireActivity().startActivity(intent)
             }
 

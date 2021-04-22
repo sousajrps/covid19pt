@@ -1,4 +1,4 @@
-package com.sousajrps.covid19pt.CustomChart
+package com.sousajrps.covid19pt.lineChartView
 
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.formatter.ValueFormatter

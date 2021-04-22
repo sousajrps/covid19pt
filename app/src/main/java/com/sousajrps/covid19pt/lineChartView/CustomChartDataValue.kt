@@ -1,4 +1,4 @@
-package com.sousajrps.covid19pt.CustomChart
+package com.sousajrps.covid19pt.lineChartView
 
 import android.os.Parcel
 import android.os.Parcelable

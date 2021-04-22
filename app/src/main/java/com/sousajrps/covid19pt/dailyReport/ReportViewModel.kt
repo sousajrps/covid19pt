@@ -3,8 +3,8 @@ package com.sousajrps.covid19pt.dailyReport
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.sousajrps.covid19pt.CustomChart.CustomChartData
-import com.sousajrps.covid19pt.CustomChart.CustomChartDataSet
+import com.sousajrps.covid19pt.lineChartView.CustomChartData
+import com.sousajrps.covid19pt.lineChartView.CustomChartDataSet
 import com.sousajrps.covid19pt.R
 import com.sousajrps.covid19pt.SingleLiveEvent
 import com.sousajrps.covid19pt.local.Data

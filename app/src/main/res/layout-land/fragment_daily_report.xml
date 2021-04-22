@@ -51,7 +51,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.sousajrps.covid19pt.CustomChart.LineChartView
+            <com.sousajrps.covid19pt.lineChartView.LineChartView
                 android:id="@+id/daily_cases_line_chart"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
@@ -59,7 +59,7 @@
                 android:layout_marginEnd="@dimen/margin_half"
                 app:layout_constraintTop_toBottomOf="@+id/report_rv" />
 
-            <com.sousajrps.covid19pt.CustomChart.LineChartView
+            <com.sousajrps.covid19pt.lineChartView.LineChartView
                 android:id="@+id/hospitalized_chart"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
@@ -67,7 +67,7 @@
                 android:layout_marginEnd="@dimen/margin_half"
                 app:layout_constraintTop_toBottomOf="@+id/daily_cases_line_chart" />
 
-            <com.sousajrps.covid19pt.CustomChart.LineChartView
+            <com.sousajrps.covid19pt.lineChartView.LineChartView
                 android:id="@+id/total_cases_chart"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"

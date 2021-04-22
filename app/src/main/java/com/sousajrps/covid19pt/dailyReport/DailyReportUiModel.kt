@@ -1,6 +1,6 @@
 package com.sousajrps.covid19pt.dailyReport
 
-import com.sousajrps.covid19pt.CustomChart.CustomChartDataValue
+import com.sousajrps.covid19pt.lineChartView.CustomChartDataValue
 
 data class DailyReportUiModel(
     val report: List<DailyReportItem>,

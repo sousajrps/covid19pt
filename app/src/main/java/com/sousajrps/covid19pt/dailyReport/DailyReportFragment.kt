@@ -11,10 +11,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.sousajrps.covid19pt.CustomChart.ChartActivity
-import com.sousajrps.covid19pt.CustomChart.CustomChartData
-import com.sousajrps.covid19pt.CustomChart.LineChartView
-import com.sousajrps.covid19pt.CustomChart.LineChartViewActions
+import com.sousajrps.covid19pt.lineChartView.LineChartActivity
+import com.sousajrps.covid19pt.lineChartView.CustomChartData
+import com.sousajrps.covid19pt.lineChartView.LineChartView
+import com.sousajrps.covid19pt.lineChartView.LineChartViewActions
 import com.sousajrps.covid19pt.R
 import java.util.*
 
@@ -107,8 +107,8 @@ class DailyReportFragment : Fragment() {
     }
 
     private fun expandChart(dailyCases: CustomChartData) {
-        val intent = Intent(requireContext(), ChartActivity::class.java)
-        intent.putExtra(ChartActivity.CHART_DATA, dailyCases)
+        val intent = Intent(requireContext(), LineChartActivity::class.java)
+        intent.putExtra(LineChartActivity.CHART_DATA, dailyCases)
         requireActivity().startActivity(intent)
     }
 }

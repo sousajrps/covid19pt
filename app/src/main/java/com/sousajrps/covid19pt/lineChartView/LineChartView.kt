@@ -1,4 +1,4 @@
-package com.sousajrps.covid19pt.CustomChart
+package com.sousajrps.covid19pt.lineChartView
 
 import android.content.Context
 import android.util.AttributeSet
@@ -61,7 +61,7 @@ class LineChartView : ConstraintLayout {
         lineChart.legend.textColor = textColor
         lineChart.legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
         lineChart.legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
-        val mv = DailyCasesMarkerView(context, R.layout.marker_view)
+        val mv = LineChartMarkerView(context, R.layout.marker_view)
         lineChart.marker = mv
 
         val xAxis: XAxis = lineChart.xAxis

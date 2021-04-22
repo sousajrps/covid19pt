@@ -1,10 +1,10 @@
-package com.sousajrps.covid19pt.CustomChart
+package com.sousajrps.covid19pt.lineChartView
 
 import android.os.Bundle
 import com.sousajrps.covid19pt.BaseActivity
 import com.sousajrps.covid19pt.R
 
-class ChartActivity : BaseActivity() {
+class LineChartActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_daily_cases)
@@ -22,7 +22,7 @@ class ChartActivity : BaseActivity() {
                 }
 
                 override fun finish() {
-                    this@ChartActivity.finish()
+                    this@LineChartActivity.finish()
                 }
             })
     }

@@ -1,4 +1,4 @@
-package com.sousajrps.covid19pt.CustomChart
+package com.sousajrps.covid19pt.lineChartView
 
 import android.content.Context
 import android.widget.TextView
@@ -9,7 +9,7 @@ import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.utils.MPPointF
 import com.sousajrps.covid19pt.R
 
-class DailyCasesMarkerView : MarkerView, IMarker {
+class LineChartMarkerView : MarkerView, IMarker {
 
     private var markerTv: TextView = findViewById(R.id.marker_tv)
 

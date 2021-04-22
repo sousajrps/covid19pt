@@ -102,7 +102,7 @@ object DataToVaccinationReportMapper {
                     }
                 ),
                 CustomChartDataSet(
-                    label = R.string.vaccination_one_dose,
+                    label = R.string.vaccination_second_dose,
                     colorLines = R.color.green,
                     colorCircles = R.color.green,
                     dailyCases = vaccination.map {

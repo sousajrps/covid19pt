@@ -35,7 +35,7 @@
     <string name="report_total">Total</string>
     <string name="report_variation">Variation</string>
     <string name="report_title_label">Daily report: %s</string>
-    <string name="report_hospitalizes_evolution_title">Hospitalizes evolution</string>
+    <string name="report_hospitalizes_evolution_title">Hospitalized evolution</string>
     <string name="report_total_cases_evolution_title">Total cases evolution</string>
     <string name="vaccination_chart_legend_two_doses">Immunized</string>
     <string name="vaccination_chart_legend_one_dose">First dose</string>

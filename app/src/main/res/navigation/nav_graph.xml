@@ -14,7 +14,7 @@
         android:id="@+id/ReportFragment"
         android:name="com.sousajrps.covid19pt.dailyReport.DailyReportFragment"
         android:label="@string/report_fragment_title"
-        tools:layout="@layout/fragment_chart" />
+        tools:layout="@layout/fragment_daily_report" />
 
     <fragment
         android:id="@+id/VaccinationFragment"

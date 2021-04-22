@@ -135,6 +135,7 @@
             android:text="@string/settings_covid19pt_data"
             android:textColor="@color/textColor"
             android:textStyle="bold"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/disclaimer_tv" />
 
@@ -146,6 +147,7 @@
             android:text="@string/settings_dgs_status_reports_report"
             android:textColor="@color/textColor"
             android:textStyle="bold"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/covid19pt_data_tv" />
 
@@ -157,6 +159,7 @@
             android:text="@string/settings_dgs_vaccination_report"
             android:textColor="@color/textColor"
             android:textStyle="bold"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dgs_report_tv" />
 

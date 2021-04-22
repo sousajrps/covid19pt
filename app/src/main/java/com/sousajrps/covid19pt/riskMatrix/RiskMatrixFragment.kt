@@ -145,8 +145,8 @@ class RiskMatrixFragment : Fragment() {
         nationalToday.color = black
         nationalToday.setCircleColor(black)
         nationalToday.circleHoleColor = white
-        nationalToday.circleHoleRadius = 3f
-        nationalToday.circleRadius = 5f
+        nationalToday.circleHoleRadius = 4f
+        nationalToday.circleRadius = 6f
         nationalToday.isHighlightEnabled = false
 
         val continentTodayValue: ArrayList<Entry> = ArrayList()
@@ -164,8 +164,8 @@ class RiskMatrixFragment : Fragment() {
         continentToday.color = black
         continentToday.setCircleColor(charcoal)
         continentToday.circleHoleColor = skyBlue
-        continentToday.circleHoleRadius = 3f
-        continentToday.circleRadius = 5f
+        continentToday.circleHoleRadius = 4f
+        continentToday.circleRadius = 6f
         continentToday.isHighlightEnabled = false
 
 

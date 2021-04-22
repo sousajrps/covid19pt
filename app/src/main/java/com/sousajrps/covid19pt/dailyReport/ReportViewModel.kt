@@ -65,7 +65,7 @@ class ReportViewModel(
             )
         )
         hospitalizedM.value = CustomChartData(
-            title = R.string.report_hospitalized,
+            title = R.string.report_hospitalizes_evolution_title,
             sets = listOf(
                 CustomChartDataSet(
                     label = R.string.report_hospitalized,
@@ -83,7 +83,7 @@ class ReportViewModel(
         )
 
         totalsM.value = CustomChartData(
-            title = R.string.report_total,
+            title = R.string.report_total_cases_evolution_title,
             sets = listOf(
                 CustomChartDataSet(
                     label = R.string.report_recovered,

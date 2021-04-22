@@ -35,6 +35,8 @@
     <string name="report_title_label">Relatório diário: %1$s</string>
     <string name="report_total">Total</string>
     <string name="report_variation">Variação</string>
+    <string name="report_hospitalizes_evolution_title">Evolução de Internamentos</string>
+    <string name="report_total_cases_evolution_title">Evolução do total de casos</string>
     <string name="vaccination_chart_legend_two_doses">Imunizados</string>
     <string name="vaccination_chart_legend_one_dose">Primeira dose</string>
     <string name="vaccination_chart_legend_unvaccinated">Não vacinados</string>

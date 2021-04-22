@@ -31,14 +31,11 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/report_rv"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_half"
-                android:paddingBottom="@dimen/margin_half"
-                android:layout_height="wrap_content" />
+                android:paddingBottom="@dimen/margin_half" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-
-
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_scroll_view_charts"
@@ -47,36 +44,37 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/nested_scroll_view"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragment_container"
+            <com.sousajrps.covid19pt.CustomChart.LineChartView
+                android:id="@+id/daily_cases_line_chart"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="@dimen/margin_half"
                 android:layout_marginEnd="@dimen/margin_half"
-                android:layout_marginBottom="@dimen/margin_half" />
+                app:layout_constraintTop_toBottomOf="@+id/report_rv" />
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragment_container_hospitalized"
+            <com.sousajrps.covid19pt.CustomChart.LineChartView
+                android:id="@+id/hospitalized_chart"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="@dimen/margin_half"
                 android:layout_marginEnd="@dimen/margin_half"
-                android:layout_marginBottom="@dimen/margin_half" />
+                app:layout_constraintTop_toBottomOf="@+id/daily_cases_line_chart" />
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragment_container_totals"
+            <com.sousajrps.covid19pt.CustomChart.LineChartView
+                android:id="@+id/total_cases_chart"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="@dimen/margin_half"
                 android:layout_marginEnd="@dimen/margin_half"
-                android:layout_marginBottom="@dimen/margin_half" />
+                android:layout_marginBottom="@dimen/margin_half"
+                app:layout_constraintTop_toBottomOf="@+id/hospitalized_chart" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

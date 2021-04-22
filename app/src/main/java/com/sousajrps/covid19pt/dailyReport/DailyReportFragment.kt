@@ -1,19 +1,20 @@
 package com.sousajrps.covid19pt.dailyReport
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.sousajrps.covid19pt.CustomChart.ChartFragment
+import com.sousajrps.covid19pt.CustomChart.ChartActivity
 import com.sousajrps.covid19pt.CustomChart.CustomChartData
+import com.sousajrps.covid19pt.CustomChart.LineChartView
+import com.sousajrps.covid19pt.CustomChart.LineChartViewActions
 import com.sousajrps.covid19pt.R
 import java.util.*
 
@@ -22,6 +23,9 @@ class DailyReportFragment : Fragment() {
     private lateinit var loadingView: View
     private lateinit var dailyReportRv: RecyclerView
     private lateinit var dateTv: TextView
+    private lateinit var dailyCasesChart: LineChartView
+    private lateinit var hospitalizedChart: LineChartView
+    private lateinit var totalCasesChart: LineChartView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +38,9 @@ class DailyReportFragment : Fragment() {
         loadingView = view.findViewById(R.id.loading_view_report)
         dailyReportRv = view.findViewById(R.id.report_rv)
         dateTv = view.findViewById(R.id.date_label_tv)
+        dailyCasesChart = view.findViewById(R.id.daily_cases_line_chart)
+        hospitalizedChart = view.findViewById(R.id.hospitalized_chart)
+        totalCasesChart = view.findViewById(R.id.total_cases_chart)
         dailyReportRv.layoutManager = LinearLayoutManager(requireContext())
         dailyReportRv.isNestedScrollingEnabled = false
 
@@ -62,26 +69,46 @@ class DailyReportFragment : Fragment() {
         })
 
         viewModel.dailyCases.observe(viewLifecycleOwner, Observer { dailyCases ->
-            setupChartFragment(dailyCases, R.id.fragment_container)
+            dailyCasesChart.setData(dailyCases, viewActions = object :
+                LineChartViewActions {
+                override fun expand() {
+                    expandChart(dailyCases)
+                }
+
+                override fun finish() {
+                    //n-op
+                }
+            }, false)
         })
 
         viewModel.hospitalized.observe(viewLifecycleOwner, Observer { dailyCases ->
-            setupChartFragment(dailyCases, R.id.fragment_container_hospitalized)
+            hospitalizedChart.setData(dailyCases, viewActions = object : LineChartViewActions {
+                override fun expand() {
+                    expandChart(dailyCases)
+                }
+
+                override fun finish() {
+                    //n-op
+                }
+            }, false)
         })
 
         viewModel.totals.observe(viewLifecycleOwner, Observer { dailyCases ->
-            setupChartFragment(dailyCases, R.id.fragment_container_totals)
+            totalCasesChart.setData(dailyCases, viewActions = object : LineChartViewActions {
+                override fun expand() {
+                    expandChart(dailyCases)
+                }
+
+                override fun finish() {
+                    //n-op
+                }
+            }, false)
         })
     }
 
-    private fun setupChartFragment(dailyCases: CustomChartData, chartId: Int) {
-        val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        val fragment: ChartFragment = ChartFragment.newInstance(
-            chartData = dailyCases,
-            isFullScreen = false
-        )
-        fragmentTransaction.add(chartId, fragment, chartId.toString())
-        fragmentTransaction.commit()
+    private fun expandChart(dailyCases: CustomChartData) {
+        val intent = Intent(requireContext(), ChartActivity::class.java)
+        intent.putExtra(ChartActivity.CHART_DATA, dailyCases)
+        requireActivity().startActivity(intent)
     }
 }

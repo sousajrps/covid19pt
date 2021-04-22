@@ -35,32 +35,29 @@
                 android:layout_marginTop="@dimen/margin_half"
                 app:layout_constraintTop_toBottomOf="@+id/date_label_tv" />
 
-
-
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragment_container"
+            <com.sousajrps.covid19pt.CustomChart.LineChartView
+                android:id="@+id/daily_cases_line_chart"
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
                 android:layout_marginTop="@dimen/margin_half"
                 android:layout_marginBottom="@dimen/margin_half"
                 app:layout_constraintTop_toBottomOf="@+id/report_rv" />
 
-
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragment_container_hospitalized"
+            <com.sousajrps.covid19pt.CustomChart.LineChartView
+                android:id="@+id/hospitalized_chart"
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
                 android:layout_marginTop="@dimen/margin_half"
                 android:layout_marginBottom="@dimen/margin_half"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_container" />
+                app:layout_constraintTop_toBottomOf="@+id/daily_cases_line_chart" />
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragment_container_totals"
+            <com.sousajrps.covid19pt.CustomChart.LineChartView
+                android:id="@+id/total_cases_chart"
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
                 android:layout_marginTop="@dimen/margin_half"
                 android:layout_marginBottom="@dimen/margin_half"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_container_hospitalized" />
+                app:layout_constraintTop_toBottomOf="@+id/hospitalized_chart" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

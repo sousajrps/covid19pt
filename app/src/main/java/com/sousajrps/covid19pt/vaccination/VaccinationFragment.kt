@@ -1,5 +1,6 @@
 package com.sousajrps.covid19pt.vaccination
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +9,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,8 +17,10 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
-import com.sousajrps.covid19pt.CustomChart.ChartFragment
+import com.sousajrps.covid19pt.CustomChart.ChartActivity
 import com.sousajrps.covid19pt.CustomChart.CustomChartData
+import com.sousajrps.covid19pt.CustomChart.LineChartView
+import com.sousajrps.covid19pt.CustomChart.LineChartViewActions
 import com.sousajrps.covid19pt.CustomNumberFormatter
 import com.sousajrps.covid19pt.R
 import java.util.*
@@ -37,6 +38,7 @@ class VaccinationFragment : Fragment() {
     private lateinit var chartViewGroup: View
     private lateinit var receivedTv: TextView
     private lateinit var distributedTv: TextView
+    private lateinit var lineChartView: LineChartView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,6 +57,7 @@ class VaccinationFragment : Fragment() {
         chartViewGroup = view.findViewById(R.id.chart_group)
         receivedTv = view.findViewById(R.id.vaccination_weekly_received_tv)
         distributedTv = view.findViewById(R.id.vaccination_weekly_distributed_tv)
+        lineChartView = view.findViewById(R.id.vaccination_chart)
         dailyReportRv.layoutManager = LinearLayoutManager(requireContext())
         dailyReportRv.isNestedScrollingEnabled = false
         weeklyReportRv.layoutManager = LinearLayoutManager(requireContext())
@@ -68,7 +71,8 @@ class VaccinationFragment : Fragment() {
         viewModel.getData(Date().time)
 
         viewModel.data.observe(viewLifecycleOwner, { data ->
-            vaccinationTitleTv.text = getString(R.string.vaccination_title_label, data.vaccinationTotals.date)
+            vaccinationTitleTv.text =
+                getString(R.string.vaccination_title_label, data.vaccinationTotals.date)
 
             setChartData(data.vaccinationTotals)
             setRecyclerViewData(data.vaccinationReportItem)
@@ -86,14 +90,17 @@ class VaccinationFragment : Fragment() {
     }
 
     private fun setChartFragment(vaccinationChartUiModel: CustomChartData) {
-        val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        val fragment: ChartFragment = ChartFragment.newInstance(
-            chartData = vaccinationChartUiModel,
-            isFullScreen = false
-        )
-        fragmentTransaction.add(R.id.vaccination_chart, fragment, "VaccinationChart")
-        fragmentTransaction.commit()
+        lineChartView.setData(vaccinationChartUiModel, viewActions = object : LineChartViewActions {
+            override fun expand() {
+                val intent = Intent(requireContext(), ChartActivity::class.java)
+                intent.putExtra(ChartActivity.CHART_DATA, vaccinationChartUiModel)
+                requireActivity().startActivity(intent)
+            }
+
+            override fun finish() {
+                // no-op
+            }
+        }, false)
     }
 
     private fun setChartData(data: VaccinationTotals) {
@@ -155,11 +162,13 @@ class VaccinationFragment : Fragment() {
 
     private fun setRecyclerViewWeeklyData(data: VaccinationWeeklyUiModel) {
         val customNumberFormatter = CustomNumberFormatter
-        vaccinationWeeklyTitleTv.text = getString(R.string.vaccination_title_weekly_label, data.date)
+        vaccinationWeeklyTitleTv.text =
+            getString(R.string.vaccination_title_weekly_label, data.date)
         receivedTv.text = customNumberFormatter.format(data.received)
         distributedTv.text = customNumberFormatter.format(data.distributed)
 
-        val dailyReportAdapter = VaccinationReportWeeklyAdapter(requireContext(), data.vaccinationByAgeGroup)
+        val dailyReportAdapter =
+            VaccinationReportWeeklyAdapter(requireContext(), data.vaccinationByAgeGroup)
         weeklyReportRv.adapter = dailyReportAdapter
         weeklyReportRv.invalidate()
     }

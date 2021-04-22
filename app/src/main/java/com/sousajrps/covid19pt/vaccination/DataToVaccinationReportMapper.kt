@@ -77,7 +77,7 @@ object DataToVaccinationReportMapper {
 
     fun getVaccinationTotalsChartData(vaccination: List<Vaccination>): CustomChartData {
         return CustomChartData(
-            title = R.string.vaccination_one_dose,
+            title = R.string.vaccination_total_doses_chart_title,
             sets = listOf(
                 CustomChartDataSet(
                     label = R.string.vaccination_total_doses,

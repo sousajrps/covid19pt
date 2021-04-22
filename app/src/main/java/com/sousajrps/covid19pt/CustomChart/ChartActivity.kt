@@ -1,8 +1,6 @@
 package com.sousajrps.covid19pt.CustomChart
 
 import android.os.Bundle
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.sousajrps.covid19pt.BaseActivity
 import com.sousajrps.covid19pt.R
 
@@ -14,16 +12,22 @@ class ChartActivity : BaseActivity() {
         val chartData: CustomChartData =
             intent.getParcelableExtra(CHART_DATA) ?: CustomChartData()
 
-        val fragmentManager: FragmentManager = supportFragmentManager
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        val fragment: ChartFragment =
-            ChartFragment.newInstance(isFullScreen = true, chartData = chartData)
-        fragmentTransaction.add(R.id.fragment_container, fragment, "DailyCasesFragment")
-        fragmentTransaction.commit()
+        val lineChartView = findViewById<LineChartView>(R.id.line_chart_view)
+        lineChartView.setData(
+            customChartData = chartData,
+            isFullScreen = true,
+            viewActions = object : LineChartViewActions {
+                override fun expand() {
+                    // no-op
+                }
+
+                override fun finish() {
+                    this@ChartActivity.finish()
+                }
+            })
     }
 
     companion object {
-        const val IS_FULL_SCREEN = "isFullScreen"
         const val CHART_DATA = "chartData"
     }
 }

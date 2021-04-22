@@ -58,33 +58,18 @@
                 android:background="@drawable/box_text_color"
                 app:layout_constraintTop_toBottomOf="@+id/vaccination_chart_title_tv" />
 
-            <TextView
-                android:id="@+id/vaccination_totals_chart_title_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_half"
-                android:gravity="center"
-                android:text="@string/vaccination_total_doses_chart_title"
-                android:textColor="@color/textColor"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/piechart"/>
-
-            <androidx.fragment.app.FragmentContainerView
+            <com.sousajrps.covid19pt.CustomChart.LineChartView
                 android:id="@+id/vaccination_chart"
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
                 android:layout_marginTop="@dimen/margin_half"
-                app:layout_constraintTop_toBottomOf="@+id/vaccination_totals_chart_title_tv" />
+                app:layout_constraintTop_toBottomOf="@+id/piechart" />
 
             <TextView
                 android:id="@+id/vaccination_weekly_title_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin"
+                android:layout_marginTop="@dimen/margin_half"
                 android:gravity="center_vertical"
                 android:textColor="@color/textColor"
                 android:textSize="16sp"
@@ -107,10 +92,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_half"
                 android:gravity="center"
+                android:text="@string/vaccination_received"
                 android:textColor="@color/textColor"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:text="@string/vaccination_received"
                 app:layout_constraintEnd_toStartOf="@+id/vaccination_weekly_distributed_tv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vaccination_weekly_title_divider" />
@@ -121,10 +106,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_half"
                 android:gravity="center"
+                android:text="@string/vaccination_distributed"
                 android:textColor="@color/textColor"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:text="@string/vaccination_distributed"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/vaccination_weekly_received_tv"
                 app:layout_constraintTop_toBottomOf="@+id/vaccination_weekly_title_divider" />

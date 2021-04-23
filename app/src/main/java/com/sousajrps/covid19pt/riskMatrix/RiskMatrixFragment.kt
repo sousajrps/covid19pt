@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,8 +15,8 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.sousajrps.covid19pt.remote.models.MatrixParameters
 import com.sousajrps.covid19pt.R
+import com.sousajrps.covid19pt.remote.models.MatrixParameters
 import com.sousajrps.covid19pt.riskMatrix.models.RiskMatrix
 import java.util.*
 import kotlin.collections.ArrayList
@@ -94,15 +93,15 @@ class RiskMatrixFragment : Fragment() {
 
         viewModel.initViews()
 
-        viewModel.matrixParameters.observe(viewLifecycleOwner, Observer { matrixParameters ->
+        viewModel.matrixParameters.observe(viewLifecycleOwner, { matrixParameters ->
             initViews(matrixParameters)
         })
 
-        viewModel.data.observe(viewLifecycleOwner, Observer { data ->
+        viewModel.data.observe(viewLifecycleOwner, { data ->
             drawChart(data)
         })
 
-        viewModel.showLoading.observe(viewLifecycleOwner, Observer { loading ->
+        viewModel.showLoading.observe(viewLifecycleOwner, { loading ->
             if (loading) {
                 loadingView.visibility = View.VISIBLE
             } else {

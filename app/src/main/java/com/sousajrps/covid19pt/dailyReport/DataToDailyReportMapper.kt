@@ -5,8 +5,8 @@ import com.sousajrps.covid19pt.local.Data
 import kotlin.math.abs
 
 object DataToDailyReportMapper {
-    const val MINUS = "-"
-    const val PLUS = "+"
+    private const val MINUS = "-"
+    private const val PLUS = "+"
 
     fun getReportItems(rawData: List<Data>): List<DailyReportItem> {
         val currentDay = rawData[rawData.size - 1]

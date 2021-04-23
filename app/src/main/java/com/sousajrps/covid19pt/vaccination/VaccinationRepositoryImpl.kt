@@ -8,8 +8,8 @@ import com.sousajrps.covid19pt.local.VaccinationWeeklyDao
 import com.sousajrps.covid19pt.remote.RemoteData
 import com.sousajrps.covid19pt.remote.mappers.VaccinationMapper
 import com.sousajrps.covid19pt.remote.mappers.VaccinationWeeklyMapper
-import com.sousajrps.covid19pt.riskMatrix.BaseRepository
-import com.sousajrps.covid19pt.riskMatrix.TimeStamp
+import com.sousajrps.covid19pt.BaseRepository
+import com.sousajrps.covid19pt.TimeStamp
 import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferences
 import io.reactivex.Single
 

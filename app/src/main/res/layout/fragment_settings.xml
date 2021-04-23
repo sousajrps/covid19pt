@@ -91,8 +91,8 @@
             android:src="@drawable/ic_virus_pt_sky"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/about_title_tv" />
-
+            app:layout_constraintTop_toBottomOf="@+id/about_title_tv"
+            android:contentDescription="@string/app_name"/>
 
         <TextView
             android:id="@+id/app_name_tv"

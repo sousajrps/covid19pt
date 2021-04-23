@@ -4,8 +4,8 @@ import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 
 object CustomNumberFormatter {
-    private const val patern = "#,###.##"
-    var decimalFormat: DecimalFormat = DecimalFormat(patern)
+    private const val pattern = "#,###.##"
+    private val decimalFormat: DecimalFormat = DecimalFormat(pattern)
 
     init {
         val decimalFormatSymbols = DecimalFormatSymbols()

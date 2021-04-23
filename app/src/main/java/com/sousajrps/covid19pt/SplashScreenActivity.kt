@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferences
-import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferencesUtils
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

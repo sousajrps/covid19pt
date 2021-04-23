@@ -2,7 +2,6 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
     app:startDestination="@id/MatrixFragment">
 
     <fragment
@@ -10,6 +9,7 @@
         android:name="com.sousajrps.covid19pt.riskMatrix.RiskMatrixFragment"
         android:label="@string/risk_matrix_fragment_title"
         tools:layout="@layout/fragment_risk_matrix" />
+
     <fragment
         android:id="@+id/ReportFragment"
         android:name="com.sousajrps.covid19pt.dailyReport.DailyReportFragment"

@@ -1,6 +1,8 @@
 package com.sousajrps.covid19pt.riskMatrix
 
 import com.sousajrps.covid19pt.AppModule
+import com.sousajrps.covid19pt.BaseRepository
+import com.sousajrps.covid19pt.TimeStamp
 import com.sousajrps.covid19pt.local.Data
 import com.sousajrps.covid19pt.local.DataDao
 import com.sousajrps.covid19pt.remote.RemoteData
@@ -35,5 +37,4 @@ class MatrixRepositoryImpl(
             .onErrorResumeNext { dataDao.getAll() }
 
     private fun getLocalData() = dataDao.getAll()
-
 }

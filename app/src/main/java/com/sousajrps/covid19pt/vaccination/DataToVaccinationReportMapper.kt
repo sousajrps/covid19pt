@@ -8,8 +8,8 @@ import com.sousajrps.covid19pt.local.Vaccination
 import kotlin.math.abs
 
 object DataToVaccinationReportMapper {
-    const val EMPTY = ""
-    const val PLUS = "+"
+    private const val EMPTY = ""
+    private const val PLUS = "+"
 
     fun getItems(vaccination: Vaccination): List<VaccinationReportItem> {
         val typeList = listOf(

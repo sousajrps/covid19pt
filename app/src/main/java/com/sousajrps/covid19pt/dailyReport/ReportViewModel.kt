@@ -36,7 +36,7 @@ class ReportViewModel(
         .observeOn(schedulerProvider.mainThread())
         .subscribeOn(schedulerProvider.backgroundThread())
         .doOnSubscribe { showLoadingM.value = true }
-        .doOnTerminate { showLoadingM.value = false }
+        .doAfterTerminate { showLoadingM.value = false }
         .map { mapResponse(it) }
         .subscribe(
             { response -> dailyReportM.value = response

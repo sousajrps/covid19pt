@@ -15,8 +15,6 @@ object LocalModule {
         ).build()
     }
 
-    fun getDatabase() = appDatabase
-
     fun getDataDao() = appDatabase.getDataDao()
     fun getVaccinationDao() = appDatabase.getVaccinationDao()
     fun getVaccinationWeeklyDao() = appDatabase.getVaccinationWeeklyDao()

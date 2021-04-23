@@ -2,20 +2,12 @@ package com.sousajrps.covid19pt.lineChartView
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.sousajrps.covid19pt.R
 
 class CustomChartDataSet : Parcelable {
     val label: Int
     val colorLines: Int
     val colorCircles: Int
     val customChartDataValues: List<CustomChartDataValue>
-
-    constructor(){
-        label = R.string.app_name
-        colorLines = R.color.chartLines
-        colorCircles = R.color.chartCircles
-        customChartDataValues = emptyList()
-    }
 
     constructor(
         label: Int,

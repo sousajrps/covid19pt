@@ -14,7 +14,7 @@ class DayFormatter : ValueFormatter() {
     override fun getAxisLabel(value: Float, axis: AxisBase): String {
         val cl: Calendar = Calendar.getInstance()
         cl.timeInMillis = value.toLong()
-        val format = SimpleDateFormat("dd-MM-yyyy")
+        val format = SimpleDateFormat("dd-MM-yyyy", Locale.US)
         return format.format(cl.time)
     }
 }

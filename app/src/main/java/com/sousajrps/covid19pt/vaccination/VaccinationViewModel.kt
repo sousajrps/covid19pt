@@ -39,7 +39,7 @@ class VaccinationViewModel(
             .observeOn(schedulerProvider.mainThread())
             .subscribeOn(schedulerProvider.backgroundThread())
             .doOnSubscribe { showLoadingM.value = true }
-            .doOnTerminate { showLoadingM.value = false }
+            .doAfterTerminate { showLoadingM.value = false }
             .map { mapToUiModel(it) }
             .subscribe(
                 { response ->

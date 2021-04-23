@@ -1,4 +1,4 @@
-package com.sousajrps.covid19pt.riskMatrix
+package com.sousajrps.covid19pt
 
 import com.sousajrps.covid19pt.remote.models.AppConfigurations
 import com.sousajrps.covid19pt.sharedPreferences.AppSharedPreferences

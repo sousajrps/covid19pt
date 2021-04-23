@@ -45,9 +45,7 @@
         app:layout_constraintStart_toEndOf="@id/q2"
         app:layout_constraintTop_toTopOf="@id/risk_matrix_Line_chart" />
 
-
     <View
-        android:id="@+id/horizontal_line"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="@color/white"
@@ -56,7 +54,6 @@
         app:layout_constraintTop_toTopOf="@+id/q1" />
 
     <View
-        android:id="@+id/vertical_line"
         android:layout_width="1dp"
         android:layout_height="0dp"
         android:background="@color/white"
@@ -65,7 +62,6 @@
         app:layout_constraintTop_toTopOf="@+id/risk_matrix_Line_chart" />
 
     <View
-        android:id="@+id/box"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/box"
@@ -73,7 +69,6 @@
         app:layout_constraintEnd_toEndOf="@id/risk_matrix_Line_chart"
         app:layout_constraintStart_toStartOf="@id/risk_matrix_Line_chart"
         app:layout_constraintTop_toTopOf="@id/risk_matrix_Line_chart" />
-
 
     <com.sousajrps.covid19pt.VerticalTextView
         android:id="@+id/cases_label_tv"
@@ -178,6 +173,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/risk_matrix_Line_chart"
         app:layout_constraintTop_toBottomOf="@id/risk_matrix_Line_chart" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

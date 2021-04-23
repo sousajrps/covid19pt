@@ -8,7 +8,7 @@ import androidx.appcompat.widget.AppCompatTextView
 
 class VerticalTextView(context: Context?, attrs: AttributeSet?) :
     AppCompatTextView(context!!, attrs) {
-    var topDown = false
+    private var topDown = false
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(heightMeasureSpec, widthMeasureSpec)
         setMeasuredDimension(measuredHeight, measuredWidth)

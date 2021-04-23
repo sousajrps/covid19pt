@@ -43,7 +43,7 @@ class RiskMatrixViewModel(
         .observeOn(schedulerProvider.mainThread())
         .subscribeOn(schedulerProvider.backgroundThread())
         .doOnSubscribe { showLoadingM.value = true }
-        .doOnTerminate { showLoadingM.value = false }
+        .doAfterTerminate { showLoadingM.value = false }
         .map { dataToMatrixMapper.map(rawData = it) }
         .subscribe(
             { response ->

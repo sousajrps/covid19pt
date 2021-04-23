@@ -13,6 +13,7 @@ class LineChartMarkerView : MarkerView, IMarker {
 
     private var markerTv: TextView = findViewById(R.id.marker_tv)
 
+    constructor(context: Context?) : super(context, 0)
     constructor(context: Context?, layoutResource: Int) : super(context, layoutResource)
 
     override fun refreshContent(e: Entry, highlight: Highlight) {

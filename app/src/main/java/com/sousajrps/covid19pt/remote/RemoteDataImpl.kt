@@ -7,15 +7,6 @@ import java.net.URL
 
 class RemoteDataImpl : RemoteData {
 
-    private val DATA_URL =
-        "https://raw.githubusercontent.com/dssg-pt/covid19pt-data/master/data.csv"
-
-    private val VACCINATION_URL =
-        "https://raw.githubusercontent.com/dssg-pt/covid19pt-data/master/vacinas.csv"
-
-    private val VACCINATION_WEEKLY_URL =
-        "https://raw.githubusercontent.com/dssg-pt/covid19pt-data/master/vacinas_detalhe.csv"
-
     override fun getRemoteCovid19PtData() = getRemote(DATA_URL)
 
     override fun getRemoteCovid19PtVaccination() = getRemote(VACCINATION_URL)
@@ -46,5 +37,16 @@ class RemoteDataImpl : RemoteData {
             }
         }
         return rows
+    }
+
+    companion object {
+        private const val DATA_URL =
+            "https://raw.githubusercontent.com/dssg-pt/covid19pt-data/master/data.csv"
+
+        private const val VACCINATION_URL =
+            "https://raw.githubusercontent.com/dssg-pt/covid19pt-data/master/vacinas.csv"
+
+        private const val VACCINATION_WEEKLY_URL =
+            "https://raw.githubusercontent.com/dssg-pt/covid19pt-data/master/vacinas_detalhe.csv"
     }
 }

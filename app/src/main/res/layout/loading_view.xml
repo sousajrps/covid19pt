@@ -8,7 +8,6 @@
     android:focusable="true">
 
     <com.github.ybq.android.spinkit.SpinKitView
-        android:id="@+id/loading_spin"
         style="@style/SpinKitView.Small.Pulse"
         android:layout_width="200dp"
         android:layout_height="200dp"
@@ -20,7 +19,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/loading_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/skyBlueTransparency" />

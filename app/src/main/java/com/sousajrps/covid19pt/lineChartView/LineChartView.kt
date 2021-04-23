@@ -1,6 +1,8 @@
 package com.sousajrps.covid19pt.lineChartView
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -85,13 +87,12 @@ class LineChartView : ConstraintLayout {
 
     fun setData(
         customChartData: CustomChartData,
-        viewActions: LineChartViewActions,
-        isFullScreen: Boolean
+        isFullScreen: Boolean = false
     ) {
         if (isFullScreen) {
             backArrow.visibility = View.VISIBLE
             backArrow.setOnClickListener {
-                viewActions.finish()
+                (context as Activity).finish()
             }
             titleFullScreenTv.text = context.getString(customChartData.title)
             titleFullScreenTv.visibility = View.VISIBLE
@@ -105,7 +106,9 @@ class LineChartView : ConstraintLayout {
             titleTv.visibility = View.VISIBLE
             expandView.visibility = View.VISIBLE
             expandView.setOnClickListener {
-                viewActions.expand()
+                val intent = Intent(context, LineChartActivity::class.java)
+                intent.putExtra(LineChartActivity.CHART_DATA, customChartData)
+                context.startActivity(intent)
             }
         }
 
@@ -146,7 +149,9 @@ class LineChartView : ConstraintLayout {
 
     private fun getTimeInMilliseconds(dateString: String): Long {
         val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
-        calendar.time = sdf.parse(dateString)
+        sdf.parse(dateString)?.let {
+            calendar.time = it
+        }
         return calendar.time.time
     }
 }

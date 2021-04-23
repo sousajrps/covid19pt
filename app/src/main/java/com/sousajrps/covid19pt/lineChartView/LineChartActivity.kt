@@ -13,18 +13,7 @@ class LineChartActivity : BaseActivity() {
             intent.getParcelableExtra(CHART_DATA) ?: CustomChartData()
 
         val lineChartView = findViewById<LineChartView>(R.id.line_chart_view)
-        lineChartView.setData(
-            customChartData = chartData,
-            isFullScreen = true,
-            viewActions = object : LineChartViewActions {
-                override fun expand() {
-                    // no-op
-                }
-
-                override fun finish() {
-                    this@LineChartActivity.finish()
-                }
-            })
+        lineChartView.setData(customChartData = chartData, isFullScreen = true)
     }
 
     companion object {

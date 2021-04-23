@@ -1,6 +1,5 @@
 package com.sousajrps.covid19pt.vaccination
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,12 +16,10 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
-import com.sousajrps.covid19pt.lineChartView.LineChartActivity
-import com.sousajrps.covid19pt.lineChartView.CustomChartData
-import com.sousajrps.covid19pt.lineChartView.LineChartView
-import com.sousajrps.covid19pt.lineChartView.LineChartViewActions
 import com.sousajrps.covid19pt.CustomNumberFormatter
 import com.sousajrps.covid19pt.R
+import com.sousajrps.covid19pt.lineChartView.CustomChartData
+import com.sousajrps.covid19pt.lineChartView.LineChartView
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -90,17 +87,7 @@ class VaccinationFragment : Fragment() {
     }
 
     private fun setChartFragment(vaccinationChartUiModel: CustomChartData) {
-        lineChartView.setData(vaccinationChartUiModel, viewActions = object : LineChartViewActions {
-            override fun expand() {
-                val intent = Intent(requireContext(), LineChartActivity::class.java)
-                intent.putExtra(LineChartActivity.CHART_DATA, vaccinationChartUiModel)
-                requireActivity().startActivity(intent)
-            }
-
-            override fun finish() {
-                // no-op
-            }
-        }, false)
+        lineChartView.setData(vaccinationChartUiModel)
     }
 
     private fun setChartData(data: VaccinationTotals) {
@@ -146,9 +133,9 @@ class VaccinationFragment : Fragment() {
         dataSet.valueTextColor = textColor
         dataSet.setColors(green, yellow, skyBlueTransparency)
 
-        val data = PieData(dataSet)
+        val pieData = PieData(dataSet)
 
-        pieChart.data = data
+        pieChart.data = pieData
         chartViewGroup.visibility = View.VISIBLE
         pieChart.animateXY(1000, 1000)
     }

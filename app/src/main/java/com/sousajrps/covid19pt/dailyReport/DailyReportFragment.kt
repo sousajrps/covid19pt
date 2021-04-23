@@ -1,6 +1,5 @@
 package com.sousajrps.covid19pt.dailyReport
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sousajrps.covid19pt.R
 import com.sousajrps.covid19pt.lineChartView.CustomChartData
-import com.sousajrps.covid19pt.lineChartView.LineChartActivity
 import com.sousajrps.covid19pt.lineChartView.LineChartView
-import com.sousajrps.covid19pt.lineChartView.LineChartViewActions
 import java.util.*
 
 class DailyReportFragment : Fragment() {
@@ -54,9 +51,9 @@ class DailyReportFragment : Fragment() {
         viewModel.dailyReport.observe(viewLifecycleOwner, { dailyReport ->
             dateTv.text = getString(R.string.report_title_label, dailyReport.report.first().date)
             showDailyReport(dailyReport.report)
-            showDailyCases(dailyReport.dailyCases)
-            showHospitalized(dailyReport.hospitalized)
-            showTotalCases(dailyReport.totalCases)
+            dailyCasesChart.setData(dailyReport.dailyCases)
+            hospitalizedChart.setData(dailyReport.hospitalized)
+            totalCasesChart.setData(dailyReport.totalCases)
         })
 
         viewModel.showLoading.observe(viewLifecycleOwner, { loading ->
@@ -66,63 +63,11 @@ class DailyReportFragment : Fragment() {
                 loadingView.visibility = View.GONE
             }
         })
-
-    }
-
-    private fun showTotalCases(totalCases: CustomChartData) {
-        totalCasesChart.setData(
-            totalCases,
-            viewActions = object : LineChartViewActions {
-                override fun expand() {
-                    expandChart(totalCases)
-                }
-
-                override fun finish() {
-                    //n-op
-                }
-            },
-            false
-        )
-    }
-
-    private fun showHospitalized(hospitalized: CustomChartData) {
-        hospitalizedChart.setData(
-            hospitalized,
-            viewActions = object : LineChartViewActions {
-                override fun expand() {
-                    expandChart(hospitalized)
-                }
-
-                override fun finish() {
-                    //n-op
-                }
-            },
-            false
-        )
-    }
-
-    private fun showDailyCases(dailyCases: CustomChartData) {
-        dailyCasesChart.setData(dailyCases, viewActions = object :
-            LineChartViewActions {
-            override fun expand() {
-                expandChart(dailyCases)
-            }
-
-            override fun finish() {
-                //n-op
-            }
-        }, false)
     }
 
     private fun showDailyReport(dailyReport: List<DailyReportItem>) {
         val dailyReportAdapter = DailyReportAdapter(requireContext(), dailyReport)
         dailyReportRv.adapter = dailyReportAdapter
         dailyReportRv.invalidate()
-    }
-
-    private fun expandChart(dailyCases: CustomChartData) {
-        val intent = Intent(requireContext(), LineChartActivity::class.java)
-        intent.putExtra(LineChartActivity.CHART_DATA, dailyCases)
-        requireActivity().startActivity(intent)
     }
 }

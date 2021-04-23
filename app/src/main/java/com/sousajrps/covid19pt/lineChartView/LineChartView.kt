@@ -141,6 +141,7 @@ class LineChartView : ConstraintLayout {
 
         lineChart.data = data
         lineChart.invalidate()
+        lineChart.animateXY(1000, 1000)
     }
 
     private fun getTimeInMilliseconds(dateString: String): Long {

@@ -150,7 +150,7 @@ class VaccinationFragment : Fragment() {
 
         pieChart.data = data
         chartViewGroup.visibility = View.VISIBLE
-        pieChart.animateXY(2000, 2000)
+        pieChart.animateXY(1000, 1000)
     }
 
     private fun setRecyclerViewData(data: List<VaccinationReportItem>) {

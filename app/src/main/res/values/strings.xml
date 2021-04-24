@@ -58,4 +58,5 @@
     <string name="vaccination_distributed">Distributed</string>
     <string name="vaccination_total_doses_chart_title">Total doses distributed</string>
     <string name="expand">Expand</string>
+    <string name="marker_label" translatable="false">%s\n%s</string>
 </resources>

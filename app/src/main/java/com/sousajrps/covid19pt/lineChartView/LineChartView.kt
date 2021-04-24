@@ -122,7 +122,10 @@ class LineChartView : ConstraintLayout {
                     Entry(
                         getTimeInMilliseconds(confirmedCases.date).toFloat(),
                         confirmedCases.value,
-                        confirmedCases.date
+                        MarkerViewCustom(
+                            label = confirmedCases.date,
+                            labelColor = list.colorCircles
+                        )
                     )
                 }
 

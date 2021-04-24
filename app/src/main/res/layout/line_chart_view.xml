@@ -30,11 +30,12 @@
         android:id="@+id/back_arrow_iv"
         android:layout_width="wrap_content"
         android:layout_height="?attr/actionBarSize"
-        android:layout_marginStart="@dimen/margin_half"
         android:contentDescription="@string/app_name"
+        android:paddingStart="@dimen/margin_half"
+        android:paddingEnd="@dimen/margin_half"
         android:scaleType="center"
         android:src="@drawable/ic_baseline_arrow_back_24"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/toolTipText" />
@@ -43,7 +44,6 @@
         android:id="@+id/title_full_screen_tv"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/margin_half"
         android:gravity="center_vertical"
         android:text="@string/daily_cases_title"
         android:textColor="@color/toolTipText"
@@ -53,6 +53,7 @@
         app:layout_constraintBottom_toBottomOf="@id/back_arrow_iv"
         app:layout_constraintStart_toEndOf="@id/back_arrow_iv"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <ImageView
         android:id="@+id/expand_iv"

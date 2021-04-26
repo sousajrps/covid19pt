@@ -1,9 +1,6 @@
 package com.sousajrps.covid19pt.local
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import io.reactivex.Single
 
 @Dao
@@ -15,7 +12,7 @@ interface VaccinationDao {
     @Query("SELECT * FROM vaccination ORDER BY data DESC LIMIT 1")
     fun getLast(): Vaccination
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vaccination: List<Vaccination>)
 
     @Delete

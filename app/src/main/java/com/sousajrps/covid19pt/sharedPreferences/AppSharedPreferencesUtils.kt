@@ -79,6 +79,18 @@ class AppSharedPreferencesUtils : AppSharedPreferences {
         get() = getLocaleFromString()
         set(locale) = setLocaleFromString(locale)
 
+    override var notificationTopicsVersion: Int
+        get() = sharedPreferences.getInt(NOTIFICATION_TOPICS_VERSION, 0)
+        set(timeStamp) = sharedPreferences.edit()
+            .putInt(NOTIFICATION_TOPICS_VERSION, timeStamp)
+            .apply()
+
+    override var dailyNotificationSubscribed: Boolean
+        get() = sharedPreferences.getBoolean(DAILY_NOTIFICATION_SUBSCRIBED, false)
+        set(timeStamp) = sharedPreferences.edit()
+            .putBoolean(DAILY_NOTIFICATION_SUBSCRIBED, timeStamp)
+            .apply()
+
     private fun getLocaleFromString(): Locale? {
         val savedLocaleString = sharedPreferences.getString(LOCALE, "").orEmpty()
         if (savedLocaleString.isNotEmpty()) {
@@ -106,12 +118,15 @@ class AppSharedPreferencesUtils : AppSharedPreferences {
 
     companion object {
         const val VERSION = 1
+        const val NOTIFICATION_VERSION = 1
         private const val SHARED_PREFERENCES_ENCRYPTED = "SharedPreferencesEncrypted"
         private const val DATA_TIME_STAMP = "dataTimeStamp"
         private const val VACCINATION_TIME_STAMP = "vaccinationTimeStamp"
         private const val VACCINATION_WEEKLY_TIME_STAMP = "vaccinationWeeklyTimeStamp"
         private const val NIGHT_MODE = "nightMode"
         private const val LOCALE = "locale"
+        private const val NOTIFICATION_TOPICS_VERSION = "notificationTopicsVersion"
+        private const val DAILY_NOTIFICATION_SUBSCRIBED = "dailyNotificationSubscribed"
         private const val SHARED_PREFERENCES_VERSION = "sharedPreferencesVersion"
     }
 }

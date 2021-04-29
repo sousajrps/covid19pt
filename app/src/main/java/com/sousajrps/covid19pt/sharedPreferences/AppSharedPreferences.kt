@@ -10,6 +10,8 @@ interface AppSharedPreferences {
     var vaccinationWeeklyTimeStamp: Long
     var nightMode: String
     var locale: Locale?
+    var notificationTopicsVersion: Int
+    var dailyNotificationSubscribed: Boolean
 
     fun initialize(context: Context)
 

@@ -66,6 +66,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/language_rg" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/textColor"
+            app:layout_constraintTop_toBottomOf="@+id/night_mode_switchButton" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/daily_notification_switchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_daily_notification"
+            android:textColor="@color/textColor"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/night_mode_switchButton" />
+
         <TextView
             android:id="@+id/about_title_tv"
             android:layout_width="match_parent"
@@ -75,7 +91,7 @@
             android:textColor="@color/textColor"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/night_mode_switchButton" />
+            app:layout_constraintTop_toBottomOf="@+id/daily_notification_switchButton" />
 
         <View
             android:layout_width="match_parent"
@@ -88,24 +104,24 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="@dimen/margin_half"
+            android:contentDescription="@string/app_name"
             android:src="@drawable/ic_virus_pt_sky"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/about_title_tv"
-            android:contentDescription="@string/app_name"/>
+            app:layout_constraintTop_toBottomOf="@+id/about_title_tv" />
 
         <TextView
             android:id="@+id/app_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_half"
+            android:text="@string/app_name"
             android:textColor="@color/textColor"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/app_logo_iv"
-            android:text="@string/app_name" />
+            app:layout_constraintTop_toBottomOf="@+id/app_logo_iv" />
 
         <TextView
             android:id="@+id/version_tv"
@@ -134,8 +150,8 @@
             android:layout_marginTop="@dimen/margin_half"
             android:text="@string/settings_covid19pt_data"
             android:textColor="@color/textColor"
-            android:textStyle="bold"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/disclaimer_tv" />
 
@@ -146,8 +162,8 @@
             android:layout_marginTop="@dimen/margin_half"
             android:text="@string/settings_dgs_status_reports_report"
             android:textColor="@color/textColor"
-            android:textStyle="bold"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/covid19pt_data_tv" />
 
@@ -158,8 +174,8 @@
             android:layout_marginTop="@dimen/margin_half"
             android:text="@string/settings_dgs_vaccination_report"
             android:textColor="@color/textColor"
-            android:textStyle="bold"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dgs_report_tv" />
 

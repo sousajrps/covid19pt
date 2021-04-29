@@ -14,6 +14,7 @@
     <string name="settings_portuguese">Português</string>
     <string name="settings_english">English</string>
     <string name="settings_night_mode">Tema escuro</string>
+    <string name="settings_daily_notification">Notificação diária</string>
     <string name="settings_about">Acerca</string>
     <string name="settings_version">Versão: %s</string>
     <string name="settings_dgs_status_reports_report"><p>DGS Relatório de situação: <a href="https://covid19.min-saude.pt/relatorio-de-situacao/">aqui</a>.</p></string>

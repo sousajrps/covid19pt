@@ -14,6 +14,7 @@
     <string name="settings_portuguese">Português</string>
     <string name="settings_english">English</string>
     <string name="settings_night_mode">Night mode</string>
+    <string name="settings_daily_notification">Daily notification</string>
     <string name="settings_about">About</string>
     <string name="settings_version">Version: %s</string>
     <string name="settings_dgs_status_reports_report"><p>DGS Status Report: <a href="https://covid19.min-saude.pt/relatorio-de-situacao/">here</a>.</p></string>
@@ -59,4 +60,7 @@
     <string name="vaccination_total_doses_chart_title">Total doses distributed</string>
     <string name="expand">Expand</string>
     <string name="marker_label" translatable="false">%s\n%s</string>
+    <string name="default_notification_channel_id" translatable="false">general</string>
+    <string name="notification_topic_general" translatable="false">general</string>
+    <string name="notification_topic_daily_report" translatable="false">dailyReport</string>
 </resources>

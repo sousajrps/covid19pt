@@ -24,6 +24,7 @@ class SettingsFragment : Fragment() {
     private lateinit var versionTv: TextView
     private lateinit var statusDgsLink: TextView
     private lateinit var vaccinationDgsLink: TextView
+    private lateinit var githubSourceLink: TextView
     private lateinit var githubDataLink: TextView
     private lateinit var flaticonLink: TextView
     private lateinit var dailyNotification: SwitchCompat
@@ -45,6 +46,7 @@ class SettingsFragment : Fragment() {
         versionTv = view.findViewById(R.id.version_tv)
         statusDgsLink = view.findViewById(R.id.dgs_report_tv)
         vaccinationDgsLink = view.findViewById(R.id.dgs_vaccination_tv)
+        githubSourceLink = view.findViewById(R.id.github_code_tv)
         githubDataLink = view.findViewById(R.id.covid19pt_data_tv)
         flaticonLink = view.findViewById(R.id.flaticon_tv)
         dailyNotification = view.findViewById(R.id.daily_notification_switchButton)
@@ -58,6 +60,7 @@ class SettingsFragment : Fragment() {
     private fun generateAbout() {
         statusDgsLink.movementMethod = LinkMovementMethod.getInstance()
         vaccinationDgsLink.movementMethod = LinkMovementMethod.getInstance()
+        githubSourceLink.movementMethod = LinkMovementMethod.getInstance()
         githubDataLink.movementMethod = LinkMovementMethod.getInstance()
         flaticonLink.movementMethod = LinkMovementMethod.getInstance()
 

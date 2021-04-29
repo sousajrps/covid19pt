@@ -169,6 +169,18 @@
                 app:layout_constraintTop_toBottomOf="@+id/version_tv" />
 
             <TextView
+                android:id="@+id/github_code_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_half"
+                android:text="@string/settings_github_repository"
+                android:textColor="@color/textColor"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/disclaimer_tv" />
+
+            <TextView
                 android:id="@+id/covid19pt_data_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -178,7 +190,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/disclaimer_tv" />
+                app:layout_constraintTop_toBottomOf="@+id/github_code_tv" />
 
             <TextView
                 android:id="@+id/dgs_report_tv"

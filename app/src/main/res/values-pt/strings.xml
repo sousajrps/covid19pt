@@ -17,6 +17,7 @@
     <string name="settings_daily_notification">Notificação diária</string>
     <string name="settings_about">Acerca</string>
     <string name="settings_version">Versão: %s</string>
+    <string name="settings_github_repository"><p>Código fonte Github: <a href="https://github.com/sousajrps/covid19pt/">aqui</a>.</p></string>
     <string name="settings_dgs_status_reports_report"><p>DGS Relatório de situação: <a href="https://covid19.min-saude.pt/relatorio-de-situacao/">aqui</a>.</p></string>
     <string name="settings_dgs_vaccination_report"><p>DGS Relatório de vacinação: <a href="https://covid19.min-saude.pt/relatorio-de-vacinacao/">aqui</a>.</p></string>
     <string name="settings_covid19pt_data"><p>Github covid19pt-data: <a href="https://github.com/dssg-pt/covid19pt-data">aqui</a>.</p></string>

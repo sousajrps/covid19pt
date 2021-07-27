@@ -53,5 +53,6 @@
     <string name="vaccination_received">Recebidas</string>
     <string name="vaccination_distributed">Distribuídas</string>
     <string name="vaccination_total_doses_chart_title">Total de doses administradas</string>
+    <string name="vaccination_daily_doses_chart_title">Doses diárias distribuidas</string>
     <string name="expand">Expandir</string>
 </resources>

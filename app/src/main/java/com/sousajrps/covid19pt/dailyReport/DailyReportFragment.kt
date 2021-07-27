@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sousajrps.covid19pt.R
-import com.sousajrps.covid19pt.lineChartView.CustomChartData
 import com.sousajrps.covid19pt.lineChartView.LineChartView
 import java.util.*
 

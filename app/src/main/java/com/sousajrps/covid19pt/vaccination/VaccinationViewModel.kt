@@ -53,7 +53,7 @@ class VaccinationViewModel(
 
     private fun mapToUiModel(pair: Pair<List<Vaccination>, List<VaccinationWeekly>>): VaccinationUiModel {
         val vaccinationLastDay = pair.first.last()
-        val vaccinationLastWeek = pair.second.last()
+        val vaccinationLastWeek = if(pair.second.last().doses1_0_17 != 0.0) pair.second.last() else pair.second[pair.second.size-2]
         return VaccinationUiModel(
             vaccinationTotals = vaccinationTotalsMapper.map(
                 vaccinationLastDay,
@@ -62,6 +62,9 @@ class VaccinationViewModel(
             vaccinationReportItem = dataToVaccinationReportMapper.getItems(vaccinationLastDay),
             vaccinationWeeklyUiModel = dataToVaccinationWeeklyMapper.getItems(vaccinationLastWeek),
             vaccinationChartUiModel = dataToVaccinationReportMapper.getVaccinationTotalsChartData(
+                pair.first
+            ),
+            vaccinationDailyChartUiModel = dataToVaccinationReportMapper.getVaccinationDailyChartData(
                 pair.first
             )
         )

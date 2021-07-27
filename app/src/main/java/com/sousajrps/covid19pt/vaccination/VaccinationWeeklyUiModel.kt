@@ -2,18 +2,18 @@ package com.sousajrps.covid19pt.vaccination
 
 data class VaccinationWeeklyUiModel(
     val date: String,
-    val received: Float,
-    val distributed: Float,
+    val received: Double,
+    val distributed: Double,
     val vaccinationByAgeGroup: List<VaccinationByAgeGroup>
 )
 
 data class VaccinationByAgeGroup(
     val ageGroup: AgeGroup,
     val label: Int,
-    val firstDose: Float,
-    val secondDose: Float,
-    val firstDosePercentage: Float,
-    val secondDosePercentage: Float,
+    val firstDose: Double,
+    val secondDose: Double,
+    val firstDosePercentage: Double,
+    val secondDosePercentage: Double,
     )
 
 enum class AgeGroup {

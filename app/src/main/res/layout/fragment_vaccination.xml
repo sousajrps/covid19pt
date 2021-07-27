@@ -58,12 +58,20 @@
                 android:background="@drawable/box_text_color"
                 app:layout_constraintTop_toBottomOf="@+id/vaccination_chart_title_tv" />
 
+
+            <com.sousajrps.covid19pt.lineChartView.LineChartView
+                android:id="@+id/vaccination_daily_chart"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_marginTop="@dimen/margin_half"
+                app:layout_constraintTop_toBottomOf="@+id/piechart" />
+
             <com.sousajrps.covid19pt.lineChartView.LineChartView
                 android:id="@+id/vaccination_chart"
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
                 android:layout_marginTop="@dimen/margin_half"
-                app:layout_constraintTop_toBottomOf="@+id/piechart" />
+                app:layout_constraintTop_toBottomOf="@+id/vaccination_daily_chart" />
 
             <TextView
                 android:id="@+id/vaccination_weekly_title_tv"

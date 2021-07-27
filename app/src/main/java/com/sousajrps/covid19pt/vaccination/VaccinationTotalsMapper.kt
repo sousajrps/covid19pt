@@ -7,10 +7,10 @@ object VaccinationTotalsMapper {
         vaccinationData: Vaccination,
         portuguesePopulation:Int,
     ): VaccinationTotals {
-        val firstDoseOnly = vaccinationData.doses1 - vaccinationData.doses2
-        val secondDosePercentage = (vaccinationData.doses2 / portuguesePopulation) * 100
+        val firstDoseOnly = vaccinationData.pessoas_vacinadas_parcialmente
+        val secondDosePercentage = (vaccinationData.pessoas_vacinadas_completamente / portuguesePopulation) * 100
         val firstDoseOnlyPercentage = (firstDoseOnly / portuguesePopulation) * 100
-        val withoutVaccination = portuguesePopulation - vaccinationData.doses1
+        val withoutVaccination = portuguesePopulation - vaccinationData.pessoas_vacinadas_parcialmente - vaccinationData.pessoas_vacinadas_completamente
         val withoutVaccinationPercentage = 100 - secondDosePercentage - firstDoseOnlyPercentage
 
         return VaccinationTotals(

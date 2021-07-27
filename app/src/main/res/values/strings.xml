@@ -59,6 +59,7 @@
     <string name="vaccination_received">Received</string>
     <string name="vaccination_distributed">Distributed</string>
     <string name="vaccination_total_doses_chart_title">Total doses distributed</string>
+    <string name="vaccination_daily_doses_chart_title">Daily doses distributed</string>
     <string name="expand">Expand</string>
     <string name="marker_label" translatable="false">%s\n%s</string>
     <string name="default_notification_channel_id" translatable="false">general</string>

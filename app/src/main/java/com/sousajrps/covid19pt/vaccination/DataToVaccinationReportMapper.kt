@@ -115,4 +115,34 @@ object DataToVaccinationReportMapper {
             )
         )
     }
+
+    fun getVaccinationDailyChartData(vaccination: List<Vaccination>): CustomChartData {
+        return CustomChartData(
+            title = R.string.vaccination_daily_doses_chart_title,
+            sets = listOf(
+                CustomChartDataSet(
+                    label = R.string.vaccination_one_dose,
+                    colorLines = R.color.yellow,
+                    colorCircles = R.color.yellow,
+                    dailyCases = vaccination.map {
+                        CustomChartDataValue(
+                            date = it.data,
+                            value = it.doses1_novas
+                        )
+                    }
+                ),
+                CustomChartDataSet(
+                    label = R.string.vaccination_second_dose,
+                    colorLines = R.color.green,
+                    colorCircles = R.color.green,
+                    dailyCases = vaccination.map {
+                        CustomChartDataValue(
+                            date = it.data,
+                            value = it.doses2_novas
+                        )
+                    }
+                )
+            )
+        )
+    }
 }

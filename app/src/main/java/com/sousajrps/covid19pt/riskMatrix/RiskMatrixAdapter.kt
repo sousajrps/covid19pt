@@ -27,13 +27,13 @@ class RiskMatrixAdapter(
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         holder.dateTv.text = riskMatrixData[holder.adapterPosition].date
         holder.rtNationalTv.text =
-            customNumberFormatter.format(riskMatrixData[holder.adapterPosition].rt_national)
+            customNumberFormatter.format(riskMatrixData[holder.adapterPosition].rt_national.toFloat())
         holder.incidenceNationalTv.text =
-            customNumberFormatter.format(riskMatrixData[holder.adapterPosition].incidence_national)
+            customNumberFormatter.format(riskMatrixData[holder.adapterPosition].incidence_national.toFloat())
         holder.rtContinentTv.text =
-            customNumberFormatter.format(riskMatrixData[holder.adapterPosition].rt_continent)
+            customNumberFormatter.format(riskMatrixData[holder.adapterPosition].rt_continent.toFloat())
         holder.incidenceContinentTv.text =
-            customNumberFormatter.format(riskMatrixData[holder.adapterPosition].incidence_continent)
+            customNumberFormatter.format(riskMatrixData[holder.adapterPosition].incidence_continent.toFloat())
         holder.incidenceNationalTv.setTextColor(ContextCompat.getColor(context, R.color.textColor))
         holder.rtNationalTv.setTextColor(ContextCompat.getColor(context, R.color.textColor))
         holder.incidenceContinentTv.setTextColor(ContextCompat.getColor(context, R.color.textColor))

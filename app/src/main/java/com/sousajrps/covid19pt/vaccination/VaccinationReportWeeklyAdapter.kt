@@ -33,11 +33,11 @@ class VaccinationReportWeeklyAdapter(
         } else {
             holder.labelTv.text = context.getString(riskMatrixData[holder.adapterPosition].label)
             holder.firstDoseTv.text =
-                customNumberFormatter.format(riskMatrixData[holder.adapterPosition].firstDose)
+                customNumberFormatter.format(riskMatrixData[holder.adapterPosition].firstDose.toInt())
             holder.firstDosePercentageTv.text =
                 "${riskMatrixData[holder.adapterPosition].firstDosePercentage.roundToInt()}%"
             holder.secondDoseTv.text =
-                customNumberFormatter.format(riskMatrixData[holder.adapterPosition].secondDose)
+                customNumberFormatter.format(riskMatrixData[holder.adapterPosition].secondDose.toInt())
             holder.secondDosePercentageTv.text =
                 "${riskMatrixData[holder.adapterPosition].secondDosePercentage.roundToInt()}%"
         }

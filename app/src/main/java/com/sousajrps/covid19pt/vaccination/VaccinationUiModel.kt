@@ -6,5 +6,6 @@ data class VaccinationUiModel(
     val vaccinationTotals: VaccinationTotals,
     val vaccinationReportItem: List<VaccinationReportItem>,
     val vaccinationWeeklyUiModel: VaccinationWeeklyUiModel,
-    val vaccinationChartUiModel: CustomChartData
+    val vaccinationChartUiModel: CustomChartData,
+    val vaccinationDailyChartUiModel: CustomChartData
 )

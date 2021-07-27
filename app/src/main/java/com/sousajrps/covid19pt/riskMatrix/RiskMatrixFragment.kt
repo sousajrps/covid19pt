@@ -1,5 +1,6 @@
 package com.sousajrps.covid19pt.riskMatrix
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -133,15 +134,15 @@ class RiskMatrixFragment : Fragment() {
         if (chartData.isNotEmpty()) {
             nationalTodayValue.add(
                 Entry(
-                    chartData.first().rt_national,
-                    chartData.first().incidence_national
+                    chartData.first().rt_national.toFloat(),
+                    chartData.first().incidence_national.toFloat()
                 )
             )
         }
 
         val nationalToday = LineDataSet(nationalTodayValue, "nationalToday")
         nationalToday.setDrawValues(false)
-        nationalToday.color = black
+        nationalToday.color = Color.TRANSPARENT
         nationalToday.setCircleColor(black)
         nationalToday.circleHoleColor = white
         nationalToday.circleHoleRadius = 4f
@@ -152,15 +153,15 @@ class RiskMatrixFragment : Fragment() {
         if (chartData.isNotEmpty()) {
             continentTodayValue.add(
                 Entry(
-                    chartData.first().rt_continent,
-                    chartData.first().incidence_continent
+                    chartData.first().rt_continent.toFloat(),
+                    chartData.first().incidence_continent.toFloat()
                 )
             )
         }
 
         val continentToday = LineDataSet(continentTodayValue, "continentToday")
         continentToday.setDrawValues(false)
-        continentToday.color = black
+        continentToday.color = Color.TRANSPARENT
         continentToday.setCircleColor(charcoal)
         continentToday.circleHoleColor = skyBlue
         continentToday.circleHoleRadius = 4f
@@ -169,12 +170,12 @@ class RiskMatrixFragment : Fragment() {
 
 
         val nationalLastDaysValues: List<Entry> =
-            chartData.map { Entry(it.rt_national, it.incidence_national) }
+            chartData.map { Entry(it.rt_national.toFloat(), it.incidence_national.toFloat()) }
                 .sortedBy { entry -> entry.x }
 
         val nationalLastDays = LineDataSet(nationalLastDaysValues, "nationalLastDays")
         nationalLastDays.setDrawValues(false)
-        nationalLastDays.color = black
+        nationalLastDays.color = Color.TRANSPARENT
         nationalLastDays.setCircleColor(black)
         nationalLastDays.circleHoleColor = white
         nationalLastDays.circleHoleRadius = 2f
@@ -183,12 +184,12 @@ class RiskMatrixFragment : Fragment() {
 
 
         val continentLastDaysValues: List<Entry> =
-            chartData.map { Entry(it.rt_continent, it.incidence_continent) }
+            chartData.map { Entry(it.rt_continent.toFloat(), it.incidence_continent.toFloat()) }
                 .sortedBy { entry -> entry.x }
 
         val continentLastDays = LineDataSet(continentLastDaysValues, "continentLastDays")
         continentLastDays.setDrawValues(false)
-        continentLastDays.color = black
+        continentLastDays.color = Color.TRANSPARENT
         continentLastDays.setCircleColor(charcoal)
         continentLastDays.circleHoleColor = skyBlue
         continentLastDays.circleHoleRadius = 2f

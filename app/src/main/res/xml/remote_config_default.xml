@@ -5,8 +5,8 @@
         <value>
             {
             "matrixParameters": {
-            "casesMax": 240.0,
-            "casesMiddle": 120.0,
+            "casesMax": 480.0,
+            "casesMiddle": 240.0,
             "casesMin": 0.0,
             "rtMax": 1.5,
             "rtMiddle": 1,

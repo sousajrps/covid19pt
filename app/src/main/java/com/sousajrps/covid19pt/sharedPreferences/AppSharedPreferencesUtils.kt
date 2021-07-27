@@ -117,7 +117,7 @@ class AppSharedPreferencesUtils : AppSharedPreferences {
     }
 
     companion object {
-        const val VERSION = 1
+        const val VERSION = 2
         const val NOTIFICATION_VERSION = 1
         private const val SHARED_PREFERENCES_ENCRYPTED = "SharedPreferencesEncrypted"
         private const val DATA_TIME_STAMP = "dataTimeStamp"

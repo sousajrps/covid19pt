@@ -78,12 +78,6 @@ class ReportViewModel(
                 title = R.string.report_total_cases_evolution_title,
                 sets = listOf(
                     CustomChartDataSet(
-                        label = R.string.report_recovered,
-                        colorLines = R.color.green,
-                        colorCircles = R.color.green,
-                        dailyCases = dataToCustomChartDataValues.mapRecovered(list)
-                    ),
-                    CustomChartDataSet(
                         label = R.string.report_active,
                         colorLines = R.color.yellow,
                         colorCircles = R.color.yellow,

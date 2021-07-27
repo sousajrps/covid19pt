@@ -9,10 +9,9 @@ object LocalModule {
     private lateinit var appDatabase: AppDatabase
 
     fun initializeDatabase(context: Context) {
-        appDatabase = Room.databaseBuilder(
-            context,
-            AppDatabase::class.java, APP_DATABASE_NAME
-        ).build()
+        appDatabase = Room.databaseBuilder(context, AppDatabase::class.java, APP_DATABASE_NAME)
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     fun getDataDao() = appDatabase.getDataDao()

@@ -2,9 +2,9 @@ package com.sousajrps.covid19pt.riskMatrix.models
 
 data class RiskMatrix(
     val date: String = "",
-    val rt_national: Float = 0F,
-    val incidence_national: Float = 0F,
-    val rt_continent: Float = 0F,
-    val incidence_continent: Float = 0F,
+    val rt_national: Double = 0.0,
+    val incidence_national: Double = 0.0,
+    val rt_continent: Double = 0.0,
+    val incidence_continent: Double = 0.0,
 )
 

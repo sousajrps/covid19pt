@@ -117,11 +117,16 @@ class LineChartView : ConstraintLayout {
             val chartLines = ContextCompat.getColor(context, list.colorLines)
             val chartCircles = ContextCompat.getColor(context, list.colorCircles)
 
+            val values = if (isFullScreen) {
+                 list.customChartDataValues
+            }else{
+                list.customChartDataValues.takeLast(60)
+            }
             val continentLastDaysValues: List<Entry> =
-                list.customChartDataValues.map { confirmedCases ->
+                values.map { confirmedCases ->
                     Entry(
                         getTimeInMilliseconds(confirmedCases.date).toFloat(),
-                        confirmedCases.value,
+                        confirmedCases.value.toFloat(),
                         MarkerViewCustom(
                             label = confirmedCases.date,
                             labelColor = list.colorCircles

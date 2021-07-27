@@ -5,16 +5,16 @@ import android.os.Parcelable
 
 data class CustomChartDataValue(
     val date: String = "",
-    val value: Float = 0F
+    val value: Double = 0.0
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString().orEmpty(),
-        parcel.readFloat()
+        parcel.readDouble()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(date)
-        parcel.writeFloat(value)
+        parcel.writeDouble(value)
     }
 
     override fun describeContents(): Int {

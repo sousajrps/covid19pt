@@ -13,8 +13,8 @@ object DataToMatrixMapper {
         rawData
             .reversed()
             .filter { row ->
-                row.data.isNotEmpty() && row.rt_nacional != 0F && row.incidencia_nacional != 0F
-                        && row.rt_continente != 0F && row.incidencia_continente != 0F
+                row.data.isNotEmpty() && row.rt_nacional != 0.0 && row.incidencia_nacional != 0.0
+                        && row.rt_continente != 0.0 && row.incidencia_continente != 0.0
 
             }
             .take(numberOfItems)

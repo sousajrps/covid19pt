@@ -3,9 +3,9 @@ package com.sousajrps.covid19pt.vaccination
 data class VaccinationTotals(
     val date: String,
     val firstDoseTotal: Int,
-    val firstDosePercentage: Float,
+    val firstDosePercentage: Double,
     val secondDoseTotal: Int,
-    val secondDosePercentage: Float,
+    val secondDosePercentage: Double,
     val withoutVaccination: Int,
-    val withoutVaccinationPercentage: Float
+    val withoutVaccinationPercentage: Double
 )

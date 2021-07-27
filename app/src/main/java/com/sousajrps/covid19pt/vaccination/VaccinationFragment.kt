@@ -36,6 +36,7 @@ class VaccinationFragment : Fragment() {
     private lateinit var receivedTv: TextView
     private lateinit var distributedTv: TextView
     private lateinit var lineChartView: LineChartView
+    private lateinit var dailyDosesChart: LineChartView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,6 +56,7 @@ class VaccinationFragment : Fragment() {
         receivedTv = view.findViewById(R.id.vaccination_weekly_received_tv)
         distributedTv = view.findViewById(R.id.vaccination_weekly_distributed_tv)
         lineChartView = view.findViewById(R.id.vaccination_chart)
+        dailyDosesChart = view.findViewById(R.id.vaccination_daily_chart)
         dailyReportRv.layoutManager = LinearLayoutManager(requireContext())
         dailyReportRv.isNestedScrollingEnabled = false
         weeklyReportRv.layoutManager = LinearLayoutManager(requireContext())
@@ -75,6 +77,7 @@ class VaccinationFragment : Fragment() {
             setRecyclerViewData(data.vaccinationReportItem)
             setRecyclerViewWeeklyData(data.vaccinationWeeklyUiModel)
             setChartFragment(data.vaccinationChartUiModel)
+            setDailyDosesChart(data.vaccinationDailyChartUiModel)
         })
 
         viewModel.showLoading.observe(viewLifecycleOwner, { loading ->
@@ -88,6 +91,10 @@ class VaccinationFragment : Fragment() {
 
     private fun setChartFragment(vaccinationChartUiModel: CustomChartData) {
         lineChartView.setData(vaccinationChartUiModel)
+    }
+
+    private fun setDailyDosesChart(vaccinationChartUiModel: CustomChartData) {
+        dailyDosesChart.setData(vaccinationChartUiModel)
     }
 
     private fun setChartData(data: VaccinationTotals) {
@@ -110,19 +117,19 @@ class VaccinationFragment : Fragment() {
         val pieEntryList: ArrayList<PieEntry> = ArrayList()
         pieEntryList.add(
             PieEntry(
-                data.secondDosePercentage,
+                data.secondDosePercentage.toFloat(),
                 getString(R.string.vaccination_chart_legend_two_doses)
             )
         )
         pieEntryList.add(
             PieEntry(
-                data.firstDosePercentage,
+                data.firstDosePercentage.toFloat(),
                 getString(R.string.vaccination_chart_legend_one_dose)
             )
         )
         pieEntryList.add(
             PieEntry(
-                data.withoutVaccinationPercentage,
+                data.withoutVaccinationPercentage.toFloat(),
                 getString(R.string.vaccination_chart_legend_unvaccinated)
             )
         )
@@ -151,8 +158,8 @@ class VaccinationFragment : Fragment() {
         val customNumberFormatter = CustomNumberFormatter
         vaccinationWeeklyTitleTv.text =
             getString(R.string.vaccination_title_weekly_label, data.date)
-        receivedTv.text = customNumberFormatter.format(data.received)
-        distributedTv.text = customNumberFormatter.format(data.distributed)
+        receivedTv.text = customNumberFormatter.format(data.received.toInt())
+        distributedTv.text = customNumberFormatter.format(data.distributed.toInt())
 
         val dailyReportAdapter =
             VaccinationReportWeeklyAdapter(requireContext(), data.vaccinationByAgeGroup)

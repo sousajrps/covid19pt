@@ -45,9 +45,9 @@ object DataToVaccinationWeeklyMapper {
             AgeGroup.AGE_80_PLUS -> R.string.vaccination_age_group80_plus
         }
 
-    private fun getFirstDose(ageGroup: AgeGroup, vaccinationWeekly: VaccinationWeekly): Float =
+    private fun getFirstDose(ageGroup: AgeGroup, vaccinationWeekly: VaccinationWeekly): Double =
         when (ageGroup) {
-            AgeGroup.HEADER -> 0F
+            AgeGroup.HEADER -> 0.0
             AgeGroup.AGE_0_17 -> vaccinationWeekly.doses1_0_17
             AgeGroup.AGE_18_24 -> vaccinationWeekly.doses1_18_24
             AgeGroup.AGE_25_49 -> vaccinationWeekly.doses1_25_49
@@ -56,9 +56,9 @@ object DataToVaccinationWeeklyMapper {
             AgeGroup.AGE_80_PLUS -> vaccinationWeekly.doses1_80
         }
 
-    private fun getSecondDose(ageGroup: AgeGroup, vaccinationWeekly: VaccinationWeekly): Float =
+    private fun getSecondDose(ageGroup: AgeGroup, vaccinationWeekly: VaccinationWeekly): Double =
         when (ageGroup) {
-            AgeGroup.HEADER -> 0f
+            AgeGroup.HEADER -> 0.0
             AgeGroup.AGE_0_17 -> vaccinationWeekly.doses2_0_17
             AgeGroup.AGE_18_24 -> vaccinationWeekly.doses2_18_24
             AgeGroup.AGE_25_49 -> vaccinationWeekly.doses2_25_49
@@ -70,9 +70,9 @@ object DataToVaccinationWeeklyMapper {
     private fun getFirstDosePercentage(
         ageGroup: AgeGroup,
         vaccinationWeekly: VaccinationWeekly
-    ): Float =
+    ): Double =
         when (ageGroup) {
-            AgeGroup.HEADER -> 0f
+            AgeGroup.HEADER -> 0.0
             AgeGroup.AGE_0_17 -> vaccinationWeekly.doses1_perc_0_17 * 100
             AgeGroup.AGE_18_24 -> vaccinationWeekly.doses1_perc_18_24 * 100
             AgeGroup.AGE_25_49 -> vaccinationWeekly.doses1_perc_25_49 * 100
@@ -84,9 +84,9 @@ object DataToVaccinationWeeklyMapper {
     private fun getSecondDosePercentage(
         ageGroup: AgeGroup,
         vaccinationWeekly: VaccinationWeekly
-    ): Float =
+    ): Double =
         when (ageGroup) {
-            AgeGroup.HEADER -> 0f
+            AgeGroup.HEADER -> 0.0
             AgeGroup.AGE_0_17 -> vaccinationWeekly.doses2_perc_0_17 * 100
             AgeGroup.AGE_18_24 -> vaccinationWeekly.doses2_perc_18_24 * 100
             AgeGroup.AGE_25_49 -> vaccinationWeekly.doses2_perc_25_49 * 100
